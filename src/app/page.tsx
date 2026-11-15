@@ -1,69 +1,186 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRightIcon } from "lucide-react";
 
-export default function Home() {
+import { NextMatchCard } from "@/components/site/next-match";
+import {
+  DisplayTitle,
+  Eyebrow,
+  LevelBars,
+  LinkButton,
+  StarIcon,
+} from "@/components/site/primitives";
+import { SponsorBelt } from "@/components/site/sponsor-belt";
+import { divisions, fixtures, site, values } from "@/lib/data";
+
+import heroImage from "../../public/images/hero.jpg";
+
+export default function HomePage() {
+  const nextMatch = fixtures.find((f) => !f.past)!;
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <>
+      {/* HERO */}
+      <section className="relative overflow-hidden bg-navy-deep">
         <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+          src={heroImage}
+          alt=""
+          fill
           priority
+          placeholder="blur"
+          sizes="100vw"
+          className="object-cover object-[65%_30%]"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,20,60,0.95)_0%,rgba(0,20,60,0.82)_38%,rgba(0,20,60,0.45)_70%,rgba(0,20,60,0.25)_100%)]"
+        />
+        <div className="relative mx-auto flex min-h-[600px] max-w-[1240px] items-center px-6 pt-32 pb-34">
+          <div className="flex max-w-[680px] flex-col gap-7">
+            <div className="flex items-center gap-3">
+              <span className="block h-[3px] w-10 bg-gold" />
+              <Eyebrow className="text-sm">Club de voleibol femenino</Eyebrow>
+            </div>
+            <h1 className="m-0 font-display text-[clamp(64px,9vw,132px)] leading-[0.88] font-black tracking-[0.01em] uppercase">
+              Fuerza
+              <br />
+              en la red.
+              <br />
+              <span className="text-gold">Pasión</span>
+              <br />
+              en la cancha.
+            </h1>
+            <p className="m-0 max-w-[520px] text-lg leading-relaxed text-mist">
+              NEXXA RISE forma jugadoras desde su primer saque hasta la competencia de liga, en tres
+              divisiones: Mini, Pre-Juvenil y Juvenil. Entrenamos en el {site.location.venue},{" "}
+              {site.location.city}.
+            </p>
+            <div className="flex flex-wrap gap-3.5">
+              <LinkButton href="/unete">
+                Pruebas abiertas <ArrowRightIcon className="size-[18px]" aria-hidden />
+              </LinkButton>
+              <LinkButton href="/divisiones" variant="ghost">
+                Ver divisiones
+              </LinkButton>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="relative bg-gold text-navy-deep">
+          <ul className="mx-auto m-0 flex max-w-[1240px] list-none flex-wrap items-center justify-center gap-x-7 gap-y-2.5 px-6 py-3.5 font-display text-xl font-extrabold tracking-[0.14em] uppercase">
+            {values.map((v, i) => (
+              <li key={v.title} className="flex items-center gap-7">
+                {i > 0 ? <StarIcon /> : null}
+                {v.title}
+              </li>
+            ))}
+          </ul>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* DIVISIONS */}
+      <section className="bg-cream text-navy-deep">
+        <div className="mx-auto flex max-w-[1240px] flex-col gap-10 px-6 py-24">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="flex flex-col gap-2.5">
+              <Eyebrow tone="dark">Divisiones</Eyebrow>
+              <DisplayTitle>Escalón por escalón</DisplayTitle>
+            </div>
+            <Link
+              href="/divisiones"
+              className="py-3 text-[15px] font-bold tracking-[0.06em] text-navy-deep uppercase hover:text-gold-dark"
+            >
+              Conoce cada división →
+            </Link>
+          </div>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-5">
+            {divisions.map((d) => (
+              <Link
+                key={d.name}
+                href="/divisiones"
+                className="stripes-deep flex flex-col gap-4.5 rounded-lg border-b-4 border-gold px-7 py-8 text-white outline-gold transition-[outline] hover:outline-2"
+              >
+                <div className="flex items-end justify-between">
+                  <span className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">
+                    Etapa {d.n}
+                  </span>
+                  <LevelBars level={d.level} size="sm" />
+                </div>
+                <span className="font-display text-[52px] leading-[0.9] font-black uppercase">{d.name}</span>
+                <span className="text-[15px] leading-normal text-mist">{d.short}</span>
+                <span className="text-[13px] font-bold tracking-[0.08em] text-gold-light uppercase">
+                  {d.focus} · [Edades]
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* NEXT MATCH */}
+      <section className="bg-navy-deep">
+        <div className="mx-auto flex max-w-[1240px] flex-col gap-9 px-6 py-24">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="flex flex-col gap-2.5">
+              <Eyebrow>Calendario</Eyebrow>
+              <DisplayTitle>Próximo partido</DisplayTitle>
+            </div>
+            <Link
+              href="/calendario"
+              className="py-3 text-[15px] font-semibold tracking-[0.06em] text-gold-light uppercase hover:text-white"
+            >
+              Ver calendario completo →
+            </Link>
+          </div>
+          <NextMatchCard fixture={nextMatch} />
+        </div>
+      </section>
+
+      {/* STAFF + GALLERY TEASERS */}
+      <section className="stripes-deep">
+        <div className="mx-auto grid max-w-[1240px] grid-cols-[repeat(auto-fit,minmax(min(320px,100%),1fr))] gap-5 px-6 pb-24">
+          <Link
+            href="/staff"
+            className="flex flex-col gap-4 rounded-lg bg-white p-10 text-navy-deep outline-gold hover:outline-2"
+          >
+            <Eyebrow tone="dark">Staff</Eyebrow>
+            <span className="font-display text-[44px] leading-[0.95] font-black uppercase">
+              Quienes guían
+              <br />
+              al equipo
+            </span>
+            <span className="text-base leading-relaxed text-ink-soft">
+              Entrenadores, preparación física y coordinación por división.
+            </span>
+            <span className="text-sm font-bold tracking-[0.06em] uppercase">Conocer al staff →</span>
+          </Link>
+          <Link
+            href="/galeria"
+            className="stripes flex min-h-[300px] flex-col justify-end gap-4 rounded-lg border border-gold/40 p-10 outline-gold hover:outline-2"
+          >
+            <Eyebrow>Galería</Eyebrow>
+            <span className="font-display text-[44px] leading-[0.95] font-black uppercase">En la cancha</span>
+            <span className="text-sm text-haze">[Foto destacada de partido]</span>
+            <span className="text-sm font-bold tracking-[0.06em] text-gold-light uppercase">Ver fotos →</span>
+          </Link>
+        </div>
+      </section>
+
+      {/* JOIN CTA */}
+      <section className="bg-gold text-navy-deep">
+        <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-8 px-6 py-18">
+          <div className="flex flex-[1_1_480px] flex-col gap-3">
+            <h2 className="m-0 font-display text-[clamp(44px,5.5vw,72px)] leading-[0.9] font-black uppercase">
+              Únete a Nexxa Rise.
+            </h2>
+            <p className="m-0 text-lg leading-relaxed">Pruebas abiertas para Mini, Pre-Juvenil y Juvenil.</p>
+          </div>
+          <LinkButton href="/unete" variant="navy" className="min-h-14 px-8">
+            Inscribirme
+          </LinkButton>
+        </div>
+      </section>
+
+      <SponsorBelt />
+    </>
   );
 }

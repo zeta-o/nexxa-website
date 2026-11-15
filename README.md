@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NEXXA RISE — Sitio web
 
-## Getting Started
+Sitio oficial del club de voleibol femenino **NEXXA RISE** (Belén, Heredia).
 
-First, run the development server:
+**Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4 · shadcn/ui (Base UI) · Zustand · Zod
+
+## Páginas
+
+| Ruta | Contenido |
+| --- | --- |
+| `/` | Hero con foto, divisiones, próximo partido, accesos a Staff y Galería, cinta de patrocinadores |
+| `/club` | Historia, valores, misión/visión/sede, instalaciones y patrocinadores |
+| `/divisiones` | Mini, Pre-Juvenil y Juvenil + tabla de horarios |
+| `/staff` | Dirección y cuerpo técnico con filtro por división |
+| `/calendario` | Próximos partidos y resultados con filtro por división |
+| `/galeria` | Galería filtrable por álbum |
+| `/unete` | Formulario de inscripción a pruebas + preguntas frecuentes |
+
+## Desarrollo
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Editar contenido
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Todo el texto del sitio vive en **`src/lib/data.ts`** (divisiones, staff, partidos, patrocinadores, FAQ, contacto).
+Lo que está entre `[corchetes]` es contenido pendiente.
 
-## Learn More
+- Imágenes: `public/images/` (escudo y foto del hero).
+- Colores y tipografías: `src/app/globals.css` (tokens `navy`, `gold`, `cream`…).
 
-To learn more about Next.js, take a look at the following resources:
+> ⚠️ La foto actual del hero (`public/images/hero.jpg`) muestra uniformes y patrocinadores de otro equipo.
+> Reemplázala por una foto propia del club antes de publicar.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Estado (Zustand)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `src/stores/use-filters-store.ts` — filtros de calendario, staff y galería.
+- `src/stores/use-ui-store.ts` — menú móvil.
+- `src/stores/use-inscription-store.ts` — borrador del formulario (se guarda en `sessionStorage`).
 
-## Deploy on Vercel
+## Formulario de inscripción
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+El envío pasa por una Server Action (`src/app/unete/actions.ts`) que valida con Zod.
+**Pendiente:** conectar el envío a un correo (p. ej. Resend) o a una base de datos; hoy solo se registra en los logs del servidor.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Despliegue en Vercel
+
+1. Importa este repositorio en https://vercel.com/new (framework: Next.js, sin configuración extra).
+2. Variable de entorno opcional: `NEXT_PUBLIC_SITE_URL` = dominio final (para metadatos, sitemap y robots).
+3. Deploy.
