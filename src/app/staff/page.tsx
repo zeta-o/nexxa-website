@@ -47,12 +47,13 @@ export default function StaffPage() {
             <DisplayTitle>Liderazgo del club</DisplayTitle>
           </div>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(min(420px,100%),1fr))] gap-5">
-            {leaders.map((l) => (
+            {leaders.map((l, i) => (
               <article key={l.role} className="flex flex-wrap overflow-hidden rounded-lg border border-silver bg-white">
                 {leaderPhotos[l.name] ? (
                   <PageFlip
                     photos={leaderPhotos[l.name]}
                     alt={`${l.name}, ${l.role.toLowerCase()} de NEXXA RISE`}
+                    offset={i * 2}
                     className="min-h-80 flex-[0_0_240px] max-sm:min-h-[420px] max-sm:flex-[1_1_100%]"
                   />
                 ) : (

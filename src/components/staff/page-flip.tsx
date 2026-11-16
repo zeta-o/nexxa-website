@@ -5,10 +5,21 @@ import { cn } from "@/lib/utils";
 /**
  * Three stacked photos: each one holds for a few seconds, then fades out to reveal the next. CSS only (keyframes nx-page in globals.css).
  * Built for exactly three photos: the 12 s cycle gives each one 4 s.
+ * `offset` (seconds) shifts the whole cycle so cards side by side don't change in sync.
  */
-const delays = ["[animation-delay:0s]", "[animation-delay:-8s]", "[animation-delay:-4s]"];
+const slotDelays = [0, 8, 4];
 
-export function PageFlip({ photos, alt, className }: { photos: StaticImageData[]; alt: string; className?: string }) {
+export function PageFlip({
+  photos,
+  alt,
+  className,
+  offset = 0,
+}: {
+  photos: StaticImageData[];
+  alt: string;
+  className?: string;
+  offset?: number;
+}) {
   if (photos.length === 1) {
     return (
       <div className={cn("relative overflow-hidden bg-navy-deep", className)}>
@@ -36,11 +47,11 @@ export function PageFlip({ photos, alt, className }: { photos: StaticImageData[]
           className={cn(
             "absolute inset-0 h-full w-full object-cover object-top",
             "animate-[nx-page_12s_ease-in-out_infinite]",
-            delays[i],
             // Reduced motion: only the first photo, no turning.
             "motion-reduce:animate-none",
             i > 0 && "motion-reduce:hidden",
           )}
+          style={{ animationDelay: `${-(slotDelays[i] + offset)}s` }}
         />
       ))}
     </div>
