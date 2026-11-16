@@ -13,7 +13,7 @@ import yuliana3 from "../../../public/images/yuliana-3.jpg";
 
 /** Photo sets for the leader cards, by name. Leaders without photos keep the placeholder. */
 const leaderPhotos: Record<string, StaticImageData[]> = {
-  "Yuliana González": [yuliana1, yuliana2, yuliana3],
+  "Yuliana González": [yuliana3, yuliana2, yuliana1],
 };
 
 export const metadata: Metadata = {

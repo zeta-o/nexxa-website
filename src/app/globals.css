@@ -186,34 +186,30 @@
   }
 }
 
-/* Page turn for the leader photo carousel (Staff page). Each photo: on top and
-   still, turns away from its left edge, then waits underneath for its next turn. */
+/* Crossfade for the leader photo carousel (Staff page). Each photo: on top and
+   still, fades out over the next one, then waits underneath for its next turn. */
 @keyframes nx-page {
   0%,
-  28% {
+  26% {
     z-index: 3;
     opacity: 1;
-    transform: rotateY(0deg);
-    filter: brightness(1);
+    transform: scale(1);
   }
   33.3% {
     z-index: 3;
-    opacity: 1;
-    transform: rotateY(-100deg);
-    filter: brightness(0.55);
+    opacity: 0;
+    transform: scale(1.04);
   }
   33.4%,
   90% {
     z-index: 1;
     opacity: 0;
-    transform: rotateY(0deg);
-    filter: brightness(1);
+    transform: scale(1);
   }
   91%,
   100% {
     z-index: 2;
     opacity: 1;
-    transform: rotateY(0deg);
-    filter: brightness(1);
+    transform: scale(1);
   }
 }
