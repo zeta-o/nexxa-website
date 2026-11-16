@@ -51,9 +51,14 @@ export function SiteFooter() {
             >
               Escríbenos por WhatsApp →
             </a>
-            <span className="py-1.5 text-[15px] text-mist">
-              {site.location.venue}, {site.location.city}
-            </span>
+            <a
+              href={site.location.mapsUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="py-1.5 text-[15px] text-mist hover:text-gold-light"
+            >
+              {site.location.venue}, {site.location.city} · Ver en Maps →
+            </a>
             <SocialIcons />
           </div>
         </div>

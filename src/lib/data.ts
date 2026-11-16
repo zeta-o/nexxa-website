@@ -17,8 +17,7 @@ export const site = {
     venue: "Complejo Pedregal",
     city: "Belén, Heredia",
     country: "Costa Rica",
-    mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=Complejo+Pedregal+Bel%C3%A9n+Heredia",
+    mapsUrl: "https://maps.app.goo.gl/EkXRAH1z9Dg9wQan6",
   },
   contact: {
     email: "info.nexxarise@gmail.com",
