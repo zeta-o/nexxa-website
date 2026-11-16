@@ -111,7 +111,7 @@ export default function ClubPage() {
                 </span>
               </DisplayTitle>
               <p className="m-0 text-[17px] leading-relaxed text-white">
-                Para crear el imagotipo se tomaron en cuenta aspectos de la naturaleza deportiva del proyecto y
+                Para crear nuestro escudo se tomaron en cuenta aspectos de la naturaleza deportiva del proyecto y
                 elementos que identifican la personalidad, los valores y los gustos de sus fundadoras. El nombre
                 “NEXXA RISE” simboliza el vínculo entre ambas y su búsqueda por la excelencia.
               </p>
