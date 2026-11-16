@@ -230,3 +230,12 @@ export function StarIcon({ className }: { className?: string }) {
     </svg>
   );
 }
+
+/** Brand tagline. Always in English, always in the slogan face (Heydex; stand-in until licensed). */
+export function Slogan({ className, as: Tag = "p" }: { className?: string; as?: "p" | "span" }) {
+  return (
+    <Tag lang="en" className={cn("m-0 font-slogan leading-none font-normal normal-case", className)}>
+      We Rise Together
+    </Tag>
+  );
+}

@@ -8,6 +8,7 @@ import {
   Eyebrow,
   LevelBars,
   LinkButton,
+  Slogan,
   StarIcon,
 } from "@/components/site/primitives";
 import { SponsorBelt } from "@/components/site/sponsor-belt";
@@ -50,6 +51,7 @@ export default function HomePage() {
               <br />
               en la cancha.
             </h1>
+            <Slogan className="-mt-2 -rotate-3 text-[clamp(30px,3.4vw,46px)] text-gold-light" />
             <p className="m-0 max-w-[520px] text-lg leading-relaxed text-mist">
               NEXXA RISE forma jugadoras desde su primer saque hasta la competencia de liga, en cuatro etapas: Escuelita, Mini, Infantil y Juvenil. Entrenamos en el {site.location.venue},{" "}
               {site.location.city}.
@@ -173,6 +175,7 @@ export default function HomePage() {
             </h2>
             <p className="m-0 text-lg leading-relaxed">Pruebas abiertas en todas las categorías, de la Escuelita a Juvenil.</p>
           </div>
+          <Slogan className="flex-[0_1_auto] -rotate-3 text-[clamp(30px,3.2vw,44px)] text-navy-deep" />
           <LinkButton href="/unete" variant="navy" className="min-h-14 px-8">
             Inscribirme
           </LinkButton>

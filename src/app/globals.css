@@ -34,6 +34,7 @@
   --font-sans: var(--font-brand);
   --font-display: var(--font-brand);
   --font-heading: var(--font-brand);
+  --font-slogan: var(--font-slogan-src);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);

@@ -47,6 +47,10 @@ Lo que está entre `[corchetes]` es contenido pendiente.
 - **Tipografías**: Creato Display (Black títulos, Bold subtítulos, Regular texto), en `src/fonts/creato-display/`
   con su licencia SIL OFL 1.1 (`OFL.txt`), cargada con `next/font/local` en `src/app/layout.tsx`.
   Morington (uniformes, encabezados de máx. 2 palabras) **pendiente**: requiere licencia comercial.
+- **Frase de marca "We Rise Together"**: componente `Slogan` (`src/components/site/primitives.tsx`), usado en el hero,
+  la invitación a inscribirse, la sección del escudo en Club y el pie de página. Va en la fuente **Heydex**
+  (Khurasan; requiere licencia comercial). Mientras tanto se usa **Kaushan Script** como sustituta: para cambiarla,
+  agrega el archivo en `src/fonts/heydex/` y reemplaza `Kaushan_Script` por `localFont` en `src/app/layout.tsx`.
 
 ## Estado (Zustand)
 

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { site } from "@/lib/data";
 
-import { BrandLogo } from "./primitives";
+import { BrandLogo, Slogan } from "./primitives";
 import { SocialIcons } from "./social-icons";
 
 const explore = [
@@ -20,6 +20,7 @@ export function SiteFooter() {
         <div className="flex flex-wrap justify-between gap-10">
           <div className="flex flex-[1_1_420px] flex-col gap-4">
             <BrandLogo variant="horizontal-blanco" className="w-[420px] max-w-full" />
+            <Slogan className="-rotate-2 text-[34px] text-gold-light" />
             <span className="text-sm text-haze">
               Voleibol femenino · {site.location.city} · {site.handle}
             </span>

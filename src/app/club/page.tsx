@@ -8,6 +8,7 @@ import {
   LinkButton,
   PageHero,
   PhotoPlaceholder,
+  Slogan,
   StarIcon,
 } from "@/components/site/primitives";
 import { facilities, site, sponsors, values } from "@/lib/data";
@@ -142,6 +143,7 @@ export default function ClubPage() {
                 </li>
               ))}
             </ol>
+            <Slogan className="mt-2 -rotate-2 self-start text-[clamp(32px,3.4vw,48px)] text-gold-light" />
           </div>
         </div>
       </section>

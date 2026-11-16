@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Kaushan_Script } from "next/font/google";
 import localFont from "next/font/local";
 
 import { SiteFooter } from "@/components/site/site-footer";
@@ -19,6 +20,15 @@ const brand = localFont({
     { path: "../fonts/creato-display/CreatoDisplay-ExtraBold.otf", weight: "800", style: "normal" },
     { path: "../fonts/creato-display/CreatoDisplay-Black.otf", weight: "900", style: "normal" },
   ],
+});
+
+// Brand tagline "We Rise Together" is set in Heydex (commercial license required).
+// Kaushan Script is a visually close stand-in until the licensed Heydex file is added:
+// swap this for localFont({ src: "../fonts/heydex/Heydex.otf", variable: "--font-slogan-src" }).
+const slogan = Kaushan_Script({
+  variable: "--font-slogan-src",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -44,7 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      className={`${brand.variable} h-full antialiased`}
+      className={`${brand.variable} ${slogan.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col text-white">
         <a
