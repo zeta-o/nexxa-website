@@ -4,6 +4,7 @@ import { CheckIcon } from "lucide-react";
 
 import { DisplayTitle, Eyebrow, LevelBars, LinkButton, PageHero } from "@/components/site/primitives";
 import { divisions, futureTeam } from "@/lib/data";
+import { BrandText } from "@/components/site/brand-name";
 
 export const metadata: Metadata = {
   title: "Divisiones",
@@ -83,7 +84,7 @@ export default function DivisionesPage() {
                 ) : (
                   <span className="text-sm text-haze">[Edades]</span>
                 )}
-                <p className="m-0 text-[15px] leading-relaxed text-white">{d.text}</p>
+                <p className="m-0 text-[15px] leading-relaxed text-white"><BrandText>{d.text}</BrandText></p>
                 <ul className="m-0 flex list-none flex-col gap-2.5 p-0 text-sm">
                   {d.points.map((p) => (
                     <li key={p} className="flex items-start gap-2.5">

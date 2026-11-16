@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { JoinForm } from "@/components/join/join-form";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { faq, joinSteps, site } from "@/lib/data";
+import { Brand } from "@/components/site/brand-name";
 
 export const metadata: Metadata = {
   title: "Únete",
@@ -18,7 +19,7 @@ export default function UnetePage() {
           <h1 className="m-0 font-display text-[clamp(37px,5.3vw,74px)] leading-[0.88] font-black uppercase">
             Únete a
             <br />
-            Nexxa Rise.
+            <Brand />.
           </h1>
           <p className="m-0 max-w-[620px] text-lg leading-relaxed">
             De la Escuelita a Juvenil: hay un lugar para cada jugadora que quiera crecer. Llena el formulario y te

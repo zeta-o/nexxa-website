@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils";
 import { useInscriptionStore } from "@/stores/use-inscription-store";
 
 import crest from "../../../public/brand/isotipo.png";
+import { Brand } from "@/components/site/brand-name";
 
 const fieldClass =
   "h-12 rounded border-navy-line bg-navy px-3.5 text-base text-white placeholder:text-haze/70 focus-visible:border-gold focus-visible:ring-gold/40 md:text-base";
@@ -58,7 +59,7 @@ export function JoinForm() {
       <div className="flex flex-col items-start gap-4 rounded-lg border-2 border-gold bg-navy p-10" role="status">
         <Image src={crest} alt="" className="h-auto w-24" sizes="96px" />
         <h2 className="m-0 font-display text-[29px] leading-[0.95] font-black uppercase">
-          ¡Bienvenida a Nexxa Rise!
+          ¡Bienvenida a <Brand />!
         </h2>
         <p className="m-0 text-base leading-relaxed text-mist">
           Recibimos tu solicitud{message ? ` para ${message}` : ""}. Te escribiremos en los próximos días con la

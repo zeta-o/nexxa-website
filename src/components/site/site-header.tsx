@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { useUiStore } from "@/stores/use-ui-store";
 
 import shield from "../../../public/images/escudo-nexxa-rise.png";
+import { Brand } from "@/components/site/brand-name";
 
 
 
@@ -106,7 +107,7 @@ export function SiteHeader() {
                 onClick={() => setOpen(false)}
                 className="mt-6 flex min-h-13 items-center justify-center rounded bg-gold text-sm font-bold tracking-[0.08em] text-navy-deep uppercase"
               >
-                Únete a Nexxa Rise
+                Únete a <Brand />
               </Link>
             </div>
           </SheetContent>

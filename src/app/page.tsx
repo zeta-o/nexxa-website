@@ -15,6 +15,7 @@ import { SponsorBelt } from "@/components/site/sponsor-belt";
 import { divisions, fixtures, site, values } from "@/lib/data";
 
 import heroImage from "../../public/images/hero.jpg";
+import { Brand } from "@/components/site/brand-name";
 
 export default function HomePage() {
   const nextMatch = fixtures.find((f) => !f.past)!;
@@ -53,7 +54,7 @@ export default function HomePage() {
             </h1>
             <Slogan className="-mt-2 -rotate-3 text-[clamp(30px,3.4vw,46px)] text-gold-light" />
             <p className="m-0 max-w-[520px] text-lg leading-relaxed text-mist">
-              NEXXA RISE forma jugadoras desde su primer saque hasta la competencia de liga, en cuatro etapas: Escuelita, Mini, Infantil y Juvenil. Entrenamos en el {site.location.venue},{" "}
+              <Brand /> forma jugadoras desde su primer saque hasta la competencia de liga, en cuatro etapas: Escuelita, Mini, Infantil y Juvenil. Entrenamos en el {site.location.venue},{" "}
               {site.location.city}.
             </p>
             <div className="flex flex-wrap gap-3.5">
@@ -171,7 +172,7 @@ export default function HomePage() {
         <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-8 px-6 py-18">
           <div className="flex flex-[1_1_480px] flex-col gap-3">
             <h2 className="m-0 font-display text-[clamp(29px,3.6vw,48px)] leading-[0.9] font-black uppercase">
-              Únete a Nexxa Rise.
+              Únete a <Brand />.
             </h2>
             <p className="m-0 text-lg leading-relaxed">Pruebas abiertas en todas las categorías, de la Escuelita a Juvenil.</p>
           </div>

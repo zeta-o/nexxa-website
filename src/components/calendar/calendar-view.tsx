@@ -4,6 +4,7 @@ import { FilterPills } from "@/components/filters/filter-pills";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { fixtures, type DivisionName } from "@/lib/data";
 import { type CalendarView as View, useFiltersStore } from "@/stores/use-filters-store";
+import { BrandText } from "@/components/site/brand-name";
 
 const divisionOptions = ["Todas", "Escuelita", "Mini", "Infantil", "Juvenil"] as const satisfies readonly (DivisionName | "Todas")[];
 
@@ -55,7 +56,7 @@ export function CalendarView() {
                   {f.type} · {f.time}
                 </span>
               </div>
-              <span className="font-display text-[18px] leading-[1.05] font-extrabold uppercase">{f.title}</span>
+              <span className="font-display text-[18px] leading-[1.05] font-extrabold uppercase"><BrandText>{f.title}</BrandText></span>
               <span className="text-sm text-mist">{f.venue}</span>
             </div>
             <div className="flex flex-[0_1_200px] items-center justify-end px-6 py-5">

@@ -4,6 +4,7 @@ import { site } from "@/lib/data";
 
 import { BrandLogo, Slogan } from "./primitives";
 import { SocialIcons } from "./social-icons";
+import { Brand } from "@/components/site/brand-name";
 
 const explore = [
   { label: "Club", href: "/club" },
@@ -56,7 +57,7 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="flex flex-wrap justify-between gap-3 border-t border-white/15 pt-6 text-[13px] text-haze">
-          <span>© {site.copyrightYear} NEXXA RISE. Todos los derechos reservados.</span>
+          <span>© {site.copyrightYear} <Brand />. Todos los derechos reservados.</span>
           <span>Hecho con pasión.</span>
         </div>
       </div>

@@ -15,6 +15,7 @@ import { facilities, site, sponsors, values } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
 import shield from "../../../public/images/escudo-nexxa-rise.png";
+import { Brand, BrandText } from "@/components/site/brand-name";
 
 /** Meaning of each part of the crest — text from the Manual de Identidad Visual (p. 01). */
 const crestParts = [
@@ -72,7 +73,7 @@ export default function ClubPage() {
               <br />a un equipo
             </DisplayTitle>
             <p className="m-0 text-lg leading-[1.7] text-ink-soft">
-              NEXXA RISE nace de dos mujeres que han dedicado gran parte de sus vidas al voleibol costarricense:{" "}
+              <Brand /> nace de dos mujeres que han dedicado gran parte de sus vidas al voleibol costarricense:{" "}
               <strong className="text-navy-deep">Yuliana</strong>, colocadora, con 22 años como jugadora, y{" "}
               <strong className="text-navy-deep">María José</strong>, líbero, con 15 años de trayectoria deportiva.
               Ambas formaron parte de la Selección Nacional de Costa Rica y vivieron el voleibol desde una de sus
@@ -126,7 +127,7 @@ export default function ClubPage() {
               <p className="m-0 text-[17px] leading-relaxed text-white">
                 Para crear nuestro escudo se tomaron en cuenta aspectos de la naturaleza deportiva del proyecto y
                 elementos que identifican la personalidad, los valores que nuestras fundadoras promueven y desean
-                profundizar en nuestros equipos. El nombre “NEXXA RISE” simboliza el vínculo entre ambas y su
+                profundizar en nuestros equipos. El nombre “<Brand />” simboliza el vínculo entre ambas y su
                 búsqueda de la excelencia.
               </p>
             </div>
@@ -173,7 +174,7 @@ export default function ClubPage() {
           {pillars.map((p) => (
             <div key={p.title} className="stripes flex flex-col gap-3.5 rounded-lg p-9">
               <Eyebrow>{p.title}</Eyebrow>
-              <p className="m-0 text-lg leading-relaxed">{p.text}</p>
+              <p className="m-0 text-lg leading-relaxed"><BrandText>{p.text}</BrandText></p>
             </div>
           ))}
         </div>
@@ -292,7 +293,7 @@ export default function ClubPage() {
           <div className="flex flex-wrap items-center justify-between gap-5 rounded-lg border-2 border-gold p-8">
             <div className="flex max-w-[640px] flex-col gap-1.5">
               <span className="font-display text-[21px] leading-none font-black uppercase">
-                ¿Quieres patrocinar a Nexxa Rise?
+                ¿Quieres patrocinar a <Brand />?
               </span>
               <span className="text-[15px] leading-relaxed text-mist">
                 Tu marca en uniformes, cancha, redes y eventos del club. [Paquetes de patrocinio disponibles.]
