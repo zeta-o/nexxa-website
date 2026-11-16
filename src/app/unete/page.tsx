@@ -6,7 +6,7 @@ import { faq, joinSteps } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Únete",
-  description: "Pruebas abiertas para Mini, Pre-Juvenil y Juvenil. Inscribe a tu hija en NEXXA RISE.",
+  description: "Pruebas abiertas desde la Escuelita hasta Juvenil. Inscribe a tu hija en NEXXA RISE.",
 };
 
 export default function UnetePage() {
@@ -21,7 +21,7 @@ export default function UnetePage() {
             Nexxa Rise.
           </h1>
           <p className="m-0 max-w-[620px] text-lg leading-relaxed">
-            Mini, Pre-Juvenil o Juvenil: hay un lugar para cada jugadora que quiera crecer. Llena el formulario y te
+            De la Escuelita a Juvenil: hay un lugar para cada jugadora que quiera crecer. Llena el formulario y te
             contactamos con la fecha de la próxima prueba.
           </p>
         </div>

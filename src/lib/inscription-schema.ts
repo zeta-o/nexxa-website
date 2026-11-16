@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const divisionOptions = ["Mini", "Pre-Juvenil", "Juvenil", "No estoy segura"] as const;
+export const divisionOptions = ["Escuelita", "Mini", "Pre-Infantil", "Infantil", "Pre-Juvenil", "Juvenil", "No estoy segura"] as const;
 export const experienceOptions = ["Nunca", "Escuela / recreativo", "Otro club"] as const;
 
 export const inscriptionSchema = z.object({
@@ -9,7 +9,7 @@ export const inscriptionSchema = z.object({
     .string()
     .min(1, "Indica la fecha de nacimiento.")
     .refine((v) => !Number.isNaN(Date.parse(v)), "Fecha no válida."),
-  division: z.enum(divisionOptions, { message: "Elige una división." }),
+  division: z.enum(divisionOptions, { message: "Elige una categoría." }),
   experience: z.enum(experienceOptions, { message: "Indica su experiencia." }),
   guardianName: z.string().trim().min(3, "Escribe el nombre del tutor."),
   phone: z

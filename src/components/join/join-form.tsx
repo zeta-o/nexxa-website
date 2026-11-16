@@ -112,7 +112,7 @@ export function JoinForm() {
 
         <div className="flex flex-col gap-3">
           <span id="division-label" className={labelClass}>
-            División
+            Categoría
           </span>
           <RadioGroup
             aria-labelledby="division-label"

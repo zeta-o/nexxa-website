@@ -6,7 +6,7 @@ import { FilterPills } from "@/components/filters/filter-pills";
 import { staff, type StaffGroup } from "@/lib/data";
 import { useFiltersStore } from "@/stores/use-filters-store";
 
-const groups = ["Todas", "Mini", "Pre-Juvenil", "Juvenil", "Apoyo"] as const satisfies readonly (StaffGroup | "Todas")[];
+const groups = ["Todas", "Escuelita", "Mini", "Infantil", "Juvenil", "Apoyo"] as const satisfies readonly (StaffGroup | "Todas")[];
 
 export function StaffGrid() {
   const group = useFiltersStore((s) => s.staffGroup);

@@ -51,8 +51,7 @@ export default function HomePage() {
               en la cancha.
             </h1>
             <p className="m-0 max-w-[520px] text-lg leading-relaxed text-mist">
-              NEXXA RISE forma jugadoras desde su primer saque hasta la competencia de liga, en tres
-              divisiones: Mini, Pre-Juvenil y Juvenil. Entrenamos en el {site.location.venue},{" "}
+              NEXXA RISE forma jugadoras desde su primer saque hasta la competencia de liga, en cuatro etapas: Escuelita, Mini, Infantil y Juvenil. Entrenamos en el {site.location.venue},{" "}
               {site.location.city}.
             </p>
             <div className="flex flex-wrap gap-3.5">
@@ -108,7 +107,7 @@ export default function HomePage() {
                 <span className="font-display text-[34px] leading-[0.9] font-black uppercase">{d.name}</span>
                 <span className="text-[15px] leading-normal text-mist">{d.short}</span>
                 <span className="text-[13px] font-bold tracking-[0.08em] text-gold-light uppercase">
-                  {d.focus} · [Edades]
+                  {d.categories ? d.categories.join(" · ") : d.focus}
                 </span>
               </Link>
             ))}
@@ -172,7 +171,7 @@ export default function HomePage() {
             <h2 className="m-0 font-display text-[clamp(29px,3.6vw,48px)] leading-[0.9] font-black uppercase">
               Únete a Nexxa Rise.
             </h2>
-            <p className="m-0 text-lg leading-relaxed">Pruebas abiertas para Mini, Pre-Juvenil y Juvenil.</p>
+            <p className="m-0 text-lg leading-relaxed">Pruebas abiertas en todas las categorías, de la Escuelita a Juvenil.</p>
           </div>
           <LinkButton href="/unete" variant="navy" className="min-h-14 px-8">
             Inscribirme

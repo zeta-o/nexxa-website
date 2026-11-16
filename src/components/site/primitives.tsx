@@ -150,17 +150,17 @@ export function DisplayTitle({
   );
 }
 
-/** Three rising bars — the visual shorthand for the three divisions. */
+/** Rising bars — the visual shorthand for the formative path (Escuelita → Juvenil). */
 export function LevelBars({
   level,
   size = "md",
   className,
 }: {
-  level: 1 | 2 | 3;
+  level: 1 | 2 | 3 | 4;
   size?: "sm" | "md";
   className?: string;
 }) {
-  const heights = size === "sm" ? [14, 26, 40] : [20, 36, 56];
+  const heights = size === "sm" ? [10, 20, 30, 40] : [14, 28, 42, 56];
   return (
     <div aria-hidden className={cn("flex items-end gap-1.5", className)}>
       {heights.map((h, i) => (

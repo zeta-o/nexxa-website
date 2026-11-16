@@ -5,7 +5,7 @@ import { gallery, type GalleryAlbum } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { useFiltersStore } from "@/stores/use-filters-store";
 
-const albums = ["Todas", "Mini", "Pre-Juvenil", "Juvenil", "Club"] as const satisfies readonly (GalleryAlbum | "Todas")[];
+const albums = ["Todas", "Escuelita", "Mini", "Infantil", "Juvenil", "Club"] as const satisfies readonly (GalleryAlbum | "Todas")[];
 
 export function GalleryGrid() {
   const album = useFiltersStore((s) => s.galleryAlbum);

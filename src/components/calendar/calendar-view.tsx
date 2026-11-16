@@ -5,7 +5,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { fixtures, type DivisionName } from "@/lib/data";
 import { type CalendarView as View, useFiltersStore } from "@/stores/use-filters-store";
 
-const divisionOptions = ["Todas", "Mini", "Pre-Juvenil", "Juvenil"] as const satisfies readonly (DivisionName | "Todas")[];
+const divisionOptions = ["Todas", "Escuelita", "Mini", "Infantil", "Juvenil"] as const satisfies readonly (DivisionName | "Todas")[];
 
 export function CalendarView() {
   const division = useFiltersStore((s) => s.calendarDivision);
@@ -49,7 +49,7 @@ export function CalendarView() {
             <div className="flex min-w-0 flex-[1_1_360px] flex-col justify-center gap-1.5 px-6 py-5">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="inline-flex min-h-6.5 items-center rounded-full border border-gold-light/60 px-2.5 text-xs font-bold tracking-[0.08em] text-gold-light uppercase">
-                  {f.division}
+                  {f.category ?? f.division}
                 </span>
                 <span className="text-[13px] text-haze">
                   {f.type} · {f.time}
