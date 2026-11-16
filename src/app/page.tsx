@@ -30,11 +30,11 @@ export default function HomePage() {
           priority
           placeholder="blur"
           sizes="100vw"
-          className="object-cover object-[65%_30%]"
+          className="object-cover object-[50%_32%]"
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,20,60,0.95)_0%,rgba(0,20,60,0.82)_38%,rgba(0,20,60,0.45)_70%,rgba(0,20,60,0.25)_100%)]"
+          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,20,60,0.94)_0%,rgba(0,20,60,0.8)_38%,rgba(0,20,60,0.4)_62%,rgba(0,20,60,0.15)_100%)] max-md:bg-[linear-gradient(180deg,rgba(0,20,60,0.88)_0%,rgba(0,20,60,0.78)_60%,rgba(0,20,60,0.65)_100%)]"
         />
         <div className="relative mx-auto flex min-h-[600px] max-w-[1240px] items-center px-6 pt-32 pb-34">
           <div className="flex max-w-[680px] flex-col gap-7">

@@ -33,8 +33,7 @@ Lo que está entre `[corchetes]` es contenido pendiente.
 - Imágenes: `public/images/` (escudo y foto del hero).
 - Colores y tipografías: `src/app/globals.css` (tokens `navy`, `gold`, `cream`…).
 
-> ⚠️ La foto actual del hero (`public/images/hero.jpg`) muestra uniformes y patrocinadores de otro equipo.
-> Reemplázala por una foto propia del club antes de publicar.
+- Foto del hero: `public/images/hero.jpg` (foto del equipo por UnTercio Studio).
 
 ## Marca (Manual de Identidad Visual v2)
 
