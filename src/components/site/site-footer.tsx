@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { site } from "@/lib/data";
 
-import { Crest } from "./primitives";
+import { BrandLogo } from "./primitives";
 import { SocialIcons } from "./social-icons";
 
 const explore = [
@@ -18,14 +18,11 @@ export function SiteFooter() {
     <footer className="stripes border-t-4 border-gold text-white">
       <div className="mx-auto flex max-w-[1240px] flex-col gap-10 px-6 pt-16 pb-10">
         <div className="flex flex-wrap justify-between gap-10">
-          <div className="flex flex-[1_1_280px] items-center gap-4">
-            <Crest className="w-[88px]" sizes="88px" alt="Escudo NEXXA RISE" />
-            <div className="flex flex-col gap-1.5">
-              <span className="font-display text-[32px] leading-none font-black">
-                NEXXA <span className="text-gold">RISE</span>
-              </span>
-              <span className="text-sm text-haze">Voleibol femenino · {site.location.city}</span>
-            </div>
+          <div className="flex flex-[1_1_420px] flex-col gap-4">
+            <BrandLogo variant="horizontal-blanco" className="w-[420px] max-w-full" />
+            <span className="text-sm text-haze">
+              Voleibol femenino · {site.location.city} · {site.handle}
+            </span>
           </div>
           <div className="flex flex-[0_1_200px] flex-col">
             <span className="mb-1.5 text-xs font-bold tracking-[0.18em] text-gold-light uppercase">Explora</span>

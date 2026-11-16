@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import {
-  Crest,
+  BrandLogo,
   DisplayTitle,
   Eyebrow,
   LinkButton,
@@ -51,13 +51,15 @@ export default function ClubPage() {
               [Cuándo y cómo nació NEXXA RISE, quién lo fundó y por qué.]
             </p>
             <p className="m-0 text-lg leading-[1.7] text-ink-soft">
-              El lobo de nuestro escudo representa la fuerza del grupo: ninguna juega sola, cada punto se
-              construye entre todas. Las cinco estrellas son los valores que nos sostienen.
+              El lobo de nuestro escudo simboliza el poder, la protección, el trabajo en equipo, la lealtad a
+              los suyos, la enseñanza y la resistencia ante la adversidad. La doble X representa el cromosoma
+              femenino y a nuestras dos fundadoras; y las seis estrellas, los seis campeonatos que han ganado
+              juntas.
             </p>
           </div>
           <div className="flex min-w-0 flex-[1_1_380px] justify-center">
             <div className="flex w-full max-w-[420px] justify-center rounded-lg bg-navy p-10">
-              <Crest className="max-w-[320px]" sizes="320px" alt="Escudo de NEXXA RISE" />
+              <BrandLogo variant="vertical-blanco" className="w-full max-w-[340px]" sizes="340px" />
             </div>
           </div>
         </div>
@@ -67,14 +69,14 @@ export default function ClubPage() {
       <section className="bg-cream text-navy-deep">
         <div className="mx-auto flex max-w-[1240px] flex-col gap-10 px-6 py-26">
           <div className="flex flex-col gap-2.5">
-            <Eyebrow tone="dark">Las cinco estrellas</Eyebrow>
+            <Eyebrow tone="dark">Lo que nos mueve</Eyebrow>
             <DisplayTitle>Nuestros valores</DisplayTitle>
           </div>
           <ul className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(min(210px,100%),1fr))] gap-4 p-0">
             {values.map((v) => (
-              <li key={v.title} className="flex flex-col gap-3 rounded-lg border-t-4 border-gold bg-white px-6 py-7">
+              <li key={v.title} className="flex flex-col gap-3 rounded-lg border border-t-4 border-silver border-t-gold bg-white px-6 py-7">
                 <StarIcon className="size-7 text-gold" />
-                <span className="font-display text-[28px] leading-none font-extrabold uppercase">{v.title}</span>
+                <span className="font-display text-[18px] leading-none font-extrabold uppercase">{v.title}</span>
                 <span className="text-[15px] leading-normal text-ink-soft">{v.text}</span>
               </li>
             ))}
@@ -124,7 +126,7 @@ export default function ClubPage() {
                   [Foto]
                 </span>
                 <figcaption className="flex flex-col gap-1">
-                  <span className="font-display text-[28px] leading-none font-black text-white uppercase">{f.name}</span>
+                  <span className="font-display text-[18px] leading-none font-black text-white uppercase">{f.name}</span>
                   <span className="text-sm text-mist">{f.text}</span>
                 </figcaption>
               </figure>
@@ -135,8 +137,8 @@ export default function ClubPage() {
               label={`[Mapa: ${site.location.venue}, Belén]`}
               className="min-h-[220px] flex-[2_1_420px] items-center justify-center"
             />
-            <div className="flex flex-[1_1_300px] flex-col gap-3.5 rounded-lg border-t-4 border-gold bg-cream p-7">
-              <span className="font-display text-[26px] font-black uppercase">Cómo llegar</span>
+            <div className="flex flex-[1_1_300px] flex-col gap-3.5 rounded-lg border border-t-4 border-silver border-t-gold bg-white p-7">
+              <span className="font-display text-[17px] font-black uppercase">Cómo llegar</span>
               <span className="text-[15px] leading-relaxed text-ink-soft">
                 <strong>{site.location.venue}</strong>
                 <br />
@@ -206,7 +208,7 @@ export default function ClubPage() {
 
           <div className="flex flex-wrap items-center justify-between gap-5 rounded-lg border-2 border-gold p-8">
             <div className="flex max-w-[640px] flex-col gap-1.5">
-              <span className="font-display text-[32px] leading-none font-black uppercase">
+              <span className="font-display text-[21px] leading-none font-black uppercase">
                 ¿Quieres patrocinar a Nexxa Rise?
               </span>
               <span className="text-[15px] leading-relaxed text-mist">

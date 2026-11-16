@@ -6,16 +6,16 @@ export function NextMatchCard({ fixture }: { fixture: Fixture }) {
   return (
     <div className="stripes flex flex-wrap items-center justify-between gap-8 rounded-lg border-2 border-gold p-6 md:p-10">
       <div className="flex min-w-0 flex-[1_1_260px] items-center gap-5">
-        <Crest className="w-24 flex-none" sizes="96px" />
+        <Crest className="w-24 flex-none" sizes="96px" alt="" />
         <div className="flex flex-col gap-1">
           <span className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">
             {fixture.division} · {fixture.where === "Local" ? "Local" : "Visitante"}
           </span>
-          <span className="font-display text-4xl leading-none font-black uppercase">Nexxa Rise</span>
+          <span className="font-display text-[26px] leading-none font-black uppercase">Nexxa Rise</span>
         </div>
       </div>
       <div className="flex flex-[0_1_220px] flex-col items-center gap-2 text-center">
-        <span className="font-display text-[56px] leading-none font-black text-gold">VS</span>
+        <span className="font-display text-[37px] leading-none font-black text-gold">VS</span>
         <span className="text-[15px] font-semibold">
           {fixture.date} · {fixture.time}
         </span>
@@ -24,7 +24,7 @@ export function NextMatchCard({ fixture }: { fixture: Fixture }) {
       <div className="flex min-w-0 flex-[1_1_260px] items-center justify-end gap-5 text-right">
         <div className="flex flex-col gap-1">
           <span className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">Rival</span>
-          <span className="font-display text-4xl leading-none font-black uppercase">[Rival]</span>
+          <span className="font-display text-[26px] leading-none font-black uppercase">[Rival]</span>
         </div>
         <div
           role="img"

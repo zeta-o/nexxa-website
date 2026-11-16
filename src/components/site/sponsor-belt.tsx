@@ -13,7 +13,7 @@ export function SponsorBelt() {
     >
       <div className="flex flex-wrap items-stretch">
         <div className="relative z-10 flex min-h-28 flex-[0_0_auto] flex-col justify-center gap-1 bg-navy-deep px-7 py-4 text-white">
-          <span id="belt-title" className="font-display text-2xl leading-none font-black tracking-wide uppercase">
+          <span id="belt-title" className="font-display text-lg leading-none font-black tracking-wide uppercase">
             Patrocinadores
           </span>
           <Link

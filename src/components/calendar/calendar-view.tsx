@@ -27,7 +27,7 @@ export function CalendarView() {
               <TabsTrigger
                 key={v}
                 value={v}
-                className="h-11! cursor-pointer rounded-none px-5 font-display text-xl font-extrabold tracking-[0.06em] text-white uppercase data-active:bg-gold! data-active:text-navy-deep!"
+                className="h-11! cursor-pointer rounded-none px-5 font-display text-base font-extrabold tracking-[0.06em] text-white uppercase data-active:bg-gold! data-active:text-navy-deep!"
               >
                 {v === "proximos" ? "Próximos" : "Resultados"}
               </TabsTrigger>
@@ -44,7 +44,7 @@ export function CalendarView() {
           <li key={f.id} className="flex flex-wrap items-stretch overflow-hidden rounded-lg border border-gold/25 bg-navy">
             <div className="flex flex-[0_0_120px] flex-col items-center justify-center gap-0.5 bg-gold px-3 py-4.5 text-navy-deep">
               <span className="text-xs font-bold tracking-[0.14em] uppercase">[Mes]</span>
-              <span className="font-display text-[44px] leading-none font-black">[00]</span>
+              <span className="font-display text-[29px] leading-none font-black">[00]</span>
             </div>
             <div className="flex min-w-0 flex-[1_1_360px] flex-col justify-center gap-1.5 px-6 py-5">
               <div className="flex flex-wrap items-center gap-2">
@@ -55,13 +55,13 @@ export function CalendarView() {
                   {f.type} · {f.time}
                 </span>
               </div>
-              <span className="font-display text-[28px] leading-[1.05] font-extrabold uppercase">{f.title}</span>
+              <span className="font-display text-[18px] leading-[1.05] font-extrabold uppercase">{f.title}</span>
               <span className="text-sm text-mist">{f.venue}</span>
             </div>
             <div className="flex flex-[0_1_200px] items-center justify-end px-6 py-5">
               {f.past ? (
                 <div className="flex flex-col items-end gap-1">
-                  <span className="font-display text-4xl leading-none font-black">{f.score}</span>
+                  <span className="font-display text-[26px] leading-none font-black">{f.score}</span>
                   <span className="text-xs font-bold tracking-[0.12em] text-gold-light uppercase">Resultado</span>
                 </div>
               ) : (

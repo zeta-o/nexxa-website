@@ -18,7 +18,7 @@ export function StaffGrid() {
       <div className="flex flex-wrap items-end justify-between gap-5">
         <div className="flex flex-col gap-2.5">
           <span className="eyebrow text-gold-light">Cuerpo técnico</span>
-          <h2 className="m-0 font-display text-[clamp(40px,4.5vw,60px)] leading-[0.95] font-black uppercase">
+          <h2 className="m-0 font-display text-[clamp(26px,3.0vw,40px)] leading-[0.95] font-black uppercase">
             Por división
           </h2>
         </div>
@@ -34,7 +34,7 @@ export function StaffGrid() {
               </span>
             </div>
             <div className="flex flex-col gap-2 px-5.5 pt-5 pb-6">
-              <span className="font-display text-[26px] leading-none font-extrabold uppercase">{s.name}</span>
+              <span className="font-display text-[17px] leading-none font-extrabold uppercase">{s.name}</span>
               <span className="text-[13px] font-semibold tracking-widest text-gold-light uppercase">{s.role}</span>
               <span className="text-sm leading-normal text-haze">[Certificaciones / trayectoria]</span>
             </div>

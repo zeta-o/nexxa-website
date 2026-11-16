@@ -22,10 +22,13 @@ export const site = {
     email: "[correo@nexxarise.com]",
     phone: "[Teléfono / WhatsApp]",
   },
+  handle: "@nexxarise",
+  // Handle from the brand manual; confirm each profile URL.
   social: [
-    { label: "Instagram", href: "#" },
-    { label: "Facebook", href: "#" },
-    { label: "TikTok", href: "#" },
+    { label: "Instagram", href: "https://www.instagram.com/nexxarise" },
+    { label: "Facebook", href: "https://www.facebook.com/nexxarise" },
+    { label: "TikTok", href: "https://www.tiktok.com/@nexxarise" },
+    { label: "YouTube", href: "https://www.youtube.com/@nexxarise" },
   ],
 } as const;
 

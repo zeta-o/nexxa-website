@@ -44,7 +44,7 @@ export default function DivisionesPage() {
               <div className="stripes-deep flex items-end justify-between gap-4 border-b-4 border-gold px-7 pt-7 pb-6">
                 <div className="flex flex-col gap-2">
                   <span className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">Etapa {d.n}</span>
-                  <h2 className="m-0 font-display text-[52px] leading-[0.9] font-black uppercase">{d.name}</h2>
+                  <h2 className="m-0 font-display text-[34px] leading-[0.9] font-black uppercase">{d.name}</h2>
                 </div>
                 <LevelBars level={d.level} />
               </div>
@@ -104,7 +104,7 @@ export default function DivisionesPage() {
               <tbody>
                 {divisions.map((d) => (
                   <tr key={d.name} className="border-t border-border">
-                    <th scope="row" className="px-5 py-4.5 text-left font-display text-[22px] font-extrabold uppercase">
+                    <th scope="row" className="px-5 py-4.5 text-left font-display text-[16px] font-extrabold uppercase">
                       {d.name}
                     </th>
                     <td className="px-5 py-4.5 text-ink-soft">[Edades]</td>
@@ -121,7 +121,7 @@ export default function DivisionesPage() {
 
       <section className="bg-gold text-navy-deep">
         <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-6 px-6 py-16">
-          <h2 className="m-0 font-display text-[clamp(36px,4.5vw,56px)] leading-[0.95] font-black uppercase">
+          <h2 className="m-0 font-display text-[clamp(24px,3.0vw,37px)] leading-[0.95] font-black uppercase">
             ¿No sabes en qué división va tu hija?
           </h2>
           <LinkButton href="/unete" variant="navy" className="min-h-14 px-8">

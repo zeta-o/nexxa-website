@@ -9,7 +9,7 @@ import { navLinks } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { useUiStore } from "@/stores/use-ui-store";
 
-import { Crest } from "./primitives";
+import { BrandLogo, Crest } from "./primitives";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -22,23 +22,16 @@ export function SiteHeader() {
     <header className="relative z-20 border-b border-gold/35 bg-navy-deep text-white">
       <nav
         aria-label="Principal"
-        className="mx-auto flex max-w-[1240px] items-center justify-between gap-4 px-4 py-3.5 md:px-6"
+        className="mx-auto flex max-w-[1320px] items-center justify-between gap-4 px-4 py-3 md:px-6 md:py-5"
       >
-        {/* Oversized crest that hangs below the bar */}
-        <Link
-          href="/"
-          className="relative block h-12 w-[100px] shrink-0 md:h-13 md:w-[168px]"
-          aria-label="NEXXA RISE, inicio"
-        >
-          <Crest
-            priority
-            sizes="(min-width: 768px) 120px, 76px"
-            className="absolute top-[-4px] left-4 w-[76px] drop-shadow-[0_6px_12px_rgba(0,10,30,0.45)] md:top-[-8px] md:left-12 md:w-[120px] md:drop-shadow-[0_8px_16px_rgba(0,10,30,0.45)]"
-          />
+        {/* Official horizontal logo (min. 75px tall per brand manual); isotipo on small screens */}
+        <Link href="/" className="block shrink-0" aria-label="NEXXA RISE, inicio">
+          <BrandLogo variant="horizontal-blanco" priority className="hidden w-[420px] md:block" />
+          <Crest priority sizes="64px" className="w-16 md:hidden" alt="NEXXA RISE" />
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden flex-wrap items-center gap-x-7 gap-y-1 lg:flex">
+        <div className="hidden flex-wrap items-center justify-end gap-x-6 gap-y-1 xl:flex">
           {navLinks.map((l) => (
             <Link
               key={l.href}
@@ -65,7 +58,7 @@ export function SiteHeader() {
         {/* Mobile menu */}
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
-            className="inline-flex size-12 items-center justify-center rounded border border-gold/60 text-white lg:hidden"
+            className="inline-flex size-12 items-center justify-center rounded border border-gold/60 text-white xl:hidden"
             aria-label="Abrir menú"
           >
             <MenuIcon className="size-6" />
@@ -80,7 +73,7 @@ export function SiteHeader() {
                   onClick={() => setOpen(false)}
                   aria-current={pathname === l.href ? "page" : undefined}
                   className={cn(
-                    "flex min-h-14 items-center border-b border-white/10 font-display text-3xl font-extrabold tracking-wide uppercase",
+                    "flex min-h-14 items-center border-b border-white/10 font-display text-2xl font-black uppercase",
                     pathname === l.href ? "text-gold" : "text-white",
                   )}
                 >

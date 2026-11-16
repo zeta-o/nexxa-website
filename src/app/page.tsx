@@ -41,7 +41,7 @@ export default function HomePage() {
               <span className="block h-[3px] w-10 bg-gold" />
               <Eyebrow className="text-sm">Club de voleibol femenino</Eyebrow>
             </div>
-            <h1 className="m-0 font-display text-[clamp(64px,9vw,132px)] leading-[0.88] font-black tracking-[0.01em] uppercase">
+            <h1 className="m-0 font-display text-[clamp(42px,5.9vw,87px)] leading-[0.88] font-black tracking-[0.01em] uppercase">
               Fuerza
               <br />
               en la red.
@@ -66,7 +66,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className="relative bg-gold text-navy-deep">
-          <ul className="mx-auto m-0 flex max-w-[1240px] list-none flex-wrap items-center justify-center gap-x-7 gap-y-2.5 px-6 py-3.5 font-display text-xl font-extrabold tracking-[0.14em] uppercase">
+          <ul className="mx-auto m-0 flex max-w-[1240px] list-none flex-wrap items-center justify-center gap-x-7 gap-y-2.5 px-6 py-3.5 font-display text-base font-extrabold tracking-[0.14em] uppercase">
             {values.map((v, i) => (
               <li key={v.title} className="flex items-center gap-7">
                 {i > 0 ? <StarIcon /> : null}
@@ -105,7 +105,7 @@ export default function HomePage() {
                   </span>
                   <LevelBars level={d.level} size="sm" />
                 </div>
-                <span className="font-display text-[52px] leading-[0.9] font-black uppercase">{d.name}</span>
+                <span className="font-display text-[34px] leading-[0.9] font-black uppercase">{d.name}</span>
                 <span className="text-[15px] leading-normal text-mist">{d.short}</span>
                 <span className="text-[13px] font-bold tracking-[0.08em] text-gold-light uppercase">
                   {d.focus} · [Edades]
@@ -143,7 +143,7 @@ export default function HomePage() {
             className="flex flex-col gap-4 rounded-lg bg-white p-10 text-navy-deep outline-gold hover:outline-2"
           >
             <Eyebrow tone="dark">Staff</Eyebrow>
-            <span className="font-display text-[44px] leading-[0.95] font-black uppercase">
+            <span className="font-display text-[29px] leading-[0.95] font-black uppercase">
               Quienes guían
               <br />
               al equipo
@@ -158,7 +158,7 @@ export default function HomePage() {
             className="stripes flex min-h-[300px] flex-col justify-end gap-4 rounded-lg border border-gold/40 p-10 outline-gold hover:outline-2"
           >
             <Eyebrow>Galería</Eyebrow>
-            <span className="font-display text-[44px] leading-[0.95] font-black uppercase">En la cancha</span>
+            <span className="font-display text-[29px] leading-[0.95] font-black uppercase">En la cancha</span>
             <span className="text-sm text-haze">[Foto destacada de partido]</span>
             <span className="text-sm font-bold tracking-[0.06em] text-gold-light uppercase">Ver fotos →</span>
           </Link>
@@ -169,7 +169,7 @@ export default function HomePage() {
       <section className="bg-gold text-navy-deep">
         <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-8 px-6 py-18">
           <div className="flex flex-[1_1_480px] flex-col gap-3">
-            <h2 className="m-0 font-display text-[clamp(44px,5.5vw,72px)] leading-[0.9] font-black uppercase">
+            <h2 className="m-0 font-display text-[clamp(29px,3.6vw,48px)] leading-[0.9] font-black uppercase">
               Únete a Nexxa Rise.
             </h2>
             <p className="m-0 text-lg leading-relaxed">Pruebas abiertas para Mini, Pre-Juvenil y Juvenil.</p>

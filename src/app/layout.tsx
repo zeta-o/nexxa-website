@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Big_Shoulders, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
@@ -7,14 +7,11 @@ import { site } from "@/lib/data";
 
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+// Stand-in for the brand typeface (Creato Display) until its files are added.
+const brand = Inter({
+  variable: "--font-brand",
   subsets: ["latin"],
-});
-
-const bigShoulders = Big_Shoulders({
-  variable: "--font-big-shoulders",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -29,7 +26,6 @@ export const metadata: Metadata = {
     description: site.description,
     locale: "es_CR",
     type: "website",
-    images: ["/images/hero.jpg"],
   },
 };
 
@@ -41,7 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      className={`${inter.variable} ${bigShoulders.variable} h-full antialiased`}
+      className={`${brand.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col text-white">
         <a

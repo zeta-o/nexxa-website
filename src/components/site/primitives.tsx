@@ -2,12 +2,49 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-import crest from "../../../public/images/escudo-nexxa-rise.png";
+import isotipo from "../../../public/brand/isotipo.png";
+import logoHBlanco from "../../../public/brand/logo-horizontal-blanco.png";
+import logoHAzul from "../../../public/brand/logo-horizontal-azul.png";
+import logoVBlanco from "../../../public/brand/logo-vertical-blanco.png";
+import logoVAzul from "../../../public/brand/logo-vertical-azul.png";
 
 /* ------------------------------------------------------------------ */
-/* Crest                                                               */
+/* Brand marks — official files from the Manual de Identidad Visual.  */
+/* Minimum digital sizes (manual p.03): horizontal 75px tall,          */
+/* vertical 200px tall. The shield (principal) needs 400px, so it is   */
+/* reserved for large uses only.                                       */
 /* ------------------------------------------------------------------ */
 
+const logos = {
+  "horizontal-blanco": logoHBlanco,
+  "horizontal-azul": logoHAzul,
+  "vertical-blanco": logoVBlanco,
+  "vertical-azul": logoVAzul,
+} as const;
+
+export function BrandLogo({
+  variant,
+  className,
+  priority,
+  sizes,
+}: {
+  variant: keyof typeof logos;
+  className?: string;
+  priority?: boolean;
+  sizes?: string;
+}) {
+  return (
+    <Image
+      src={logos[variant]}
+      alt="NEXXA RISE"
+      priority={priority}
+      sizes={sizes ?? (variant.startsWith("horizontal") ? "420px" : "320px")}
+      className={cn("h-auto", className)}
+    />
+  );
+}
+
+/** Circular isotipo (wolf + ball). */
 export function Crest({
   className,
   alt = "",
@@ -21,7 +58,7 @@ export function Crest({
 }) {
   return (
     <Image
-      src={crest}
+      src={isotipo}
       alt={alt}
       priority={priority}
       sizes={sizes}
@@ -104,7 +141,7 @@ export function DisplayTitle({
     <Tag
       className={cn(
         "m-0 font-display leading-[0.95] font-black uppercase",
-        Tag === "h1" ? "text-[clamp(56px,8vw,112px)] leading-[0.88]" : "text-[clamp(40px,5vw,64px)]",
+        Tag === "h1" ? "text-[clamp(38px,5.4vw,74px)] leading-[0.95] tracking-[-0.01em]" : "text-[clamp(28px,3.4vw,44px)] leading-[1] tracking-[-0.01em]",
         className,
       )}
     >

@@ -18,7 +18,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useInscriptionStore } from "@/stores/use-inscription-store";
 
-import crest from "../../../public/images/escudo-nexxa-rise.png";
+import crest from "../../../public/brand/isotipo.png";
 
 const fieldClass =
   "h-12 rounded border-navy-line bg-navy px-3.5 text-base text-white placeholder:text-haze/70 focus-visible:border-gold focus-visible:ring-gold/40 md:text-base";
@@ -56,8 +56,8 @@ export function JoinForm() {
   if (status === "success") {
     return (
       <div className="flex flex-col items-start gap-4 rounded-lg border-2 border-gold bg-navy p-10" role="status">
-        <Image src={crest} alt="" className="h-auto w-20" sizes="80px" />
-        <h2 className="m-0 font-display text-[44px] leading-[0.95] font-black uppercase">
+        <Image src={crest} alt="" className="h-auto w-24" sizes="96px" />
+        <h2 className="m-0 font-display text-[29px] leading-[0.95] font-black uppercase">
           ¡Bienvenida a Nexxa Rise!
         </h2>
         <p className="m-0 text-base leading-relaxed text-mist">
@@ -97,7 +97,7 @@ export function JoinForm() {
       className="flex flex-col gap-7 rounded-lg bg-navy-deep p-6 text-white sm:p-9"
       aria-describedby={status === "error" && message ? "form-error" : undefined}
     >
-      <h2 className="m-0 font-display text-4xl leading-none font-black uppercase">Solicitud de prueba</h2>
+      <h2 className="m-0 font-display text-[26px] leading-none font-black uppercase">Solicitud de prueba</h2>
 
       <fieldset className="m-0 flex flex-col gap-4.5 border-0 p-0">
         <legend className="pb-3 text-sm font-bold">Datos de la jugadora</legend>

@@ -36,6 +36,18 @@ Lo que está entre `[corchetes]` es contenido pendiente.
 > ⚠️ La foto actual del hero (`public/images/hero.jpg`) muestra uniformes y patrocinadores de otro equipo.
 > Reemplázala por una foto propia del club antes de publicar.
 
+## Marca (Manual de Identidad Visual v2)
+
+- **Logos oficiales** en `public/brand/` (isotipo, horizontal y vertical en blanco y azul, silueta del lobo).
+  Componente `BrandLogo` en `src/components/site/primitives.tsx`.
+  Tamaños mínimos digitales: horizontal **75 px** de alto, vertical **200 px**, escudo principal **400 px**
+  (por eso el escudo no se usa en tamaños pequeños).
+- **Paleta**: `#FFFFFF` `#AF9600` `#00143C` (principal) · `#000000` `#E1B932` `#008CD7` (secundaria) ·
+  `#CCCCCC` `#826923` `#001E5A` (acentos). Tokens en `src/app/globals.css`.
+- **Tipografías**: Creato Display (Black títulos, Bold subtítulos, Regular texto) y Morington (uniformes,
+  encabezados de máx. 2 palabras). **Pendiente:** agregar los archivos de fuente; mientras tanto se usa Inter
+  como sustituto (`src/app/layout.tsx`, variable `--font-brand`).
+
 ## Estado (Zustand)
 
 - `src/stores/use-filters-store.ts` — filtros de calendario, staff y galería.
