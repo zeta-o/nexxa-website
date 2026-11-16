@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { MenuIcon } from "lucide-react";
 
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -9,7 +10,9 @@ import { navLinks } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { useUiStore } from "@/stores/use-ui-store";
 
-import { BrandLogo, Crest } from "./primitives";
+import shield from "../../../public/images/escudo-nexxa-rise.png";
+
+
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -24,10 +27,19 @@ export function SiteHeader() {
         aria-label="Principal"
         className="mx-auto flex max-w-[1320px] items-center justify-between gap-4 px-4 py-3 md:px-6 md:py-5"
       >
-        {/* Official horizontal logo (min. 75px tall per brand manual); isotipo on small screens */}
-        <Link href="/" className="block shrink-0" aria-label="NEXXA RISE, inicio">
-          <BrandLogo variant="horizontal-blanco" priority className="hidden w-[420px] md:block" />
-          <Crest priority sizes="64px" className="w-16 md:hidden" alt="NEXXA RISE" />
+        {/* Principal shield, oversized so it hangs below the bar */}
+        <Link
+          href="/"
+          className="relative block h-12 w-[92px] shrink-0 md:h-14 md:w-[150px]"
+          aria-label="NEXXA RISE, inicio"
+        >
+          <Image
+            src={shield}
+            alt=""
+            priority
+            sizes="(min-width: 768px) 130px, 80px"
+            className="absolute top-[-6px] left-0 h-auto w-[80px] drop-shadow-[0_6px_12px_rgba(0,10,30,0.5)] md:top-[-10px] md:w-[130px] md:drop-shadow-[0_10px_18px_rgba(0,10,30,0.5)]"
+          />
         </Link>
 
         {/* Desktop links */}
