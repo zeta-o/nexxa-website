@@ -13,6 +13,7 @@ import {
 import { facilities, site, sponsors, values } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
+import isotipo from "../../../public/brand/isotipo.png";
 import founders from "../../../public/images/fundadoras.jpg";
 import shield from "../../../public/images/escudo-nexxa-rise.png";
 import { Brand, BrandText } from "@/components/site/brand-name";
@@ -102,13 +103,22 @@ export default function ClubPage() {
             </p>
           </div>
           <div className="flex min-w-0 flex-[1_1_380px] justify-center">
-            <Image
-              src={founders}
-              alt="Yuliana González y María José Castro, fundadoras de NEXXA RISE, sentadas en una banca revisando una tableta"
-              placeholder="blur"
-              sizes="(min-width: 768px) 440px, 100vw"
-              className="h-auto w-full max-w-[440px] rounded-lg border-t-4 border-gold bg-navy-deep shadow-[0_24px_60px_rgba(0,20,60,0.35)]"
-            />
+            {/* Photo crossfades into the round crest and back, on a loop */}
+            <div className="relative w-full max-w-[440px] overflow-hidden rounded-lg border-t-4 border-gold bg-navy-deep shadow-[0_24px_60px_rgba(0,20,60,0.35)]">
+              <Image
+                src={founders}
+                alt="Yuliana González y María José Castro, fundadoras de NEXXA RISE, sentadas en una banca revisando una tableta"
+                placeholder="blur"
+                sizes="(min-width: 768px) 440px, 100vw"
+                className="block h-auto w-full animate-[nx-swap-photo_10s_ease-in-out_infinite] motion-reduce:animate-none"
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none animate-[nx-swap-crest_10s_ease-in-out_infinite] motion-reduce:animate-none motion-reduce:opacity-0 absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_50%_50%,rgba(0,140,215,0.35)_0%,rgba(0,30,90,0.6)_40%,rgba(0,20,60,0)_70%)]"
+              >
+                <Image src={isotipo} alt="" sizes="300px" className="h-auto w-[68%] drop-shadow-[0_18px_40px_rgba(0,0,0,0.5)]" />
+              </div>
+            </div>
           </div>
         </div>
       </section>

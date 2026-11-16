@@ -145,3 +145,43 @@
     animation: none;
   }
 }
+
+/* Founders photo ⇄ round crest crossfade (Club page) */
+@keyframes nx-swap-photo {
+  0%,
+  40% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  50%,
+  88% {
+    opacity: 0;
+    transform: scale(1.08);
+    filter: blur(8px);
+  }
+  98%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes nx-swap-crest {
+  0%,
+  40% {
+    opacity: 0;
+    transform: scale(0.7) rotate(-25deg);
+  }
+  52%,
+  86% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  96%,
+  100% {
+    opacity: 0;
+    transform: scale(0.7) rotate(-25deg);
+  }
+}
