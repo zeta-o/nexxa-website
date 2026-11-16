@@ -9,6 +9,20 @@ import { cn } from "@/lib/utils";
 const delays = ["[animation-delay:0s]", "[animation-delay:-8s]", "[animation-delay:-4s]"];
 
 export function PageFlip({ photos, alt, className }: { photos: StaticImageData[]; alt: string; className?: string }) {
+  if (photos.length === 1) {
+    return (
+      <div className={cn("relative overflow-hidden bg-navy-deep", className)}>
+        <Image
+          src={photos[0]}
+          alt={alt}
+          placeholder="blur"
+          sizes="(min-width: 640px) 260px, 100vw"
+          className="absolute inset-0 h-full w-full object-cover object-top"
+        />
+      </div>
+    );
+  }
+
   return (
     <div className={cn("relative overflow-hidden bg-navy-deep", className)}>
       {photos.slice(0, 3).map((src, i) => (
