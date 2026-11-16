@@ -132,8 +132,8 @@ export const leaders = [
   },
   {
     role: "Coordinación del club",
-    name: "[Nombre Apellido]",
-    text: "[Responsabilidades: logística, familias, torneos.]",
+    name: "María José Castro",
+    text: "Cofundadora de NEXXA RISE. Líbero con 15 años de trayectoria deportiva y exseleccionada nacional de Costa Rica. Entrenadora certificada FIVB Nivel II.",
   },
 ] as const;
 
