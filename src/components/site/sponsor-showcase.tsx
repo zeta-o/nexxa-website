@@ -14,13 +14,13 @@ const beltItems = [...sponsors.official, ...sponsors.partners];
  */
 export function SponsorShowcase() {
   return (
-    <section aria-labelledby="sponsors-title" className="border-y-4 border-gold bg-white text-navy-deep">
+    <section aria-labelledby="sponsors-title" className="stripes border-y-4 border-gold text-white">
       <div className="mx-auto flex max-w-[1240px] flex-col gap-10 px-6 pt-22 pb-12">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="flex max-w-[640px] flex-col gap-3">
-            <Eyebrow tone="dark">Nuestros patrocinadores</Eyebrow>
+            <Eyebrow>Nuestros patrocinadores</Eyebrow>
             <DisplayTitle id="sponsors-title">No estamos solos.</DisplayTitle>
-            <p className="m-0 text-lg leading-relaxed text-ink-soft">
+            <p className="m-0 text-lg leading-relaxed text-mist">
               Estos son nuestros patrocinadores: las marcas que creen en el voleibol femenino y hacen posible cada
               entrenamiento, cada torneo y cada sueño.
             </p>
@@ -31,14 +31,14 @@ export function SponsorShowcase() {
         </div>
 
         <div className="flex flex-wrap items-stretch gap-5">
-          <div className="stripes flex flex-[1_1_100%] flex-col gap-4 rounded-lg p-6 text-white md:p-8">
+          <div className="flex flex-[1_1_100%] flex-col gap-4">
             <span className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">Patrocinadores principales</span>
             <ul className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-4 p-0">
               {sponsors.main.map((s) => (
                 <li
                   key={s.name}
                   className={cn(
-                    "flex h-40 items-center justify-center overflow-hidden rounded-lg",
+                    "flex h-40 items-center justify-center overflow-hidden rounded-lg border-2 border-gold shadow-[0_18px_40px_rgba(0,10,30,0.35)]",
                     s.dark ? "bg-[#0b2a6b]" : "bg-white px-8",
                   )}
                 >
@@ -54,13 +54,13 @@ export function SponsorShowcase() {
               ))}
             </ul>
           </div>
-          <div className="flex min-w-0 flex-[1_1_100%] items-center overflow-hidden rounded-lg border border-silver py-5">
+          <div className="flex min-w-0 flex-[1_1_100%] items-center overflow-hidden rounded-lg border border-white/20 bg-white/5 py-5">
             <ul className="belt-track m-0 flex w-max list-none gap-4 px-2">
               {[...beltItems, ...beltItems].map((s, i) => (
                 <li
                   key={`${s}-${i}`}
                   aria-hidden={i >= beltItems.length || undefined}
-                  className="flex h-24 w-52 flex-none items-center justify-center rounded-lg border border-dashed border-haze px-3 text-center text-[13px] font-semibold text-ink-muted"
+                  className="flex h-24 w-52 flex-none items-center justify-center rounded-lg bg-white px-3 text-center text-[13px] font-semibold text-ink-muted"
                 >
                   {s}
                 </li>
