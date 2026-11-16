@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import {
   BrandLogo,
@@ -11,6 +12,28 @@ import {
 } from "@/components/site/primitives";
 import { facilities, site, sponsors, values } from "@/lib/data";
 import { cn } from "@/lib/utils";
+
+import shield from "../../../public/images/escudo-nexxa-rise.png";
+
+/** Meaning of each part of the crest — text from the Manual de Identidad Visual (p. 01). */
+const crestParts = [
+  {
+    title: "El lobo",
+    text: "Simboliza el poder, la protección, el trabajo en equipo, la lealtad a los suyos, la enseñanza y la resistencia ante la adversidad. Su actitud feroz representa el deseo y la convicción de lograr la victoria.",
+  },
+  {
+    title: "La doble X",
+    text: "Representa el cromosoma femenino “XX” y hace alusión a las dos fundadoras del proyecto y al ADN deportivo del mismo.",
+  },
+  {
+    title: "La doble flecha",
+    text: "La unión de la letra “E” y la primera “X” forma una doble flecha que simboliza a las dos fundadoras caminando juntas hacia el éxito.",
+  },
+  {
+    title: "Las seis estrellas",
+    text: "Representan los seis campeonatos que han ganado juntas las fundadoras, testimonio de su trabajo y compromiso con la excelencia.",
+  },
+] as const;
 
 export const metadata: Metadata = {
   title: "Club",
@@ -51,16 +74,61 @@ export default function ClubPage() {
               [Cuándo y cómo nació NEXXA RISE, quién lo fundó y por qué.]
             </p>
             <p className="m-0 text-lg leading-[1.7] text-ink-soft">
-              El lobo de nuestro escudo simboliza el poder, la protección, el trabajo en equipo, la lealtad a
-              los suyos, la enseñanza y la resistencia ante la adversidad. La doble X representa el cromosoma
-              femenino y a nuestras dos fundadoras; y las seis estrellas, los seis campeonatos que han ganado
-              juntas.
+              Nuestro nombre y nuestro escudo cuentan esa historia.{" "}
+              <a href="#escudo" className="font-semibold text-navy underline underline-offset-4 hover:text-gold-dark">
+                Descubre qué significa cada parte
+              </a>
+              .
             </p>
           </div>
           <div className="flex min-w-0 flex-[1_1_380px] justify-center">
             <div className="flex w-full max-w-[420px] justify-center rounded-lg bg-navy p-10">
               <BrandLogo variant="vertical-blanco" className="w-full max-w-[340px]" sizes="340px" />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CREST MEANING */}
+      <section id="escudo" aria-labelledby="escudo-titulo" className="stripes-deep scroll-mt-24 text-white">
+        <div className="mx-auto flex max-w-[1240px] flex-wrap items-center gap-16 px-6 py-26">
+          <div className="flex min-w-0 flex-[1_1_380px] justify-center">
+            <Image
+              src={shield}
+              alt="Escudo principal de NEXXA RISE: lobo dorado sobre un balón de voleibol, la palabra NEXXA RISE y estrellas"
+              sizes="(min-width: 768px) 440px, 100vw"
+              className="h-auto w-full max-w-[440px] drop-shadow-[0_20px_40px_rgba(0,0,0,0.35)]"
+            />
+          </div>
+          <div className="flex min-w-0 flex-[1_1_520px] flex-col gap-7">
+            <div className="flex flex-col gap-4">
+              <Eyebrow>Nuestro escudo</Eyebrow>
+              <DisplayTitle>
+                <span id="escudo-titulo">
+                  Cada parte cuenta
+                  <br />
+                  <span className="text-gold-light">quiénes somos.</span>
+                </span>
+              </DisplayTitle>
+              <p className="m-0 text-[17px] leading-relaxed text-white">
+                Para crear el imagotipo se tomaron en cuenta aspectos de la naturaleza deportiva del proyecto y
+                elementos que identifican la personalidad, los valores y los gustos de sus fundadoras. El nombre
+                “NEXXA RISE” simboliza el vínculo entre ambas y su búsqueda por la excelencia.
+              </p>
+            </div>
+            <ol className="m-0 flex list-none flex-col gap-5 p-0">
+              {crestParts.map((part, i) => (
+                <li key={part.title} className="flex items-start gap-4 border-t border-white/15 pt-5">
+                  <span className="flex size-10 flex-none items-center justify-center rounded-full bg-gold font-display text-base font-black text-navy-deep">
+                    {i + 1}
+                  </span>
+                  <div className="flex flex-col gap-1.5">
+                    <h3 className="m-0 font-display text-xl font-black uppercase">{part.title}</h3>
+                    <p className="m-0 text-[15px] leading-relaxed text-silver">{part.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
