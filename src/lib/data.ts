@@ -197,8 +197,14 @@ export const facilities = [
   { name: "[Fisioterapia]", text: "[Atención y recuperación]" },
 ] as const;
 
+export type SponsorLogo = { name: string; logo: string; width: number; height: number; dark?: boolean };
+
 export const sponsors = {
-  main: "[Logo patrocinador principal]",
+  /** Main sponsors with their logos (files in public/sponsors). `dark`: logo has its own dark background. */
+  main: [
+    { name: "Centro de Eventos Pedregal", logo: "/sponsors/pedregal.jpg", width: 976, height: 348, dark: true },
+    { name: "Holcim", logo: "/sponsors/holcim.png", width: 855, height: 252 },
+  ] as SponsorLogo[],
   official: [
     "[Logo patrocinador oficial]",
     "[Logo patrocinador oficial]",

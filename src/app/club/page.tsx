@@ -283,9 +283,26 @@ export default function ClubPage() {
             </p>
           </div>
 
-          <SponsorTier title="Patrocinador principal">
-            <div className="flex min-h-40 items-center justify-center rounded-lg border-[3px] border-gold bg-white text-base font-semibold text-ink-muted">
-              {sponsors.main}
+          <SponsorTier title="Patrocinadores principales">
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(min(320px,100%),1fr))] gap-3.5">
+              {sponsors.main.map((s) => (
+                <div
+                  key={s.name}
+                  className={cn(
+                    "flex h-44 items-center justify-center overflow-hidden rounded-lg border-[3px] border-gold",
+                    s.dark ? "bg-[#0b2a6b]" : "bg-white px-8",
+                  )}
+                >
+                  <Image
+                    src={s.logo}
+                    alt={s.name}
+                    width={s.width}
+                    height={s.height}
+                    sizes="(min-width: 768px) 600px, 100vw"
+                    className={cn(s.dark ? "h-full w-full object-cover" : "h-auto max-h-24 w-auto max-w-full")}
+                  />
+                </div>
+              ))}
             </div>
           </SponsorTier>
           <SponsorTier title="Patrocinadores oficiales">

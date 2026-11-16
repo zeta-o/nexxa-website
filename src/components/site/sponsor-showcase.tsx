@@ -1,13 +1,15 @@
+import Image from "next/image";
 import { ArrowRightIcon } from "lucide-react";
 
 import { sponsors } from "@/lib/data";
+import { cn } from "@/lib/utils";
 
 import { DisplayTitle, Eyebrow, LinkButton } from "./primitives";
 
 const beltItems = [...sponsors.official, ...sponsors.partners];
 
 /**
- * Home sponsors section: headline, featured main sponsor and a scrolling
+ * Home sponsors section: headline, featured main sponsors (logos) and a scrolling
  * ribbon with the rest. The ribbon pauses on hover and respects reduced motion.
  */
 export function SponsorShowcase() {
@@ -29,11 +31,30 @@ export function SponsorShowcase() {
         </div>
 
         <div className="flex flex-wrap items-stretch gap-5">
-          <div className="stripes flex min-h-40 flex-[1_1_320px] flex-col justify-center gap-2 rounded-lg p-8 text-white">
-            <span className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">Patrocinador principal</span>
-            <span className="font-display text-2xl font-black uppercase">{sponsors.main}</span>
+          <div className="stripes flex flex-[1_1_100%] flex-col gap-4 rounded-lg p-6 text-white md:p-8">
+            <span className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">Patrocinadores principales</span>
+            <ul className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-4 p-0">
+              {sponsors.main.map((s) => (
+                <li
+                  key={s.name}
+                  className={cn(
+                    "flex h-40 items-center justify-center overflow-hidden rounded-lg",
+                    s.dark ? "bg-[#0b2a6b]" : "bg-white px-8",
+                  )}
+                >
+                  <Image
+                    src={s.logo}
+                    alt={s.name}
+                    width={s.width}
+                    height={s.height}
+                    sizes="(min-width: 768px) 560px, 100vw"
+                    className={cn(s.dark ? "h-full w-full object-cover" : "h-auto max-h-24 w-auto max-w-full")}
+                  />
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="flex min-w-0 flex-[2_1_520px] items-center overflow-hidden rounded-lg border border-silver py-5">
+          <div className="flex min-w-0 flex-[1_1_100%] items-center overflow-hidden rounded-lg border border-silver py-5">
             <ul className="belt-track m-0 flex w-max list-none gap-4 px-2">
               {[...beltItems, ...beltItems].map((s, i) => (
                 <li
