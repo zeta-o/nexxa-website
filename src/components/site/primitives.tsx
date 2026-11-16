@@ -130,15 +130,18 @@ export function Eyebrow({
 
 export function DisplayTitle({
   as: Tag = "h2",
+  id,
   className,
   children,
 }: {
   as?: "h1" | "h2" | "h3";
+  id?: string;
   className?: string;
   children: React.ReactNode;
 }) {
   return (
     <Tag
+      id={id}
       className={cn(
         "m-0 font-display leading-[0.95] font-black uppercase",
         Tag === "h1" ? "text-[clamp(38px,5.4vw,74px)] leading-[0.95] tracking-[-0.01em]" : "text-[clamp(28px,3.4vw,44px)] leading-[1] tracking-[-0.01em]",

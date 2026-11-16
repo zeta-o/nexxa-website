@@ -11,7 +11,7 @@ import {
   Slogan,
   StarIcon,
 } from "@/components/site/primitives";
-import { SponsorBelt } from "@/components/site/sponsor-belt";
+import { SponsorShowcase } from "@/components/site/sponsor-showcase";
 import { divisions, fixtures, site, values } from "@/lib/data";
 
 import heroImage from "../../public/images/hero.jpg";
@@ -118,6 +118,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* SPONSORS */}
+      <SponsorShowcase />
+
       {/* NEXT MATCH */}
       <section className="bg-navy-deep">
         <div className="mx-auto flex max-w-[1240px] flex-col gap-9 px-6 py-24">
@@ -183,7 +186,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SponsorBelt />
     </>
   );
 }
