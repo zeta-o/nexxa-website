@@ -202,7 +202,7 @@ export type SponsorLogo = { name: string; logo: string; width: number; height: n
 export const sponsors = {
   /** Main sponsors with their logos (files in public/sponsors). `dark`: logo has its own dark background. */
   main: [
-    { name: "Centro de Eventos Pedregal", logo: "/sponsors/pedregal.png", width: 725, height: 190 },
+    { name: "Centro de Eventos Pedregal", logo: "/sponsors/pedregal-color.png", width: 863, height: 235 },
     { name: "Holcim", logo: "/sponsors/holcim.png", width: 855, height: 252 },
   ] as SponsorLogo[],
   official: [
