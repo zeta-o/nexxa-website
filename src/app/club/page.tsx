@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 import {
-  BrandLogo,
   DisplayTitle,
   Eyebrow,
   LinkButton,
@@ -14,6 +13,7 @@ import {
 import { facilities, site, sponsors, values } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
+import founders from "../../../public/images/fundadoras.jpg";
 import shield from "../../../public/images/escudo-nexxa-rise.png";
 import { Brand, BrandText } from "@/components/site/brand-name";
 
@@ -102,9 +102,13 @@ export default function ClubPage() {
             </p>
           </div>
           <div className="flex min-w-0 flex-[1_1_380px] justify-center">
-            <div className="flex w-full max-w-[420px] justify-center rounded-lg bg-navy p-10">
-              <BrandLogo variant="vertical-blanco" className="w-full max-w-[340px]" sizes="340px" />
-            </div>
+            <Image
+              src={founders}
+              alt="Yuliana González y María José Castro, fundadoras de NEXXA RISE, sentadas en una banca revisando una tableta"
+              placeholder="blur"
+              sizes="(min-width: 768px) 440px, 100vw"
+              className="h-auto w-full max-w-[440px] rounded-lg border-t-4 border-gold bg-navy-deep shadow-[0_24px_60px_rgba(0,20,60,0.35)]"
+            />
           </div>
         </div>
       </section>
