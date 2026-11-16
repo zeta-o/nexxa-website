@@ -113,6 +113,16 @@ export const divisions: Division[] = [
   },
 ];
 
+/** Home "Escalón por escalón": one step per category, in order. */
+export const pathway = [
+  { n: "01", name: "Escuelita", tag: "Primeros pasos", text: "El primer encuentro con el balón: juego, movimiento y diversión." },
+  { n: "02", name: "Mini", tag: "Iniciación", text: "Fundamentos y mini-voleibol en un ambiente seguro y divertido." },
+  { n: "03", name: "Pre-Infantil", tag: "Proceso Infantil · 1 de 2", text: "Técnica por posición y primeros sistemas de juego." },
+  { n: "04", name: "Infantil", tag: "Proceso Infantil · 2 de 2", text: "Se consolida la técnica y llegan los primeros torneos." },
+  { n: "05", name: "Pre-Juvenil", tag: "Proceso Juvenil · 1 de 2", text: "Preparación física y táctica para dar el salto a la competencia." },
+  { n: "06", name: "Juvenil", tag: "Proceso Juvenil · 2 de 2", text: "Rendimiento y competencia de liga con la camiseta de NEXXA RISE." },
+] as const;
+
 /** Future project, shown as "próximamente". */
 export const futureTeam = {
   name: "Equipo Mayor",

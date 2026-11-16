@@ -156,22 +156,26 @@ export function DisplayTitle({
 /** Rising bars — the visual shorthand for the formative path (Escuelita → Juvenil). */
 export function LevelBars({
   level,
+  steps = 4,
   size = "md",
   className,
 }: {
-  level: 1 | 2 | 3 | 4;
+  level: number;
+  /** Total bars shown (default 4). */
+  steps?: number;
   size?: "sm" | "md";
   className?: string;
 }) {
-  const heights = size === "sm" ? [10, 20, 30, 40] : [14, 28, 42, 56];
+  const max = size === "sm" ? 40 : 56;
+  const heights = Array.from({ length: steps }, (_, i) => Math.round((max * (i + 1)) / steps));
   return (
     <div aria-hidden className={cn("flex items-end gap-1.5", className)}>
       {heights.map((h, i) => (
         <span
-          key={h}
+          key={i}
           className={cn(
             "block rounded-[2px]",
-            size === "sm" ? "w-2.5" : "w-3",
+            steps > 4 ? "w-2" : size === "sm" ? "w-2.5" : "w-3",
             i < level ? "bg-gold" : "bg-white/20",
           )}
           style={{ height: h }}

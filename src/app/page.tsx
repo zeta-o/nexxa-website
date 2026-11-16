@@ -12,10 +12,10 @@ import {
   StarIcon,
 } from "@/components/site/primitives";
 import { SponsorShowcase } from "@/components/site/sponsor-showcase";
-import { divisions, fixtures, site, values } from "@/lib/data";
+import { fixtures, pathway, site, values } from "@/lib/data";
 
 import heroImage from "../../public/images/hero.jpg";
-import { Brand } from "@/components/site/brand-name";
+import { Brand, BrandText } from "@/components/site/brand-name";
 
 export default function HomePage() {
   const nextMatch = fixtures.find((f) => !f.past)!;
@@ -94,24 +94,22 @@ export default function HomePage() {
               Conoce cada división →
             </Link>
           </div>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-5">
-            {divisions.map((d) => (
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {pathway.map((d, i) => (
               <Link
                 key={d.name}
                 href="/divisiones"
-                className="stripes-deep flex flex-col gap-4.5 rounded-lg border-b-4 border-gold px-7 py-8 text-white outline-gold transition-[outline] hover:outline-2"
+                className="stripes-deep flex flex-col gap-4 rounded-lg border-b-4 border-gold px-7 py-7 text-white outline-gold transition-[outline] hover:outline-2"
               >
                 <div className="flex items-end justify-between">
-                  <span className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">
-                    Etapa {d.n}
-                  </span>
-                  <LevelBars level={d.level} size="sm" />
+                  <span className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">Etapa {d.n}</span>
+                  <LevelBars level={i + 1} steps={pathway.length} size="sm" />
                 </div>
-                <span className="font-accent text-[46px] leading-none tracking-wide uppercase">{d.name}</span>
-                <span className="text-[15px] leading-normal text-mist">{d.short}</span>
-                <span className="text-[13px] font-bold tracking-[0.08em] text-gold-light uppercase">
-                  {d.categories ? d.categories.join(" · ") : d.focus}
+                <span className="font-accent text-[42px] leading-none tracking-wide uppercase">{d.name}</span>
+                <span className="text-[15px] leading-normal text-mist">
+                  <BrandText>{d.text}</BrandText>
                 </span>
+                <span className="mt-auto text-[13px] font-bold tracking-[0.08em] text-gold-light uppercase">{d.tag}</span>
               </Link>
             ))}
           </div>
