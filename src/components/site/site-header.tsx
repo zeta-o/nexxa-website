@@ -30,15 +30,15 @@ export function SiteHeader() {
         {/* Principal shield, oversized so it hangs below the bar */}
         <Link
           href="/"
-          className="relative block h-12 w-[92px] shrink-0 md:h-14 md:w-[150px]"
+          className="relative block h-12 w-[116px] shrink-0 md:h-14 md:w-[190px]"
           aria-label="NEXXA RISE, inicio"
         >
           <Image
             src={shield}
             alt=""
             priority
-            sizes="(min-width: 768px) 130px, 80px"
-            className="absolute top-[-6px] left-0 h-auto w-[80px] drop-shadow-[0_6px_12px_rgba(0,10,30,0.5)] md:top-[-10px] md:w-[130px] md:drop-shadow-[0_10px_18px_rgba(0,10,30,0.5)]"
+            sizes="(min-width: 768px) 169px, 104px"
+            className="absolute top-[-6px] left-0 h-auto w-[104px] drop-shadow-[0_6px_12px_rgba(0,10,30,0.5)] md:top-[-10px] md:w-[169px] md:drop-shadow-[0_10px_18px_rgba(0,10,30,0.5)]"
           />
         </Link>
 
