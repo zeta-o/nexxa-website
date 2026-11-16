@@ -44,9 +44,9 @@ Lo que está entre `[corchetes]` es contenido pendiente.
   (por eso el escudo no se usa en tamaños pequeños).
 - **Paleta**: `#FFFFFF` `#AF9600` `#00143C` (principal) · `#000000` `#E1B932` `#008CD7` (secundaria) ·
   `#CCCCCC` `#826923` `#001E5A` (acentos). Tokens en `src/app/globals.css`.
-- **Tipografías**: Creato Display (Black títulos, Bold subtítulos, Regular texto) y Morington (uniformes,
-  encabezados de máx. 2 palabras). **Pendiente:** agregar los archivos de fuente; mientras tanto se usa Inter
-  como sustituto (`src/app/layout.tsx`, variable `--font-brand`).
+- **Tipografías**: Creato Display (Black títulos, Bold subtítulos, Regular texto), en `src/fonts/creato-display/`
+  con su licencia SIL OFL 1.1 (`OFL.txt`), cargada con `next/font/local` en `src/app/layout.tsx`.
+  Morington (uniformes, encabezados de máx. 2 palabras) **pendiente**: requiere licencia comercial.
 
 ## Estado (Zustand)
 

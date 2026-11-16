@@ -30,8 +30,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  /* Brand: Creato Display (titles Black, subtitles Bold, body Regular).
-     Until the font files are added, Inter stands in (see README). */
+  /* Brand: Creato Display (titles Black, subtitles Bold, body Regular). */
   --font-sans: var(--font-brand);
   --font-display: var(--font-brand);
   --font-heading: var(--font-brand);

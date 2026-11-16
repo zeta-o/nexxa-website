@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
@@ -7,11 +7,18 @@ import { site } from "@/lib/data";
 
 import "./globals.css";
 
-// Stand-in for the brand typeface (Creato Display) until its files are added.
-const brand = Inter({
+// Brand typeface: Creato Display (SIL Open Font License 1.1 — see src/fonts/creato-display/OFL.txt).
+// Manual: Black for titles, Bold for subtitles, Regular for body text.
+const brand = localFont({
   variable: "--font-brand",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  src: [
+    { path: "../fonts/creato-display/CreatoDisplay-Regular.otf", weight: "400", style: "normal" },
+    { path: "../fonts/creato-display/CreatoDisplay-Medium.otf", weight: "500", style: "normal" },
+    { path: "../fonts/creato-display/CreatoDisplay-Bold.otf", weight: "700", style: "normal" },
+    { path: "../fonts/creato-display/CreatoDisplay-ExtraBold.otf", weight: "800", style: "normal" },
+    { path: "../fonts/creato-display/CreatoDisplay-Black.otf", weight: "900", style: "normal" },
+  ],
 });
 
 export const metadata: Metadata = {
