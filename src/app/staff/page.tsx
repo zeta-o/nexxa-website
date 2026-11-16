@@ -1,9 +1,20 @@
 import type { Metadata } from "next";
+import type { StaticImageData } from "next/image";
 import { UserRoundIcon } from "lucide-react";
 
 import { DisplayTitle, Eyebrow, LinkButton, PageHero } from "@/components/site/primitives";
+import { PageFlip } from "@/components/staff/page-flip";
 import { StaffGrid } from "@/components/staff/staff-grid";
 import { leaders } from "@/lib/data";
+
+import yuliana1 from "../../../public/images/yuliana-1.jpg";
+import yuliana2 from "../../../public/images/yuliana-2.jpg";
+import yuliana3 from "../../../public/images/yuliana-3.jpg";
+
+/** Photo sets for the leader cards, by name. Leaders without photos keep the placeholder. */
+const leaderPhotos: Record<string, StaticImageData[]> = {
+  "Yuliana González": [yuliana1, yuliana2, yuliana3],
+};
 
 export const metadata: Metadata = {
   title: "Staff",
@@ -34,9 +45,17 @@ export default function StaffPage() {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(min(420px,100%),1fr))] gap-5">
             {leaders.map((l) => (
               <article key={l.role} className="flex flex-wrap overflow-hidden rounded-lg border border-silver bg-white">
-                <div role="img" aria-label="Foto (pendiente)" className="stripes flex min-h-60 flex-[0_0_200px] items-center justify-center max-sm:flex-[1_1_100%]">
-                  <UserRoundIcon className="size-18 text-white/30" strokeWidth={1.2} aria-hidden />
-                </div>
+                {leaderPhotos[l.name] ? (
+                  <PageFlip
+                    photos={leaderPhotos[l.name]}
+                    alt={`${l.name}, ${l.role.toLowerCase()} de NEXXA RISE`}
+                    className="min-h-80 flex-[0_0_240px] max-sm:min-h-[420px] max-sm:flex-[1_1_100%]"
+                  />
+                ) : (
+                  <div role="img" aria-label="Foto (pendiente)" className="stripes flex min-h-60 flex-[0_0_200px] items-center justify-center max-sm:flex-[1_1_100%]">
+                    <UserRoundIcon className="size-18 text-white/30" strokeWidth={1.2} aria-hidden />
+                  </div>
+                )}
                 <div className="flex flex-[1_1_220px] flex-col gap-2.5 p-7">
                   <span className="text-xs font-bold tracking-[0.16em] text-gold-dark uppercase">{l.role}</span>
                   <span className="font-display text-[22px] leading-none font-black uppercase">{l.name}</span>
