@@ -112,8 +112,9 @@ export default function ClubPage() {
               </DisplayTitle>
               <p className="m-0 text-[17px] leading-relaxed text-white">
                 Para crear nuestro escudo se tomaron en cuenta aspectos de la naturaleza deportiva del proyecto y
-                elementos que identifican la personalidad, los valores y los gustos de sus fundadoras. El nombre
-                “NEXXA RISE” simboliza el vínculo entre ambas y su búsqueda por la excelencia.
+                elementos que identifican la personalidad, los valores que nuestras fundadoras promueven y desean
+                profundizar en nuestros equipos. El nombre “NEXXA RISE” simboliza el vínculo entre ambas y su
+                búsqueda de la excelencia.
               </p>
             </div>
             <ol className="m-0 flex list-none flex-col gap-5 p-0">
