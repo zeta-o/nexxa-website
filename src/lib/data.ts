@@ -127,8 +127,8 @@ export type StaffGroup = DivisionName | "Apoyo";
 export const leaders = [
   {
     role: "Dirección técnica",
-    name: "[Nombre Apellido]",
-    text: "[Trayectoria, certificaciones y filosofía de juego.]",
+    name: "Yuliana González",
+    text: "Cofundadora de NEXXA RISE. Colocadora con 22 años como jugadora y exseleccionada nacional de Costa Rica. Entrenadora certificada FIVB Nivel II.",
   },
   {
     role: "Coordinación del club",
