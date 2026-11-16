@@ -192,7 +192,7 @@ export function PageHero({
 }) {
   return (
     <section className="stripes border-b-4 border-gold">
-      <div className="mx-auto flex max-w-[1240px] flex-wrap items-end justify-between gap-10 px-6 pt-28 pb-20">
+      <div className="mx-auto flex max-w-[1240px] flex-wrap items-end justify-between gap-10 px-6 pt-44 pb-20 md:pt-56">
         <div className="flex max-w-3xl flex-col gap-5">
           <Eyebrow className="text-sm">{eyebrow}</Eyebrow>
           <DisplayTitle as="h1">{title}</DisplayTitle>

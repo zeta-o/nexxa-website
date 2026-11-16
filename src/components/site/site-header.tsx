@@ -20,9 +20,18 @@ export function SiteHeader() {
   const setOpen = useUiStore((s) => s.setMobileNavOpen);
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  // Transparent nav floating over the hero; /unete has a gold hero, so it keeps the solid bar.
+  const overlay = pathname !== "/unete";
 
   return (
-    <header className="relative z-20 border-b border-gold/35 bg-navy-deep text-white">
+    <header
+      className={cn(
+        "z-20 text-white",
+        overlay
+          ? "absolute inset-x-0 top-0 bg-linear-to-b from-navy-deep/70 to-transparent"
+          : "relative border-b border-gold/35 bg-navy-deep",
+      )}
+    >
       <nav
         aria-label="Principal"
         className="mx-auto flex max-w-[1320px] items-center justify-between gap-4 px-4 py-3 md:px-6 md:py-5"
