@@ -11,11 +11,13 @@ import yuliana1 from "../../../public/images/yuliana-1.jpg";
 import yuliana2 from "../../../public/images/yuliana-2.jpg";
 import yuliana3 from "../../../public/images/yuliana-3.jpg";
 import mariaJose1 from "../../../public/images/maria-jose-1.jpg";
+import mariaJose2 from "../../../public/images/maria-jose-2.jpg";
+import mariaJose3 from "../../../public/images/maria-jose-3.jpg";
 
 /** Photo sets for the leader cards, by name. Leaders without photos keep the placeholder. */
 const leaderPhotos: Record<string, StaticImageData[]> = {
   "Yuliana González": [yuliana3, yuliana2, yuliana1],
-  "María José Castro": [mariaJose1],
+  "María José Castro": [mariaJose1, mariaJose2, mariaJose3],
 };
 
 export const metadata: Metadata = {
