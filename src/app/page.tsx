@@ -30,7 +30,7 @@ export default function HomePage() {
           priority
           placeholder="blur"
           sizes="100vw"
-          className="object-cover object-[50%_32%]"
+          className="object-cover object-[50%_32%] brightness-[0.68] saturate-[0.9]"
         />
         <div
           aria-hidden

@@ -19,8 +19,10 @@ export const site = {
       "https://www.google.com/maps/search/?api=1&query=Complejo+Pedregal+Bel%C3%A9n+Heredia",
   },
   contact: {
-    email: "[correo@nexxarise.com]",
-    phone: "[Teléfono / WhatsApp]",
+    email: "info.nexxarise@gmail.com",
+    phone: "8664-9999",
+    phoneHref: "tel:+50686649999",
+    whatsappHref: "https://wa.me/50686649999",
   },
   handle: "@nexxarise",
   // Handle from the brand manual; confirm each profile URL.

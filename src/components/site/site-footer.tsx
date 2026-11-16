@@ -35,7 +35,20 @@ export function SiteFooter() {
           </div>
           <div className="flex flex-[0_1_260px] flex-col">
             <span className="mb-1.5 text-xs font-bold tracking-[0.18em] text-gold-light uppercase">Contacto</span>
-            <span className="py-1.5 text-[15px] text-mist">{site.contact.email}</span>
+            <a href={`mailto:${site.contact.email}`} className="py-1.5 text-[15px] text-mist hover:text-gold-light">
+              {site.contact.email}
+            </a>
+            <a href={site.contact.phoneHref} className="py-1.5 text-[15px] text-mist hover:text-gold-light">
+              Tel. {site.contact.phone}
+            </a>
+            <a
+              href={site.contact.whatsappHref}
+              target="_blank"
+              rel="noreferrer"
+              className="py-1.5 text-[15px] text-mist hover:text-gold-light"
+            >
+              Escríbenos por WhatsApp →
+            </a>
             <span className="py-1.5 text-[15px] text-mist">
               {site.location.venue}, {site.location.city}
             </span>

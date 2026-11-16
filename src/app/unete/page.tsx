@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { JoinForm } from "@/components/join/join-form";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { faq, joinSteps } from "@/lib/data";
+import { faq, joinSteps, site } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Únete",
@@ -44,6 +44,23 @@ export default function UnetePage() {
                 </li>
               ))}
             </ol>
+            <div className="flex flex-col gap-2 rounded-lg border border-gold/40 p-5">
+              <span className="eyebrow text-gold-light">¿Dudas?</span>
+              <a href={`mailto:${site.contact.email}`} className="text-[15px] text-white hover:text-gold-light">
+                {site.contact.email}
+              </a>
+              <a href={site.contact.phoneHref} className="text-[15px] text-white hover:text-gold-light">
+                Tel. {site.contact.phone}
+              </a>
+              <a
+                href={site.contact.whatsappHref}
+                target="_blank"
+                rel="noreferrer"
+                className="text-[15px] font-semibold text-gold-light hover:text-white"
+              >
+                Escríbenos por WhatsApp →
+              </a>
+            </div>
           </div>
           <div className="min-w-0 flex-[1_1_520px]">
             <JoinForm />
