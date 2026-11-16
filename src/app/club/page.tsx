@@ -43,8 +43,14 @@ export const metadata: Metadata = {
 };
 
 const pillars = [
-  { title: "Misión", text: "[Misión del club en una o dos frases.]" },
-  { title: "Visión", text: "[Hacia dónde quiere llegar NEXXA RISE.]" },
+  {
+    title: "Misión",
+    text: "Potenciar el crecimiento técnico, físico, táctico y emocional de atletas, promoviendo valores, disciplina y compromiso.",
+  },
+  {
+    title: "Visión",
+    text: "Consolidarnos como organización líder en voleibol a nivel regional y nacional, siendo un referente formativo y social.",
+  },
   { title: "Sede", text: `${site.location.venue}, ${site.location.city}.` },
 ];
 
@@ -156,7 +162,7 @@ export default function ClubPage() {
             <Eyebrow tone="dark">Lo que nos mueve</Eyebrow>
             <DisplayTitle>Nuestros valores</DisplayTitle>
           </div>
-          <ul className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(min(210px,100%),1fr))] gap-4 p-0">
+          <ul className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(min(340px,100%),1fr))] gap-4 p-0">
             {values.map((v) => (
               <li key={v.title} className="flex flex-col gap-3 rounded-lg border border-t-4 border-silver border-t-gold bg-white px-6 py-7">
                 <StarIcon className="size-7 text-gold" />

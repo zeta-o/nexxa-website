@@ -42,12 +42,14 @@ export const navLinks = [
   { label: "Galería", href: "/galeria" },
 ] as const;
 
+/** Valores centrales (oficiales). The short texts are suggestions; adjust freely. */
 export const values = [
-  { title: "Pasión", text: "Cada balón se pelea hasta el último punto." },
-  { title: "Disciplina", text: "Entrenamos fuerte para competir mejor." },
-  { title: "Equipo", text: "Nadie juega sola: ganamos y aprendemos juntas." },
+  { title: "Disciplina", text: "Entrenamos con constancia para competir mejor." },
+  { title: "Resiliencia", text: "Nos levantamos después de cada punto perdido." },
+  { title: "Trabajo en equipo", text: "Nadie juega sola: ganamos y aprendemos juntas." },
   { title: "Respeto", text: "Por rivales, árbitros, entrenadores y compañeras." },
-  { title: "Ascenso", text: "Siempre un escalón más arriba: así nació RISE." },
+  { title: "Responsabilidad", text: "Cumplimos con el equipo, los estudios y la familia." },
+  { title: "Excelencia", text: "Siempre un escalón más arriba: así nació RISE." },
 ] as const;
 
 /** Formative processes. Infantil and Juvenil are each one process split in two categories. */

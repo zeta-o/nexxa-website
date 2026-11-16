@@ -68,9 +68,9 @@ export default function HomePage() {
           </div>
         </div>
         <div className="relative bg-gold text-navy-deep">
-          <ul className="mx-auto m-0 flex max-w-[1240px] list-none flex-wrap items-center justify-center gap-x-7 gap-y-2.5 px-6 py-3 font-accent text-[26px] tracking-[0.12em] uppercase">
+          <ul className="mx-auto m-0 flex max-w-[1240px] list-none flex-wrap items-center justify-center gap-x-5 gap-y-2.5 px-6 py-3 font-accent text-[20px] tracking-[0.08em] uppercase md:text-[23px]">
             {values.map((v, i) => (
-              <li key={v.title} className="flex items-center gap-7">
+              <li key={v.title} className="flex items-center gap-5">
                 {i > 0 ? <StarIcon /> : null}
                 {v.title}
               </li>
