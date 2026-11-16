@@ -113,15 +113,72 @@ export const divisions: Division[] = [
   },
 ];
 
-/** Home "Escalón por escalón": one step per category, in order. */
-export const pathway = [
-  { n: "01", name: "Escuelita", tag: "Primeros pasos", text: "El primer encuentro con el balón: juego, movimiento y diversión." },
-  { n: "02", name: "Mini", tag: "Iniciación", text: "Fundamentos y mini-voleibol en un ambiente seguro y divertido." },
-  { n: "03", name: "Pre-Infantil", tag: "Proceso Infantil · 1 de 2", text: "Técnica por posición y primeros sistemas de juego." },
-  { n: "04", name: "Infantil", tag: "Proceso Infantil · 2 de 2", text: "Se consolida la técnica y llegan los primeros torneos." },
-  { n: "05", name: "Pre-Juvenil", tag: "Proceso Juvenil · 1 de 2", text: "Preparación física y táctica para dar el salto a la competencia." },
-  { n: "06", name: "Juvenil", tag: "Proceso Juvenil · 2 de 2", text: "Rendimiento y competencia de liga con la camiseta de NEXXA RISE." },
-] as const;
+/** One step per category, in order (Home "Escalón por escalón" and the Divisiones page). */
+export type PathwayStep = {
+  n: string;
+  name: string;
+  /** Process the category belongs to, when it shares one (Infantil, Juvenil). */
+  process?: DivisionName;
+  tag: string;
+  text: string;
+  points: string[];
+  competition: string;
+};
+
+export const pathway: PathwayStep[] = [
+  {
+    n: "01",
+    name: "Escuelita",
+    tag: "Primeros pasos",
+    text: "El primer encuentro con el balón: juego, movimiento y diversión.",
+    points: ["Juegos con balón y coordinación", "Motricidad y confianza", "Primer contacto con el trabajo en equipo"],
+    competition: "Festivales y encuentros recreativos",
+  },
+  {
+    n: "02",
+    name: "Mini",
+    tag: "Iniciación",
+    text: "Fundamentos y mini-voleibol en un ambiente seguro y divertido.",
+    points: ["Fundamentos: saque, pase y recepción", "Mini-voleibol y juegos", "Valores de equipo desde el inicio"],
+    competition: "Festivales y mini-voleibol",
+  },
+  {
+    n: "03",
+    name: "Pre-Infantil",
+    process: "Infantil",
+    tag: "Proceso Infantil · 1 de 2",
+    text: "Técnica por posición y primeros sistemas de juego.",
+    points: ["Técnica por posición", "Sistemas de juego básicos", "Encuentros y amistosos"],
+    competition: "Amistosos y festivales",
+  },
+  {
+    n: "04",
+    name: "Infantil",
+    process: "Infantil",
+    tag: "Proceso Infantil · 2 de 2",
+    text: "Se consolida la técnica y llegan los primeros torneos.",
+    points: ["Consolidación técnica", "Lectura de juego en equipo", "Primeros torneos"],
+    competition: "Torneos y amistosos",
+  },
+  {
+    n: "05",
+    name: "Pre-Juvenil",
+    process: "Juvenil",
+    tag: "Proceso Juvenil · 1 de 2",
+    text: "Preparación física y táctica para dar el salto a la competencia.",
+    points: ["Preparación física", "Táctica y rotaciones", "Torneos y amistosos"],
+    competition: "Torneos",
+  },
+  {
+    n: "06",
+    name: "Juvenil",
+    process: "Juvenil",
+    tag: "Proceso Juvenil · 2 de 2",
+    text: "Rendimiento y competencia de liga con la camiseta de NEXXA RISE.",
+    points: ["Preparación física y táctica avanzada", "Competencia en [Liga]", "Camino a selecciones y nivel universitario"],
+    competition: "[Liga]",
+  },
+];
 
 /** Future project, shown as "próximamente". */
 export const futureTeam = {

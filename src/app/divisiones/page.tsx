@@ -3,19 +3,16 @@ import Link from "next/link";
 import { CheckIcon } from "lucide-react";
 
 import { DisplayTitle, Eyebrow, LevelBars, LinkButton, PageHero } from "@/components/site/primitives";
-import { divisions, futureTeam } from "@/lib/data";
+import { futureTeam, pathway } from "@/lib/data";
 import { BrandText } from "@/components/site/brand-name";
 
 export const metadata: Metadata = {
   title: "Divisiones",
   description:
-    "Escuelita, Mini, Infantil (Pre-Infantil e Infantil) y Juvenil (Pre-Juvenil y Juvenil): el camino de formación de NEXXA RISE.",
+    "Escuelita, Mini, Pre-Infantil, Infantil, Pre-Juvenil y Juvenil: el camino de formación de NEXXA RISE.",
 };
 
-/** One row per category for the schedule table. */
-const rows = divisions.flatMap((d) =>
-  (d.categories ?? [d.name]).map((c) => ({ category: c, process: d.name, competition: d.competition })),
-);
+const slug = (name: string) => name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
 export default function DivisionesPage() {
   return (
@@ -31,27 +28,33 @@ export default function DivisionesPage() {
         }
         intro="Cada jugadora crece a su ritmo: desde su primer contacto con el balón en la Escuelita hasta la competencia de liga."
       >
-        <div aria-hidden className="flex h-44 items-end gap-3">
-          {divisions.map((d, i) => (
-            <div key={d.name} className="flex flex-col items-center gap-2">
-              <span className="block w-12 rounded-[3px] bg-gold" style={{ height: 40 + i * 34 }} />
-              <span className="text-[11px] font-bold tracking-widest text-gold-light uppercase">{d.name}</span>
+        <div aria-hidden className="flex h-48 items-end gap-2 max-sm:hidden">
+          {pathway.map((d, i) => (
+            <div key={d.name} className="flex w-14 flex-col items-center gap-2">
+              <span className="block w-10 rounded-[3px] bg-gold" style={{ height: 32 + i * 24 }} />
+              <span className="h-7 text-center text-[10px] leading-tight font-bold tracking-wider text-gold-light uppercase">
+                {d.name.replace("Pre-", "Pre-\u00a0").split("\u00a0").map((w) => (
+                  <span key={w} className="block">
+                    {w}
+                  </span>
+                ))}
+              </span>
             </div>
           ))}
-          <div className="flex flex-col items-center gap-2">
-            <span className="block h-[176px] w-12 rounded-[3px] border-2 border-dashed border-gold-light/70" />
-            <span className="text-[11px] font-bold tracking-widest text-white/70 uppercase">Mayor</span>
+          <div className="flex w-14 flex-col items-center gap-2">
+            <span className="block h-[176px] w-10 rounded-[3px] border-2 border-dashed border-gold-light/70" />
+            <span className="h-7 text-[10px] font-bold tracking-wider text-white/70 uppercase">Mayor</span>
           </div>
         </div>
       </PageHero>
 
       {/* PROCESS CARDS */}
       <section className="bg-white text-navy-deep">
-        <div className="mx-auto grid max-w-[1240px] grid-cols-[repeat(auto-fit,minmax(min(270px,100%),1fr))] items-stretch gap-5 px-6 pt-24 pb-10">
-          {divisions.map((d) => (
+        <div className="mx-auto grid max-w-[1240px] grid-cols-1 items-stretch gap-5 px-6 pt-24 pb-10 sm:grid-cols-2 lg:grid-cols-3">
+          {pathway.map((d, i) => (
             <article
               key={d.name}
-              id={d.name.toLowerCase()}
+              id={slug(d.name)}
               className="flex scroll-mt-24 flex-col overflow-hidden rounded-lg bg-navy text-white"
             >
               <div className="stripes-deep flex items-end justify-between gap-4 border-b-4 border-gold px-6 pt-6 pb-5">
@@ -59,31 +62,20 @@ export default function DivisionesPage() {
                   <span className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">Etapa {d.n}</span>
                   <h2 className="m-0 font-accent text-[40px] leading-none font-normal tracking-wide uppercase">{d.name}</h2>
                 </div>
-                <LevelBars level={d.level} />
+                <LevelBars level={i + 1} steps={pathway.length} />
               </div>
               <div className="flex flex-1 flex-col gap-4 px-6 pt-5 pb-6">
                 <div className="flex flex-wrap gap-2">
                   <span className="inline-flex min-h-8 items-center rounded-full border border-white/30 px-3 text-[13px] font-semibold">
-                    {d.focus}
+                    {d.process ? `Proceso ${d.process}` : d.tag}
                   </span>
-                  {d.categories ? (
+                  {d.process ? (
                     <span className="inline-flex min-h-8 items-center rounded-full bg-gold px-3 text-[13px] font-bold text-navy-deep">
-                      2 categorías
+                      {d.tag.split("· ")[1]}
                     </span>
                   ) : null}
                 </div>
-                {d.categories ? (
-                  <ul className="m-0 grid list-none grid-cols-2 gap-2 p-0">
-                    {d.categories.map((c) => (
-                      <li key={c} className="flex flex-col rounded-md border border-sky/60 px-3 py-2">
-                        <span className="text-sm font-bold">{c}</span>
-                        <span className="text-xs text-haze">[Edades]</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <span className="text-sm text-haze">[Edades]</span>
-                )}
+                <span className="text-sm text-haze">[Edades]</span>
                 <p className="m-0 text-[15px] leading-relaxed text-white"><BrandText>{d.text}</BrandText></p>
                 <ul className="m-0 flex list-none flex-col gap-2.5 p-0 text-sm">
                   {d.points.map((p) => (
@@ -143,12 +135,12 @@ export default function DivisionesPage() {
                 </tr>
               </thead>
               <tbody>
-                {rows.map((r) => (
-                  <tr key={r.category} className="border-t border-border">
+                {pathway.map((r) => (
+                  <tr key={r.name} className="border-t border-border">
                     <th scope="row" className="px-5 py-4 text-left font-display text-[15px] font-extrabold uppercase">
-                      {r.category}
+                      {r.name}
                     </th>
-                    <td className="px-5 py-4 text-ink-soft">{r.process}</td>
+                    <td className="px-5 py-4 text-ink-soft">{r.process ?? r.name}</td>
                     <td className="px-5 py-4 text-ink-soft">[Edades]</td>
                     <td className="px-5 py-4 text-ink-soft">[Días por semana]</td>
                     <td className="px-5 py-4 text-ink-soft">[Horario]</td>
