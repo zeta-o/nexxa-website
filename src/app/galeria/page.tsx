@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import { GalleryGrid } from "@/components/gallery/gallery-grid";
 import { PageHero } from "@/components/site/primitives";
+import { features } from "@/lib/flags";
 
 export const metadata: Metadata = {
   title: "Galería",
@@ -9,6 +11,8 @@ export const metadata: Metadata = {
 };
 
 export default function GaleriaPage() {
+  if (!features.gallery) notFound();
+
   return (
     <>
       <PageHero

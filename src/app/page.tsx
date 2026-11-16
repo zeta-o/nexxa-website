@@ -13,6 +13,8 @@ import {
 } from "@/components/site/primitives";
 import { SponsorShowcase } from "@/components/site/sponsor-showcase";
 import { fixtures, pathway, site, values } from "@/lib/data";
+import { features } from "@/lib/flags";
+import { cn } from "@/lib/utils";
 
 import heroImage from "../../public/images/hero.jpg";
 import { Brand, BrandText } from "@/components/site/brand-name";
@@ -54,12 +56,15 @@ export default function HomePage() {
             </h1>
             <Slogan className="-mt-2 -rotate-3 text-[clamp(30px,3.4vw,46px)] text-gold-light" />
             <p className="m-0 max-w-[520px] text-lg leading-relaxed text-mist">
-              <Brand /> forma jugadoras desde su primer saque hasta la competencia de liga, en cuatro etapas: Escuelita, Mini, Infantil y Juvenil. Entrenamos en el {site.location.venue},{" "}
+              <Brand /> forma jugadoras desde su primer saque hasta la
+              competencia de liga, en cuatro etapas: Escuelita, Mini, Infantil y
+              Juvenil. Entrenamos en el {site.location.venue},{" "}
               {site.location.city}.
             </p>
             <div className="flex flex-wrap gap-3.5">
               <LinkButton href="/unete">
-                Pruebas abiertas <ArrowRightIcon className="size-[18px]" aria-hidden />
+                Pruebas abiertas{" "}
+                <ArrowRightIcon className="size-[18px]" aria-hidden />
               </LinkButton>
               <LinkButton href="/divisiones" variant="ghost">
                 Ver divisiones
@@ -102,14 +107,20 @@ export default function HomePage() {
                 className="stripes-deep flex flex-col gap-4 rounded-lg border-b-4 border-gold px-7 py-7 text-white outline-gold transition-[outline] hover:outline-2"
               >
                 <div className="flex items-end justify-between">
-                  <span className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">Etapa {d.n}</span>
+                  <span className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">
+                    Etapa {d.n}
+                  </span>
                   <LevelBars level={i + 1} steps={pathway.length} size="sm" />
                 </div>
-                <span className="font-accent text-[42px] leading-none tracking-wide uppercase">{d.name}</span>
+                <span className="font-accent text-[42px] leading-none tracking-wide uppercase">
+                  {d.name}
+                </span>
                 <span className="text-[15px] leading-normal text-mist">
                   <BrandText>{d.text}</BrandText>
                 </span>
-                <span className="mt-auto text-[13px] font-bold tracking-[0.08em] text-gold-light uppercase">{d.tag}</span>
+                <span className="mt-auto text-[13px] font-bold tracking-[0.08em] text-gold-light uppercase">
+                  {d.tag}
+                </span>
               </Link>
             ))}
           </div>
@@ -119,28 +130,35 @@ export default function HomePage() {
       {/* SPONSORS */}
       <SponsorShowcase />
 
-      {/* NEXT MATCH */}
-      <section className="bg-navy-deep">
-        <div className="mx-auto flex max-w-[1240px] flex-col gap-9 px-6 py-24">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div className="flex flex-col gap-2.5">
-              <Eyebrow>Calendario</Eyebrow>
-              <DisplayTitle>Próximo partido</DisplayTitle>
+      {/* NEXT MATCH (behind the calendar flag) */}
+      {features.calendar ? (
+        <section className="bg-navy-deep">
+          <div className="mx-auto flex max-w-[1240px] flex-col gap-9 px-6 py-24">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div className="flex flex-col gap-2.5">
+                <Eyebrow>Calendario</Eyebrow>
+                <DisplayTitle>Próximo partido</DisplayTitle>
+              </div>
+              <Link
+                href="/calendario"
+                className="py-3 text-[15px] font-semibold tracking-[0.06em] text-gold-light uppercase hover:text-white"
+              >
+                Ver calendario completo →
+              </Link>
             </div>
-            <Link
-              href="/calendario"
-              className="py-3 text-[15px] font-semibold tracking-[0.06em] text-gold-light uppercase hover:text-white"
-            >
-              Ver calendario completo →
-            </Link>
+            <NextMatchCard fixture={nextMatch} />
           </div>
-          <NextMatchCard fixture={nextMatch} />
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       {/* STAFF + GALLERY TEASERS */}
       <section className="stripes-deep">
-        <div className="mx-auto grid max-w-[1240px] grid-cols-[repeat(auto-fit,minmax(min(320px,100%),1fr))] gap-5 px-6 pb-24">
+        <div
+          className={cn(
+            "mx-auto grid max-w-[1240px] grid-cols-[repeat(auto-fit,minmax(min(320px,100%),1fr))] gap-5 px-6 pb-24",
+            !features.calendar && "pt-24",
+          )}
+        >
           <Link
             href="/staff"
             className="flex flex-col gap-4 rounded-lg bg-white p-10 text-navy-deep outline-gold hover:outline-2"
@@ -154,17 +172,27 @@ export default function HomePage() {
             <span className="text-base leading-relaxed text-ink-soft">
               Entrenadores, preparación física y coordinación por división.
             </span>
-            <span className="text-sm font-bold tracking-[0.06em] uppercase">Conocer al staff →</span>
+            <span className="text-sm font-bold tracking-[0.06em] uppercase">
+              Conocer al staff →
+            </span>
           </Link>
-          <Link
-            href="/galeria"
-            className="stripes flex min-h-[300px] flex-col justify-end gap-4 rounded-lg border border-gold/40 p-10 outline-gold hover:outline-2"
-          >
-            <Eyebrow>Galería</Eyebrow>
-            <span className="font-display text-[29px] leading-[0.95] font-black uppercase">En la cancha</span>
-            <span className="text-sm text-haze">[Foto destacada de partido]</span>
-            <span className="text-sm font-bold tracking-[0.06em] text-gold-light uppercase">Ver fotos →</span>
-          </Link>
+          {features.gallery ? (
+            <Link
+              href="/galeria"
+              className="stripes flex min-h-[300px] flex-col justify-end gap-4 rounded-lg border border-gold/40 p-10 outline-gold hover:outline-2"
+            >
+              <Eyebrow>Galería</Eyebrow>
+              <span className="font-display text-[29px] leading-[0.95] font-black uppercase">
+                En la cancha
+              </span>
+              <span className="text-sm text-haze">
+                [Foto destacada de partido]
+              </span>
+              <span className="text-sm font-bold tracking-[0.06em] text-gold-light uppercase">
+                Ver fotos →
+              </span>
+            </Link>
+          ) : null}
         </div>
       </section>
 
@@ -175,7 +203,10 @@ export default function HomePage() {
             <h2 className="m-0 font-display text-[clamp(29px,3.6vw,48px)] leading-[0.9] font-black uppercase">
               Únete a <Brand />.
             </h2>
-            <p className="m-0 text-lg leading-relaxed">Pruebas abiertas en todas las categorías, de la Escuelita a Juvenil.</p>
+            <p className="m-0 text-lg leading-relaxed">
+              Pruebas abiertas en todas las categorías, de la Escuelita a
+              Juvenil.
+            </p>
           </div>
           <Slogan className="flex-[0_1_auto] -rotate-3 text-[clamp(30px,3.2vw,44px)] text-navy-deep" />
           <LinkButton href="/unete" variant="navy" className="min-h-14 px-8">
@@ -183,7 +214,6 @@ export default function HomePage() {
           </LinkButton>
         </div>
       </section>
-
     </>
   );
 }

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import { CalendarView } from "@/components/calendar/calendar-view";
 import { PageHero } from "@/components/site/primitives";
+import { features } from "@/lib/flags";
 
 export const metadata: Metadata = {
   title: "Calendario",
@@ -9,6 +11,8 @@ export const metadata: Metadata = {
 };
 
 export default function CalendarioPage() {
+  if (!features.calendar) notFound();
+
   return (
     <>
       <PageHero

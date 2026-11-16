@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { site } from "@/lib/data";
+import { features } from "@/lib/flags";
 
 import { BrandLogo, Slogan } from "./primitives";
 import { SocialIcons } from "./social-icons";
@@ -10,7 +11,7 @@ const explore = [
   { label: "Club", href: "/club" },
   { label: "Divisiones", href: "/divisiones" },
   { label: "Staff", href: "/staff" },
-  { label: "Calendario", href: "/calendario" },
+  ...(features.calendar ? [{ label: "Calendario", href: "/calendario" }] : []),
   { label: "Pruebas", href: "/unete" },
 ];
 

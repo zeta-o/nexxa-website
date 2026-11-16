@@ -5,6 +5,8 @@
  * Edit this file to update the site — pages read from here.
  */
 
+import { features } from "./flags";
+
 export const site = {
   name: "NEXXA RISE",
   description:
@@ -38,9 +40,9 @@ export const navLinks = [
   { label: "Club", href: "/club" },
   { label: "Divisiones", href: "/divisiones" },
   { label: "Staff", href: "/staff" },
-  { label: "Calendario", href: "/calendario" },
-  { label: "Galería", href: "/galeria" },
-] as const;
+  ...(features.calendar ? [{ label: "Calendario", href: "/calendario" }] : []),
+  ...(features.gallery ? [{ label: "Galería", href: "/galeria" }] : []),
+];
 
 /** Valores centrales (oficiales). The short texts are suggestions; adjust freely. */
 export const values = [

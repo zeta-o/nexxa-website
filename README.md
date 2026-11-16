@@ -68,3 +68,15 @@ El envío pasa por una Server Action (`src/app/unete/actions.ts`) que valida con
 3. Deploy.
 
 > Las fuentes Heydex y Morington son comerciales: asegúrate de tener la licencia de uso web de cada una.
+
+## Feature flags
+
+Calendario and Galería are hidden by default (nav, footer, sitemap, home teasers; their pages return 404).
+To show one, set its env var to `true` in Vercel (Project → Settings → Environment Variables) and redeploy:
+
+| Section    | Env var                          |
+| ---------- | -------------------------------- |
+| Calendario | `NEXT_PUBLIC_FEATURE_CALENDAR`   |
+| Galería    | `NEXT_PUBLIC_FEATURE_GALLERY`    |
+
+Flags live in `src/lib/flags.ts`.
