@@ -71,7 +71,19 @@ export default function ClubPage() {
               <br />a un equipo
             </DisplayTitle>
             <p className="m-0 text-lg leading-[1.7] text-ink-soft">
-              [Cuándo y cómo nació NEXXA RISE, quién lo fundó y por qué.]
+              NEXXA RISE nace de dos mujeres que han dedicado gran parte de sus vidas al voleibol costarricense:{" "}
+              <strong className="text-navy-deep">Yuliana</strong>, colocadora, con 22 años como jugadora, y{" "}
+              <strong className="text-navy-deep">María José</strong>, líbero, con 15 años de trayectoria deportiva.
+              Ambas formaron parte de la Selección Nacional de Costa Rica y vivieron el voleibol desde una de sus
+              perspectivas más exigentes: la del alto rendimiento.
+            </p>
+            <p className="m-0 text-lg leading-[1.7] text-ink-soft">
+              Hoy son entrenadoras certificadas internacionalmente FIVB Nivel II y decidieron transformar toda esa
+              experiencia en un proyecto con un propósito mayor:{" "}
+              <strong className="text-navy-deep">
+                devolverle al voleibol costarricense parte de todo lo que el deporte les dio
+              </strong>
+              , ahora como entrenadoras, formadoras y referentes de una nueva generación de atletas.
             </p>
             <p className="m-0 text-lg leading-[1.7] text-ink-soft">
               Nuestro nombre y nuestro escudo cuentan esa historia.{" "}
