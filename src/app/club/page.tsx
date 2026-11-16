@@ -74,8 +74,8 @@ export default function ClubPage() {
             </DisplayTitle>
             <p className="m-0 text-lg leading-[1.7] text-ink-soft">
               <Brand /> nace de dos mujeres que han dedicado gran parte de sus vidas al voleibol costarricense:{" "}
-              <strong className="text-navy-deep">Yuliana</strong>, colocadora, con 22 años como jugadora, y{" "}
-              <strong className="text-navy-deep">María José</strong>, líbero, con 15 años de trayectoria deportiva.
+              <strong className="text-navy-deep">Yuliana González</strong>, colocadora, con 22 años como jugadora, y{" "}
+              <strong className="text-navy-deep">María José Castro</strong>, líbero, con 15 años de trayectoria deportiva.
               Ambas formaron parte de la Selección Nacional de Costa Rica y vivieron el voleibol desde una de sus
               perspectivas más exigentes: la del alto rendimiento.
             </p>
