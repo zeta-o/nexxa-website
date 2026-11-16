@@ -35,6 +35,8 @@
   --font-display: var(--font-brand);
   --font-heading: var(--font-brand);
   --font-slogan: var(--font-slogan-src);
+  /* Morington: uniforms / headers of max. two words. */
+  --font-accent: var(--font-accent-src);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);

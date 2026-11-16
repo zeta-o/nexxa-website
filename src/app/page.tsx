@@ -67,7 +67,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className="relative bg-gold text-navy-deep">
-          <ul className="mx-auto m-0 flex max-w-[1240px] list-none flex-wrap items-center justify-center gap-x-7 gap-y-2.5 px-6 py-3.5 font-display text-base font-extrabold tracking-[0.14em] uppercase">
+          <ul className="mx-auto m-0 flex max-w-[1240px] list-none flex-wrap items-center justify-center gap-x-7 gap-y-2.5 px-6 py-3 font-accent text-[26px] tracking-[0.12em] uppercase">
             {values.map((v, i) => (
               <li key={v.title} className="flex items-center gap-7">
                 {i > 0 ? <StarIcon /> : null}
@@ -106,7 +106,7 @@ export default function HomePage() {
                   </span>
                   <LevelBars level={d.level} size="sm" />
                 </div>
-                <span className="font-display text-[34px] leading-[0.9] font-black uppercase">{d.name}</span>
+                <span className="font-accent text-[46px] leading-none tracking-wide uppercase">{d.name}</span>
                 <span className="text-[15px] leading-normal text-mist">{d.short}</span>
                 <span className="text-[13px] font-bold tracking-[0.08em] text-gold-light uppercase">
                   {d.categories ? d.categories.join(" · ") : d.focus}

@@ -159,7 +159,7 @@ export default function ClubPage() {
             {values.map((v) => (
               <li key={v.title} className="flex flex-col gap-3 rounded-lg border border-t-4 border-silver border-t-gold bg-white px-6 py-7">
                 <StarIcon className="size-7 text-gold" />
-                <span className="font-display text-[18px] leading-none font-extrabold uppercase">{v.title}</span>
+                <span className="font-accent text-[30px] leading-none tracking-wide uppercase">{v.title}</span>
                 <span className="text-[15px] leading-normal text-ink-soft">{v.text}</span>
               </li>
             ))}

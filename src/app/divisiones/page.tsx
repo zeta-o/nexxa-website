@@ -56,7 +56,7 @@ export default function DivisionesPage() {
               <div className="stripes-deep flex items-end justify-between gap-4 border-b-4 border-gold px-6 pt-6 pb-5">
                 <div className="flex flex-col gap-2">
                   <span className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">Etapa {d.n}</span>
-                  <h2 className="m-0 font-display text-[28px] leading-none font-black uppercase">{d.name}</h2>
+                  <h2 className="m-0 font-accent text-[40px] leading-none font-normal tracking-wide uppercase">{d.name}</h2>
                 </div>
                 <LevelBars level={d.level} />
               </div>

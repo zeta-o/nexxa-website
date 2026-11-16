@@ -231,7 +231,7 @@ export function StarIcon({ className }: { className?: string }) {
   );
 }
 
-/** Brand tagline. Always in English, always in the slogan face (Heydex; stand-in until licensed). */
+/** Brand tagline. Always in English, always in Heydex. */
 export function Slogan({ className, as: Tag = "p" }: { className?: string; as?: "p" | "span" }) {
   return (
     <Tag lang="en" className={cn("m-0 font-slogan leading-none font-normal normal-case", className)}>

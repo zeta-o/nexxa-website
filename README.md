@@ -46,11 +46,10 @@ Lo que está entre `[corchetes]` es contenido pendiente.
   `#CCCCCC` `#826923` `#001E5A` (acentos). Tokens en `src/app/globals.css`.
 - **Tipografías**: Creato Display (Black títulos, Bold subtítulos, Regular texto), en `src/fonts/creato-display/`
   con su licencia SIL OFL 1.1 (`OFL.txt`), cargada con `next/font/local` en `src/app/layout.tsx`.
-  Morington (uniformes, encabezados de máx. 2 palabras) **pendiente**: requiere licencia comercial.
+  **Morington** (`src/fonts/morington/`) para encabezados de máx. 2 palabras: nombres de divisiones, valores, marcador del partido.
 - **Frase de marca "We Rise Together"**: componente `Slogan` (`src/components/site/primitives.tsx`), usado en el hero,
   la invitación a inscribirse, la sección del escudo en Club y el pie de página. Va en la fuente **Heydex**
-  (Khurasan; requiere licencia comercial). Mientras tanto se usa **Kaushan Script** como sustituta: para cambiarla,
-  agrega el archivo en `src/fonts/heydex/` y reemplaza `Kaushan_Script` por `localFont` en `src/app/layout.tsx`.
+  (Khurasan), en `src/fonts/heydex/`.
 
 ## Estado (Zustand)
 
@@ -68,3 +67,5 @@ El envío pasa por una Server Action (`src/app/unete/actions.ts`) que valida con
 1. Importa este repositorio en https://vercel.com/new (framework: Next.js, sin configuración extra).
 2. Variable de entorno opcional: `NEXT_PUBLIC_SITE_URL` = dominio final (para metadatos, sitemap y robots).
 3. Deploy.
+
+> Las fuentes Heydex y Morington son comerciales: asegúrate de tener la licencia de uso web de cada una.

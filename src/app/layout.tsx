@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Kaushan_Script } from "next/font/google";
 import localFont from "next/font/local";
 
 import { SiteFooter } from "@/components/site/site-footer";
@@ -22,13 +21,18 @@ const brand = localFont({
   ],
 });
 
-// Brand tagline "We Rise Together" is set in Heydex (commercial license required).
-// Kaushan Script is a visually close stand-in until the licensed Heydex file is added:
-// swap this for localFont({ src: "../fonts/heydex/Heydex.otf", variable: "--font-slogan-src" }).
-const slogan = Kaushan_Script({
+// Brand tagline "We Rise Together" — Heydex (Khurasan).
+const slogan = localFont({
   variable: "--font-slogan-src",
-  subsets: ["latin"],
-  weight: "400",
+  display: "swap",
+  src: "../fonts/heydex/Heydex.otf",
+});
+
+// Morington (Patria Std) — uniforms and headers of two words at most (brand manual).
+const accent = localFont({
+  variable: "--font-accent-src",
+  display: "swap",
+  src: "../fonts/morington/Morington-Regular.ttf",
 });
 
 export const metadata: Metadata = {
@@ -54,7 +58,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      className={`${brand.variable} ${slogan.variable} h-full antialiased`}
+      className={`${brand.variable} ${slogan.variable} ${accent.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col text-white">
         <a
