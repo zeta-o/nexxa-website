@@ -90,3 +90,20 @@ Every page exists in Spanish and English. Spanish is the default and has no pref
 - Shared content (values, categories, staff, FAQ, menu and footer labels) is in `src/i18n/content.ts`;
   the Spanish source data stays in `src/lib/data.ts`.
 - Category names (Escuelita, Mini, Pre-Infantil…) are the club's own names and are not translated.
+
+## Emails (Resend + React Email)
+
+Each tryout request sends two emails: a notification to the club (always in Spanish, "Reply" goes to the family)
+and a confirmation to the family (in the language of the form). Templates are React Email components in
+`src/emails/`; sending is in `src/lib/email/send.ts`.
+
+Environment variables (Vercel → Settings → Environment Variables):
+
+| Variable         | Required | Value |
+| ---------------- | -------- | ----- |
+| `RESEND_API_KEY` | yes      | API key from resend.com |
+| `EMAIL_FROM`     | for the family confirmation | Sender on a domain verified in Resend, e.g. `NEXXA RISE <pruebas@nexxarise.com>` |
+| `EMAIL_TO`       | no       | Club inbox (defaults to info.nexxarise@gmail.com) |
+
+Without `EMAIL_FROM`, Resend's test sender is used: it only delivers to the Resend account's own email, so only the
+club notification is sent. If the club email fails, the form shows an error so no request is lost.
