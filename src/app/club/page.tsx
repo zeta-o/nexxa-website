@@ -248,7 +248,7 @@ export default function ClubPage() {
                 <br />
                 {site.location.city}, {site.location.country}
                 <br />
-                [Referencias / estacionamiento]
+                Salón Tamarindo
               </span>
               <span className="text-[15px] leading-relaxed text-ink-soft">
                 <strong>Horario del gimnasio:</strong> [Días y horas]
