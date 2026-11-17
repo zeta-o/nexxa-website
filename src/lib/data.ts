@@ -179,7 +179,6 @@ export const pathway: PathwayStep[] = [
 export const futureTeam = {
   name: "Equipo Mayor",
   code: "Liga Ascenso",
-  born: "2007 en adelante",
   text: "El siguiente escalón: un equipo de primera categoría para que nuestras atletas sigan compitiendo al más alto nivel.",
 };
 

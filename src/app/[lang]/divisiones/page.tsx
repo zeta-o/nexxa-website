@@ -182,7 +182,7 @@ export default async function DivisionesPage() {
               <span className="eyebrow text-gold-dark">{t.future}</span>
               <h2 className="m-0 font-display text-[28px] leading-none font-black uppercase">{futureTeam.name}</h2>
               <span className="text-sm font-bold text-gold-dark">
-                {futureTeam.code} · {t.bornLabel} {futureTeam.born}
+                {futureTeam.code}
               </span>
               <p className="m-0 text-[15px] leading-relaxed text-ink-soft">{futureTeam.text}</p>
             </div>

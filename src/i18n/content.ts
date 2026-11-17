@@ -299,7 +299,6 @@ export function getContent(lang: Locale) {
       ? {
           name: "Senior Team",
           code: "Liga Ascenso",
-          born: "2007 and later",
           text: "The next step: a first-division team so our athletes can keep competing at the highest level.",
         }
       : futureTeamEs,
