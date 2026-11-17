@@ -215,6 +215,7 @@ export default async function HomePage() {
                   <BrandText>{d.text}</BrandText>
                 </span>
                 <span className="mt-auto text-[13px] font-bold tracking-[0.08em] text-gold-light uppercase">
+                  {d.code ? `${d.code} · ` : ""}
                   {d.tag}
                 </span>
               </Link>

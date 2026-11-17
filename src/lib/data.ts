@@ -109,6 +109,10 @@ export type PathwayStep = {
   /** Process the category belongs to, when it shares one (Infantil, Juvenil). */
   process?: DivisionName;
   tag: string;
+  /** Official category code and age range (season 2026); empty while pending. */
+  code?: string;
+  ages?: string;
+  born?: string;
   text: string;
   points: string[];
   competition: string;
@@ -136,6 +140,9 @@ export const pathway: PathwayStep[] = [
     name: "Pre-Infantil",
     process: "Infantil",
     tag: "Proceso Infantil · 1 de 2",
+    code: "U13",
+    ages: "Menores de 12",
+    born: "2014–2015",
     text: "Técnica por posición y primeros sistemas de juego.",
     points: ["Técnica por posición", "Sistemas de juego básicos", "Encuentros y amistosos"],
     competition: "Amistosos y festivales",
@@ -145,6 +152,9 @@ export const pathway: PathwayStep[] = [
     name: "Infantil",
     process: "Infantil",
     tag: "Proceso Infantil · 2 de 2",
+    code: "U15",
+    ages: "13–14 años",
+    born: "2012–2013",
     text: "Se consolida la técnica y llegan los primeros torneos.",
     points: ["Consolidación técnica", "Lectura de juego en equipo", "Primeros torneos"],
     competition: "Torneos y amistosos",
@@ -154,6 +164,9 @@ export const pathway: PathwayStep[] = [
     name: "Pre-Juvenil",
     process: "Juvenil",
     tag: "Proceso Juvenil · 1 de 2",
+    code: "U17",
+    ages: "15–16 años",
+    born: "2010–2011",
     text: "Preparación física y táctica para dar el salto a la competencia.",
     points: ["Preparación física", "Táctica y rotaciones", "Torneos y amistosos"],
     competition: "Torneos",
@@ -163,6 +176,9 @@ export const pathway: PathwayStep[] = [
     name: "Juvenil",
     process: "Juvenil",
     tag: "Proceso Juvenil · 2 de 2",
+    code: "U19",
+    ages: "17–18 años",
+    born: "2008–2009",
     text: "Rendimiento y competencia de liga con la camiseta de NEXXA RISE.",
     points: ["Preparación física y táctica avanzada", "Competencia en [Liga]", "Camino a selecciones y nivel universitario"],
     competition: "[Liga]",
@@ -172,6 +188,8 @@ export const pathway: PathwayStep[] = [
 /** Future project, shown as "próximamente". */
 export const futureTeam = {
   name: "Equipo Mayor",
+  code: "Liga Ascenso",
+  born: "2007 en adelante",
   text: "El siguiente escalón: un equipo de primera categoría para que nuestras atletas sigan compitiendo al más alto nivel.",
 };
 
@@ -288,7 +306,7 @@ export const faq = [
   },
   {
     q: "¿Cómo sé en qué división va?",
-    a: "Depende de su edad: [rango de edades por categoría: Escuelita, Mini, Pre-Infantil, Infantil, Pre-Juvenil, Juvenil]. Si tienes dudas, márcalo en el formulario.",
+    a: "Depende de su año de nacimiento (temporada 2026): Pre-Infantil U13, 2014–2015; Infantil U15, 2012–2013; Pre-Juvenil U17, 2010–2011; Juvenil U19, 2008–2009. Escuelita y Mini: [rango de edades]. Si tienes dudas, márcalo en el formulario.",
   },
   { q: "¿Cuánto cuesta?", a: "[Cuota de inscripción y mensualidad.]" },
   {

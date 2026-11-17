@@ -27,13 +27,14 @@ const copy = {
     stage: "Etapa",
     process: "Proceso",
     ages: "[Edades]",
+    bornLabel: "Nacidas",
     coaches: "Ver entrenadores",
     signUp: "Inscribirme →",
     future: "Proyecto a futuro",
     soon: "Próximamente",
     tableEyebrow: "De un vistazo",
     tableTitle: "Horarios por categoría",
-    cols: ["Categoría", "Proceso", "Edades", "Entrenamientos", "Horario", "Competencia"],
+    cols: ["Categoría", "Proceso", "Edades", "Año de nacimiento", "Entrenamientos", "Horario", "Competencia"],
     days: "[Días por semana]",
     time: "[Horario]",
     ctaTitle: "¿No sabes en qué categoría va tu hija?",
@@ -59,13 +60,14 @@ const copy = {
     stage: "Stage",
     process: "Process",
     ages: "[Ages]",
+    bornLabel: "Born",
     coaches: "See coaches",
     signUp: "Sign up →",
     future: "Future project",
     soon: "Coming soon",
     tableEyebrow: "At a glance",
     tableTitle: "Schedule by category",
-    cols: ["Category", "Process", "Ages", "Practices", "Schedule", "Competition"],
+    cols: ["Category", "Process", "Ages", "Birth year", "Practices", "Schedule", "Competition"],
     days: "[Days per week]",
     time: "[Schedule]",
     ctaTitle: "Not sure which category your daughter belongs in?",
@@ -137,7 +139,17 @@ export default async function DivisionesPage() {
                     </span>
                   ) : null}
                 </div>
-                <span className="text-sm text-haze">{t.ages}</span>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+                  {d.code ? (
+                    <span className="inline-flex min-h-7 items-center rounded bg-sky px-2.5 font-bold text-white">{d.code}</span>
+                  ) : null}
+                  <span className={d.ages ? "font-semibold text-white" : "text-haze"}>{d.ages ?? t.ages}</span>
+                  {d.born ? (
+                    <span className="text-haze">
+                      · {t.bornLabel} {d.born}
+                    </span>
+                  ) : null}
+                </div>
                 <p className="m-0 text-[15px] leading-relaxed text-white"><BrandText>{d.text}</BrandText></p>
                 <ul className="m-0 flex list-none flex-col gap-2.5 p-0 text-sm">
                   {d.points.map((p) => (
@@ -169,6 +181,9 @@ export default async function DivisionesPage() {
             <div className="flex max-w-[760px] flex-col gap-2">
               <span className="eyebrow text-gold-dark">{t.future}</span>
               <h2 className="m-0 font-display text-[28px] leading-none font-black uppercase">{futureTeam.name}</h2>
+              <span className="text-sm font-bold text-gold-dark">
+                {futureTeam.code} · {t.bornLabel} {futureTeam.born}
+              </span>
               <p className="m-0 text-[15px] leading-relaxed text-ink-soft">{futureTeam.text}</p>
             </div>
             <span className="inline-flex min-h-10 items-center rounded-full bg-navy-deep px-5 text-sm font-bold tracking-[0.08em] text-gold-light uppercase">
@@ -186,7 +201,7 @@ export default async function DivisionesPage() {
             <DisplayTitle>{t.tableTitle}</DisplayTitle>
           </div>
           <div className="overflow-x-auto rounded-lg border border-border">
-            <table className="w-full min-w-[760px] border-collapse text-[15px]">
+            <table className="w-full min-w-[880px] border-collapse text-[15px]">
               <thead>
                 <tr className="bg-navy text-left text-white">
                   {t.cols.map((h) => (
@@ -203,7 +218,11 @@ export default async function DivisionesPage() {
                       {r.name}
                     </th>
                     <td className="px-5 py-4 text-ink-soft">{r.process ?? r.name}</td>
-                    <td className="px-5 py-4 text-ink-soft">{t.ages}</td>
+                    <td className="px-5 py-4 text-ink-soft">
+                      {r.code ? <strong className="text-navy-deep">{r.code} · </strong> : null}
+                      {r.ages ?? t.ages}
+                    </td>
+                    <td className="px-5 py-4 text-ink-soft">{r.born ?? "—"}</td>
                     <td className="px-5 py-4 text-ink-soft">{t.days}</td>
                     <td className="px-5 py-4 text-ink-soft">{t.time}</td>
                     <td className="px-5 py-4 text-ink-soft">{r.competition}</td>
