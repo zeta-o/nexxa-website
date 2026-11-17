@@ -11,7 +11,7 @@ const copy = {
     meta: {
       title: "Divisiones",
       description:
-        "Escuelita, Mini, Pre-Infantil, Infantil, Pre-Juvenil y Juvenil: el camino de formación de NEXXA RISE.",
+        "Escuelita, Mini, Pre-Infantil, Infantil y Juvenil: el camino de formación de NEXXA RISE.",
     },
     heroEyebrow: "Divisiones",
     heroTitle: (
@@ -44,7 +44,7 @@ const copy = {
     meta: {
       title: "Divisions",
       description:
-        "Escuelita, Mini, Pre-Infantil, Infantil, Pre-Juvenil and Juvenil: the NEXXA RISE player pathway.",
+        "Escuelita, Mini, Pre-Infantil, Infantil and Juvenil: the NEXXA RISE player pathway.",
     },
     heroEyebrow: "Divisions",
     heroTitle: (

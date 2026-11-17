@@ -10,7 +10,7 @@ Sitio oficial del club de voleibol femenino **NEXXA RISE** (Belén, Heredia).
 | --- | --- |
 | `/` | Hero con foto, divisiones, próximo partido, accesos a Staff y Galería, cinta de patrocinadores |
 | `/club` | Historia, valores, misión/visión/sede, instalaciones y patrocinadores |
-| `/divisiones` | Mini, Pre-Juvenil y Juvenil + tabla de horarios |
+| `/divisiones` | Escuelita, Mini, Pre-Infantil, Infantil y Juvenil + tabla de horarios |
 | `/staff` | Dirección y cuerpo técnico con filtro por división |
 | `/calendario` | Próximos partidos y resultados con filtro por división |
 | `/galeria` | Galería filtrable por álbum |

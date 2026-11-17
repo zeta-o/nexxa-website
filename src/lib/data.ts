@@ -47,7 +47,7 @@ export type DivisionName = "Escuelita" | "Mini" | "Infantil" | "Juvenil";
 export type Division = {
   n: string;
   name: DivisionName;
-  /** Categories inside the process (Pre-Infantil + Infantil, Pre-Juvenil + Juvenil). */
+  /** Categories inside the process (Pre-Infantil + Infantil). */
   categories?: [string, string];
   focus: string;
   level: 1 | 2 | 3 | 4;
@@ -92,7 +92,6 @@ export const divisions: Division[] = [
   {
     n: "04",
     name: "Juvenil",
-    categories: ["Pre-Juvenil", "Juvenil"],
     focus: "Competencia",
     level: 4,
     short: "Un proceso en dos categorías: rendimiento, preparación física y liga.",
@@ -123,6 +122,7 @@ export const pathway: PathwayStep[] = [
     n: "01",
     name: "Escuelita",
     tag: "Primeros pasos",
+    ages: "Menores de 10 años",
     text: "El primer encuentro con el balón: juego, movimiento y diversión.",
     points: ["Juegos con balón y coordinación", "Motricidad y confianza", "Primer contacto con el trabajo en equipo"],
     competition: "Festivales y encuentros recreativos",
@@ -131,6 +131,9 @@ export const pathway: PathwayStep[] = [
     n: "02",
     name: "Mini",
     tag: "Iniciación",
+    code: "U13",
+    ages: "Menores de 13 años",
+    born: "2014–2015",
     text: "Fundamentos y mini-voleibol en un ambiente seguro y divertido.",
     points: ["Fundamentos: saque, pase y recepción", "Mini-voleibol y juegos", "Valores de equipo desde el inicio"],
     competition: "Festivales y mini-voleibol",
@@ -140,44 +143,31 @@ export const pathway: PathwayStep[] = [
     name: "Pre-Infantil",
     process: "Infantil",
     tag: "Proceso Infantil · 1 de 2",
-    code: "U13",
-    ages: "Menores de 12",
-    born: "2014–2015",
+    code: "U15",
+    ages: "Menores de 15 años",
+    born: "2012–2013",
     text: "Técnica por posición y primeros sistemas de juego.",
     points: ["Técnica por posición", "Sistemas de juego básicos", "Encuentros y amistosos"],
-    competition: "Amistosos y festivales",
+    competition: "Amistosos y torneos",
   },
   {
     n: "04",
     name: "Infantil",
     process: "Infantil",
     tag: "Proceso Infantil · 2 de 2",
-    code: "U15",
-    ages: "13–14 años",
-    born: "2012–2013",
-    text: "Se consolida la técnica y llegan los primeros torneos.",
-    points: ["Consolidación técnica", "Lectura de juego en equipo", "Primeros torneos"],
-    competition: "Torneos y amistosos",
-  },
-  {
-    n: "05",
-    name: "Pre-Juvenil",
-    process: "Juvenil",
-    tag: "Proceso Juvenil · 1 de 2",
     code: "U17",
-    ages: "15–16 años",
+    ages: "Menores de 17 años",
     born: "2010–2011",
-    text: "Preparación física y táctica para dar el salto a la competencia.",
-    points: ["Preparación física", "Táctica y rotaciones", "Torneos y amistosos"],
+    text: "Se consolida la técnica y llega la competencia en torneos.",
+    points: ["Consolidación técnica", "Preparación física y táctica", "Torneos y amistosos"],
     competition: "Torneos",
   },
   {
-    n: "06",
+    n: "05",
     name: "Juvenil",
-    process: "Juvenil",
-    tag: "Proceso Juvenil · 2 de 2",
+    tag: "Competencia",
     code: "U19",
-    ages: "17–18 años",
+    ages: "Menores de 19 años",
     born: "2008–2009",
     text: "Rendimiento y competencia de liga con la camiseta de NEXXA RISE.",
     points: ["Preparación física y táctica avanzada", "Competencia en [Liga]", "Camino a selecciones y nivel universitario"],
@@ -194,7 +184,7 @@ export const futureTeam = {
 };
 
 /** Every category a player can sign up for, in order. */
-export const categories = ["Escuelita", "Mini", "Pre-Infantil", "Infantil", "Pre-Juvenil", "Juvenil"] as const;
+export const categories = ["Escuelita", "Mini", "Pre-Infantil", "Infantil", "Juvenil"] as const;
 
 export type StaffGroup = DivisionName | "Apoyo";
 
@@ -226,7 +216,7 @@ export const staff: { group: StaffGroup; role: string; name: string }[] = [
 export type Fixture = {
   id: string;
   division: DivisionName;
-  /** Category inside the process, e.g. "Pre-Juvenil". */
+  /** Category inside the process, e.g. "Pre-Infantil". */
   category?: string;
   type: string;
   title: string;
@@ -243,7 +233,7 @@ export const fixtures: Fixture[] = [
   { id: "f2", division: "Infantil", category: "Pre-Infantil", type: "Torneo", title: "[Nombre del torneo]", where: "Visitante", date: "[00 Mes]", time: "[Hora]", venue: "[Sede]", past: false },
   { id: "f3", division: "Escuelita", type: "Festival", title: "Festival de la Escuelita", where: "Local", date: "[00 Mes]", time: "[Hora]", venue: site.location.venue, past: false },
   { id: "f4", division: "Juvenil", category: "Juvenil", type: "Liga", title: "[Rival] vs Nexxa Rise", where: "Visitante", date: "[00 Mes]", time: "[Hora]", venue: "[Sede]", past: false },
-  { id: "f5", division: "Juvenil", category: "Pre-Juvenil", type: "Amistoso", title: "Nexxa Rise vs [Rival]", where: "Local", date: "[00 Mes]", time: "[Hora]", venue: site.location.venue, past: false },
+  { id: "f5", division: "Juvenil", category: "Juvenil", type: "Amistoso", title: "Nexxa Rise vs [Rival]", where: "Local", date: "[00 Mes]", time: "[Hora]", venue: site.location.venue, past: false },
   { id: "r1", division: "Juvenil", category: "Juvenil", type: "Liga", title: "Nexxa Rise vs [Rival]", where: "Local", date: "[00 Mes]", time: "[Hora]", venue: site.location.venue, past: true, score: "[3 – 1]" },
   { id: "r2", division: "Infantil", category: "Infantil", type: "Torneo", title: "[Rival] vs Nexxa Rise", where: "Visitante", date: "[00 Mes]", time: "[Hora]", venue: "[Sede]", past: true, score: "[0 – 0]" },
   { id: "r3", division: "Mini", type: "Festival", title: "Encuentro de iniciación", where: "Local", date: "[00 Mes]", time: "[Hora]", venue: site.location.venue, past: true, score: "[0 – 0]" },
@@ -306,7 +296,7 @@ export const faq = [
   },
   {
     q: "¿Cómo sé en qué división va?",
-    a: "Depende de su año de nacimiento (temporada 2026): Pre-Infantil U13, 2014–2015; Infantil U15, 2012–2013; Pre-Juvenil U17, 2010–2011; Juvenil U19, 2008–2009. Escuelita y Mini: [rango de edades]. Si tienes dudas, márcalo en el formulario.",
+    a: "Depende de su edad: Escuelita, menores de 10 años; Mini U13, menores de 13; Pre-Infantil U15, menores de 15; Infantil U17, menores de 17; Juvenil U19, menores de 19. Si tienes dudas, márcalo en el formulario.",
   },
   { q: "¿Cuánto cuesta?", a: "[Cuota de inscripción y mensualidad.]" },
   {

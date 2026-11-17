@@ -3,7 +3,7 @@ import { z } from "zod";
 import type { Locale } from "@/i18n/config";
 
 /** Option values are stable keys (Spanish); show them with the label maps below. */
-export const divisionOptions = ["Escuelita", "Mini", "Pre-Infantil", "Infantil", "Pre-Juvenil", "Juvenil", "No estoy segura"] as const;
+export const divisionOptions = ["Escuelita", "Mini", "Pre-Infantil", "Infantil", "Juvenil", "No estoy segura"] as const;
 export const experienceOptions = ["Nunca", "Escuela / recreativo", "Otro club"] as const;
 
 export const optionLabels: Record<Locale, Record<string, string>> = {

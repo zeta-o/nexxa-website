@@ -36,7 +36,7 @@ const copy = {
     ),
     intro: (
       <>
-        <Brand /> forma jugadoras desde su primer saque hasta la competencia de liga, en seis categorías: de la
+        <Brand /> forma jugadoras desde su primer saque hasta la competencia de liga, en cinco categorías: de la
         Escuelita a Juvenil. Entrenamos en el {site.location.venue}, {site.location.city}.
       </>
     ),
@@ -85,7 +85,7 @@ const copy = {
     ),
     intro: (
       <>
-        <Brand /> develops players from their very first serve to league play, across six categories: from
+        <Brand /> develops players from their very first serve to league play, across five categories: from
         Escuelita to Juvenil. We train at {site.location.venue}, {site.location.city}.
       </>
     ),
