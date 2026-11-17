@@ -4,18 +4,12 @@ import { defaultLocale, isLocale, LOCALE_COOKIE, type Locale } from "@/i18n/conf
 
 /**
  * Every page lives under /es or /en. Requests without a language prefix
- * (old links like /club) are redirected: to the language the visitor picked
- * with the switch (cookie), else their browser language, else Spanish.
+ * (old links like /club, or the bare domain) go to Spanish, unless the
+ * visitor already picked English with the ES | EN switch (cookie).
  */
 function preferredLocale(request: NextRequest): Locale {
   const saved = request.cookies.get(LOCALE_COOKIE)?.value;
-  if (isLocale(saved)) return saved;
-  const accept = request.headers.get("accept-language") ?? "";
-  for (const part of accept.split(",")) {
-    const code = part.split(";")[0].trim().slice(0, 2).toLowerCase();
-    if (isLocale(code)) return code;
-  }
-  return defaultLocale;
+  return isLocale(saved) ? saved : defaultLocale;
 }
 
 export function proxy(request: NextRequest) {
