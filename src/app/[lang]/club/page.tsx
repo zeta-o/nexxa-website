@@ -22,8 +22,12 @@ import sede1 from "../../../../public/images/sede-1.jpg";
 import sede2 from "../../../../public/images/sede-2.jpg";
 import sede3 from "../../../../public/images/sede-3.jpg";
 import sede4 from "../../../../public/images/sede-4.jpg";
+import sede5 from "../../../../public/images/sede-5.jpg";
+import sede6 from "../../../../public/images/sede-6.jpg";
+import sede7 from "../../../../public/images/sede-7.jpg";
+import sede8 from "../../../../public/images/sede-8.jpg";
 
-const venuePhotos = [sede1, sede2, sede3, sede4];
+const venuePhotos = [sede1, sede2, sede3, sede4, sede5, sede6, sede7, sede8];
 import { Brand, BrandText } from "@/components/site/brand-name";
 
 /** Meaning of each part of the crest — text from the Manual de Identidad Visual (p. 01). */
@@ -135,6 +139,10 @@ const copy = {
       { alt: "Jugadora sacando en una de las canchas del Complejo Pedregal", caption: "Superficie profesional" },
       { alt: "Vista de una cancha de voleibol del Complejo Pedregal durante un partido", caption: "Medidas oficiales" },
       { alt: "Dos equipos jugando en una de las tres canchas del Complejo Pedregal", caption: "Tres canchas" },
+      { alt: "Graderías junto a las canchas del Complejo Pedregal", caption: "Graderías para familias" },
+      { alt: "Canchas del Complejo Pedregal iluminadas durante un entrenamiento nocturno", caption: "Iluminación profesional" },
+      { alt: "Jugadoras reunidas en la cancha durante un entrenamiento", caption: "Entrenamientos" },
+      { alt: "Cancha y graderías del Complejo Pedregal con jugadoras entrenando", caption: "Espacio para el público" },
     ],
     fedEyebrow: "Sede de selecciones",
     fedTitle: (
@@ -279,6 +287,10 @@ const copy = {
       { alt: "Player serving on one of the courts at Complejo Pedregal", caption: "Professional surface" },
       { alt: "View of a volleyball court at Complejo Pedregal during a match", caption: "Official dimensions" },
       { alt: "Two teams playing on one of the three courts at Complejo Pedregal", caption: "Three courts" },
+      { alt: "Bleachers next to the courts at Complejo Pedregal", caption: "Bleachers for families" },
+      { alt: "Courts at Complejo Pedregal lit up during an evening practice", caption: "Professional lighting" },
+      { alt: "Players gathered on the court during practice", caption: "Practices" },
+      { alt: "Court and bleachers at Complejo Pedregal with players training", caption: "Room for spectators" },
     ],
     fedEyebrow: "National team venue",
     fedTitle: (
