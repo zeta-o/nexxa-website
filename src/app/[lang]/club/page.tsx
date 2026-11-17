@@ -17,6 +17,13 @@ import { cn } from "@/lib/utils";
 import isotipo from "../../../../public/brand/isotipo.png";
 import founders from "../../../../public/images/fundadoras.jpg";
 import shield from "../../../../public/images/escudo-nexxa-rise.png";
+import fecovol from "../../../../public/brand/fecovol.png";
+import sede1 from "../../../../public/images/sede-1.jpg";
+import sede2 from "../../../../public/images/sede-2.jpg";
+import sede3 from "../../../../public/images/sede-3.jpg";
+import sede4 from "../../../../public/images/sede-4.jpg";
+
+const venuePhotos = [sede1, sede2, sede3, sede4];
 import { Brand, BrandText } from "@/components/site/brand-name";
 
 /** Meaning of each part of the crest — text from the Manual de Identidad Visual (p. 01). */
@@ -120,9 +127,26 @@ const copy = {
         <span className="text-bronze">la pasión.</span>
       </>
     ),
-    facText: "Un espacio pensado para que cada división entrene en las mejores condiciones.",
-    facPhoto: "[Foto]",
-    facPhotoAria: "Foto de la instalación (pendiente)",
+    facText:
+      "Contamos con tres canchas profesionales y de alto nivel. Instalaciones de primer nivel para que cada división entrene y compita en las mejores condiciones.",
+    facStat: "canchas profesionales",
+    facPhotos: [
+      { alt: "Partido en la cancha principal del Complejo Pedregal con las gradas llenas", caption: "Cancha principal" },
+      { alt: "Jugadora sacando en una de las canchas del Complejo Pedregal", caption: "Superficie profesional" },
+      { alt: "Vista de una cancha de voleibol del Complejo Pedregal durante un partido", caption: "Medidas oficiales" },
+      { alt: "Dos equipos jugando en una de las tres canchas del Complejo Pedregal", caption: "Tres canchas" },
+    ],
+    fedEyebrow: "Sede de selecciones",
+    fedTitle: (
+      <>
+        Aquí entrenan las
+        <br />
+        <span className="text-gold-light">Selecciones Nacionales.</span>
+      </>
+    ),
+    fedText:
+      "Las selecciones nacionales de voleibol de Costa Rica utilizan nuestras instalaciones para entrenar. Nuestras jugadoras se forman en la misma cancha que el más alto nivel del país.",
+    fedLogoAlt: "Logo de FECOVOL, Federación Costarricense de Voleibol",
     map: `[Mapa: ${site.location.venue}, Belén]`,
     howTo: "Cómo llegar",
     venueRef: "Salón Tamarindo",
@@ -247,9 +271,26 @@ const copy = {
         <span className="text-bronze">trains.</span>
       </>
     ),
-    facText: "A space designed so every division can train in the best conditions.",
-    facPhoto: "[Photo]",
-    facPhotoAria: "Facility photo (pending)",
+    facText:
+      "We have three professional, high-level courts. First-class facilities so every division can train and compete in the best conditions.",
+    facStat: "professional courts",
+    facPhotos: [
+      { alt: "Match on the main court at Complejo Pedregal with packed stands", caption: "Main court" },
+      { alt: "Player serving on one of the courts at Complejo Pedregal", caption: "Professional surface" },
+      { alt: "View of a volleyball court at Complejo Pedregal during a match", caption: "Official dimensions" },
+      { alt: "Two teams playing on one of the three courts at Complejo Pedregal", caption: "Three courts" },
+    ],
+    fedEyebrow: "National team venue",
+    fedTitle: (
+      <>
+        Costa Rica's
+        <br />
+        <span className="text-gold-light">national teams train here.</span>
+      </>
+    ),
+    fedText:
+      "Costa Rica's national volleyball teams use our facilities to train. Our players develop on the same court as the highest level in the country.",
+    fedLogoAlt: "FECOVOL logo, Costa Rican Volleyball Federation",
     map: `[Map: ${site.location.venue}, Belén]`,
     howTo: "Getting here",
     venueRef: "Salón Tamarindo",
@@ -285,7 +326,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ClubPage() {
   const { c, href } = await getI18n();
   const t = await pick(copy);
-  const { facilities, sponsors, values } = c;
+  const { sponsors, values } = c;
   return (
     <>
       <PageHero
@@ -412,29 +453,53 @@ export default async function ClubPage() {
               <Eyebrow tone="dark">{t.facEyebrow}</Eyebrow>
               <DisplayTitle>{t.facTitle}</DisplayTitle>
             </div>
-            <p className="m-0 flex-[1_1_360px] text-[17px] leading-relaxed text-ink-soft">
-              {site.location.venue} · {site.location.city}. {t.facText}
-            </p>
+            <div className="flex flex-[1_1_360px] items-center gap-5">
+              <span className="font-display text-[72px] leading-none font-black text-gold-dark">3</span>
+              <p className="m-0 text-[17px] leading-relaxed text-ink-soft">
+                <strong className="block text-sm tracking-[0.12em] text-navy-deep uppercase">{t.facStat}</strong>
+                {t.facText}
+              </p>
+            </div>
           </div>
-          <div className="grid auto-rows-[240px] grid-flow-dense grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-4">
-            {facilities.map((f) => (
+          <div className="grid auto-rows-[220px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {venuePhotos.map((src, i) => (
               <figure
-                key={f.name}
+                key={src.src}
                 className={cn(
-                  "stripes m-0 flex flex-col justify-between rounded-lg p-5.5",
-                  "featured" in f && f.featured && "md:col-span-2 md:row-span-2",
+                  "group relative m-0 overflow-hidden rounded-lg bg-navy-deep",
+                  i === 0 && "sm:col-span-2 sm:row-span-2",
+                  i === 3 && "sm:col-span-2",
                 )}
               >
-                <span role="img" aria-label={t.facPhotoAria} className="self-end text-xs text-white/50">
-                  {t.facPhoto}
-                </span>
-                <figcaption className="flex flex-col gap-1">
-                  <span className="font-display text-[18px] leading-none font-black text-white uppercase">{f.name}</span>
-                  <span className="text-sm text-mist">{f.text}</span>
+                <Image
+                  src={src}
+                  alt={t.facPhotos[i].alt}
+                  fill
+                  placeholder="blur"
+                  sizes={i === 0 ? "(min-width: 768px) 800px, 100vw" : "(min-width: 768px) 400px, 100vw"}
+                  className="object-cover object-[50%_75%] transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 bg-linear-to-t from-navy-deep/90 to-transparent px-5 pt-10 pb-4 font-display text-[17px] leading-none font-black text-white uppercase">
+                  {t.facPhotos[i].caption}
                 </figcaption>
               </figure>
             ))}
           </div>
+          {/* National teams train here (FECOVOL) */}
+          <div className="stripes-deep flex flex-wrap items-center gap-8 overflow-hidden rounded-lg border-2 border-gold p-7 text-white md:gap-12 md:p-12">
+            <Image
+              src={fecovol}
+              alt={t.fedLogoAlt}
+              sizes="200px"
+              className="h-auto w-[150px] flex-none rounded-md shadow-[0_18px_40px_rgba(0,0,0,0.4)] md:w-[200px]"
+            />
+            <div className="flex min-w-0 flex-[1_1_380px] flex-col gap-4">
+              <Eyebrow>{t.fedEyebrow}</Eyebrow>
+              <DisplayTitle>{t.fedTitle}</DisplayTitle>
+              <p className="m-0 max-w-[620px] text-[17px] leading-relaxed text-mist">{t.fedText}</p>
+            </div>
+          </div>
+
           <div className="flex flex-wrap gap-4">
             <PhotoPlaceholder
               label={t.map}
