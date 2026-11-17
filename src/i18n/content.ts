@@ -88,8 +88,8 @@ const pathwayEn: PathwayStep[] = [
     ages: "Under 19",
     born: "2008–2009",
     text: "High performance and league play in the NEXXA RISE jersey.",
-    points: ["Advanced conditioning and tactics", "Competing in [League]", "A path to national teams and college volleyball"],
-    competition: "[League]",
+    points: ["Advanced conditioning and tactics", "Competing in National Tournaments", "A path to national teams and college volleyball"],
+    competition: "National tournaments",
   },
 ];
 

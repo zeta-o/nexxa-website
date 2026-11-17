@@ -96,8 +96,8 @@ export const divisions: Division[] = [
     level: 4,
     short: "Un proceso en dos categorías: rendimiento, preparación física y liga.",
     text: "Un mismo proceso de competencia dividido en dos categorías: entrenamiento de rendimiento, preparación física y competencia de liga con la camiseta de Nexxa Rise.",
-    points: ["Preparación física y táctica avanzada", "Competencia en [Liga]", "Camino a selecciones y nivel universitario"],
-    competition: "[Liga]",
+    points: ["Preparación física y táctica avanzada", "Competencia en Torneos Nacionales", "Camino a selecciones y nivel universitario"],
+    competition: "Torneos Nacionales",
   },
 ];
 
@@ -170,8 +170,8 @@ export const pathway: PathwayStep[] = [
     ages: "Menores de 19 años",
     born: "2008–2009",
     text: "Rendimiento y competencia de liga con la camiseta de NEXXA RISE.",
-    points: ["Preparación física y táctica avanzada", "Competencia en [Liga]", "Camino a selecciones y nivel universitario"],
-    competition: "[Liga]",
+    points: ["Preparación física y táctica avanzada", "Competencia en Torneos Nacionales", "Camino a selecciones y nivel universitario"],
+    competition: "Torneos Nacionales",
   },
 ];
 
