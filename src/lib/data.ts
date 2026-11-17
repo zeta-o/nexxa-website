@@ -16,6 +16,9 @@ export const site = {
     city: "Belén, Heredia",
     country: "Costa Rica",
     mapsUrl: "https://maps.app.goo.gl/EkXRAH1z9Dg9wQan6",
+    /** Embedded map (no API key needed). Searches the venue by name. */
+    mapsEmbed:
+      "https://www.google.com/maps?q=Centro+de+Eventos+Pedregal,+Bel%C3%A9n,+Heredia,+Costa+Rica&z=16&output=embed",
   },
   contact: {
     email: "info.nexxarise@gmail.com",

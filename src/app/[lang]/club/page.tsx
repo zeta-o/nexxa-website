@@ -6,7 +6,6 @@ import {
   Eyebrow,
   LinkButton,
   PageHero,
-  PhotoPlaceholder,
   Slogan,
   StarIcon,
 } from "@/components/site/primitives";
@@ -155,7 +154,7 @@ const copy = {
     fedText:
       "Las selecciones nacionales de voleibol de Costa Rica utilizan nuestras instalaciones para entrenar. Nuestras jugadoras se forman en la misma cancha que el más alto nivel del país.",
     fedLogoAlt: "Logo de FECOVOL, Federación Costarricense de Voleibol",
-    map: `[Mapa: ${site.location.venue}, Belén]`,
+    map: `Mapa: ${site.location.venue}, Belén, Heredia`,
     howTo: "Cómo llegar",
     venueRef: "Salón Tamarindo",
     hoursLabel: "Horario del gimnasio:",
@@ -303,7 +302,7 @@ const copy = {
     fedText:
       "Costa Rica's national volleyball teams use our facilities to train. Our players develop on the same court as the highest level in the country.",
     fedLogoAlt: "FECOVOL logo, Costa Rican Volleyball Federation",
-    map: `[Map: ${site.location.venue}, Belén]`,
+    map: `Map: ${site.location.venue}, Belén, Heredia`,
     howTo: "Getting here",
     venueRef: "Salón Tamarindo",
     hoursLabel: "Gym hours:",
@@ -336,7 +335,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ClubPage() {
-  const { c, href } = await getI18n();
+  const { c, href, lang } = await getI18n();
   const t = await pick(copy);
   const { sponsors, values } = c;
   return (
@@ -513,10 +512,16 @@ export default async function ClubPage() {
           </div>
 
           <div className="flex flex-wrap gap-4">
-            <PhotoPlaceholder
-              label={t.map}
-              className="min-h-[220px] flex-[2_1_420px] items-center justify-center"
-            />
+            <div className="relative min-h-[320px] flex-[2_1_420px] overflow-hidden rounded-lg border border-silver bg-navy-deep">
+              <iframe
+                src={`${site.location.mapsEmbed}&hl=${lang}`}
+                title={t.map}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full border-0"
+              />
+            </div>
             <div className="flex flex-[1_1_300px] flex-col gap-3.5 rounded-lg border border-t-4 border-silver border-t-gold bg-white p-7">
               <span className="font-display text-[17px] font-black uppercase">{t.howTo}</span>
               <span className="text-[15px] leading-relaxed text-ink-soft">
