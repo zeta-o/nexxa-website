@@ -8,6 +8,7 @@ import { MenuIcon } from "lucide-react";
 import { Brand } from "@/components/site/brand-name";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useI18n } from "@/i18n/client";
+import { stripLocale } from "@/i18n/config";
 import { cn } from "@/lib/utils";
 import { useUiStore } from "@/stores/use-ui-store";
 
@@ -16,15 +17,15 @@ import shield from "../../../public/images/escudo-nexxa-rise.png";
 import { LanguageSwitch } from "./language-switch";
 
 export function SiteHeader() {
-  const pathname = usePathname();
+  // Path without the language, identical on server and client (see stripLocale).
+  const path = stripLocale(usePathname());
   const { c, href } = useI18n();
   const open = useUiStore((s) => s.mobileNavOpen);
   const setOpen = useUiStore((s) => s.setMobileNavOpen);
 
-  const nav = c.nav.map((l) => ({ ...l, href: href(l.href) }));
-  const isActive = (h: string) => pathname === h || pathname.startsWith(`${h}/`);
+  const isActive = (p: string) => path === p || path.startsWith(`${p}/`);
   // Transparent nav floating over the hero; the join page has a gold hero, so it keeps the solid bar.
-  const overlay = pathname !== href("/unete");
+  const overlay = path !== "/unete";
 
   return (
     <header
@@ -57,10 +58,10 @@ export function SiteHeader() {
         <div className="flex items-center gap-3 xl:gap-6">
           {/* Desktop links */}
           <div className="hidden flex-wrap items-center justify-end gap-x-6 gap-y-1 xl:flex">
-            {nav.map((l) => (
+            {c.nav.map((l) => (
               <Link
                 key={l.href}
-                href={l.href}
+                href={href(l.href)}
                 aria-current={isActive(l.href) ? "page" : undefined}
                 className={cn(
                   "inline-flex min-h-11 items-center border-b-[3px] text-sm font-semibold tracking-[0.08em] uppercase transition-colors",
@@ -93,15 +94,15 @@ export function SiteHeader() {
             <SheetContent side="right" className="w-[86vw] border-l-gold/40 bg-navy-deep p-6 pt-16 text-white">
               <SheetTitle className="sr-only">{c.ui.menu}</SheetTitle>
               <div className="flex flex-col">
-                {[{ label: c.ui.home, href: href("/") }, ...nav].map((l) => (
+                {[{ label: c.ui.home, href: "/" }, ...c.nav].map((l) => (
                   <Link
                     key={l.href}
-                    href={l.href}
+                    href={href(l.href)}
                     onClick={() => setOpen(false)}
-                    aria-current={pathname === l.href ? "page" : undefined}
+                    aria-current={path === l.href ? "page" : undefined}
                     className={cn(
                       "flex min-h-14 items-center border-b border-white/10 font-display text-2xl font-black uppercase",
-                      pathname === l.href ? "text-gold" : "text-white",
+                      path === l.href ? "text-gold" : "text-white",
                     )}
                   >
                     {l.label}

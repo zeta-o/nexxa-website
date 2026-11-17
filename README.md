@@ -83,8 +83,8 @@ Flags live in `src/lib/flags.ts`.
 
 ## Languages (ES / EN)
 
-Every page exists in Spanish and English: `/es/...` and `/en/...`. Links without a language (old ones like
-`/club`) redirect to Spanish (the default), unless the visitor already chose English with the ES | EN switch.
+Every page exists in Spanish and English. Spanish is the default and has no prefix (`/club`); English is under
+`/en` (`/en/club`). Old `/es/...` links redirect to the unprefixed URL.
 
 - Page text lives next to each page in a `copy = { es: {...}, en: {...} }` object (`src/app/[lang]/**/page.tsx`).
 - Shared content (values, categories, staff, FAQ, menu and footer labels) is in `src/i18n/content.ts`;

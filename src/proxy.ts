@@ -1,25 +1,27 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-import { defaultLocale, isLocale, LOCALE_COOKIE, type Locale } from "@/i18n/config";
+import { defaultLocale } from "@/i18n/config";
 
 /**
- * Every page lives under /es or /en. Requests without a language prefix
- * (old links like /club, or the bare domain) go to Spanish, unless the
- * visitor already picked English with the ES | EN switch (cookie).
+ * Spanish is the default and has no prefix: /club is served by app/[lang]/club
+ * with lang = "es" (rewrite, the URL stays /club). English lives under /en.
+ * Old /es/... links redirect permanently to the unprefixed URL.
  */
-function preferredLocale(request: NextRequest): Locale {
-  const saved = request.cookies.get(LOCALE_COOKIE)?.value;
-  return isLocale(saved) ? saved : defaultLocale;
-}
-
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const first = pathname.split("/")[1];
-  if (isLocale(first)) return;
+
+  if (first === "en") return;
+
+  if (first === defaultLocale) {
+    const url = request.nextUrl.clone();
+    url.pathname = pathname.slice(defaultLocale.length + 1) || "/";
+    return NextResponse.redirect(url, 308);
+  }
 
   const url = request.nextUrl.clone();
-  url.pathname = `/${preferredLocale(request)}${pathname === "/" ? "" : pathname}`;
-  return NextResponse.redirect(url);
+  url.pathname = `/${defaultLocale}${pathname === "/" ? "" : pathname}`;
+  return NextResponse.rewrite(url);
 }
 
 export const config = {

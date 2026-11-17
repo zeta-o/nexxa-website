@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { site } from "@/lib/data";
 import { features } from "@/lib/flags";
-import { locales } from "@/i18n/config";
+import { locales, lp } from "@/i18n/config";
 
 const routes = [
   "",
@@ -18,10 +18,10 @@ const routes = [
 export default function sitemap(): MetadataRoute.Sitemap {
   return locales.flatMap((lang) =>
     routes.map((r) => ({
-      url: `${site.url}/${lang}${r}`,
+      url: `${site.url}${lp(lang, r || "/")}`,
       changeFrequency: "weekly" as const,
       priority: r === "" ? 1 : 0.7,
-      alternates: { languages: Object.fromEntries(locales.map((l) => [l, `${site.url}/${l}${r}`])) },
+      alternates: { languages: Object.fromEntries(locales.map((l) => [l, `${site.url}${lp(l, r || "/")}`])) },
     })),
   );
 }
