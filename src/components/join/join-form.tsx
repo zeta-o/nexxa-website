@@ -3,15 +3,17 @@
 import { useTransition } from "react";
 import Image from "next/image";
 
-import { submitInscription } from "@/app/unete/actions";
+import { submitInscription } from "@/app/[lang]/unete/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
+import { useI18n } from "@/i18n/client";
 import {
   divisionOptions,
   experienceOptions,
+  optionLabel,
   type InscriptionField,
   type InscriptionInput,
 } from "@/lib/inscription-schema";
@@ -25,7 +27,54 @@ const fieldClass =
   "h-12 rounded border-navy-line bg-navy px-3.5 text-base text-white placeholder:text-haze/70 focus-visible:border-gold focus-visible:ring-gold/40 md:text-base";
 const labelClass = "text-[13px] font-semibold tracking-[0.08em] text-gold-light uppercase";
 
+const copy = {
+  es: {
+    sendError: "No pudimos enviar la solicitud. Intenta de nuevo.",
+    welcome: "¡Bienvenida a",
+    received: "Recibimos tu solicitud",
+    receivedFor: "para",
+    receivedRest: "Te escribiremos en los próximos días con la fecha y sede de la prueba.",
+    another: "Enviar otra solicitud",
+    title: "Solicitud de prueba",
+    player: "Datos de la jugadora",
+    fullName: "Nombre completo",
+    birthDate: "Fecha de nacimiento",
+    category: "Categoría",
+    experience: "¿Ha jugado voleibol antes?",
+    guardian: "Madre, padre o tutor",
+    name: "Nombre",
+    phone: "Teléfono",
+    email: "Correo",
+    comments: "Comentarios (opcional)",
+    sending: "Enviando…",
+    send: "Enviar solicitud",
+  },
+  en: {
+    sendError: "We couldn't send the request. Please try again.",
+    welcome: "Welcome to",
+    received: "We received your request",
+    receivedFor: "for",
+    receivedRest: "We'll write to you in the next few days with the tryout date and venue.",
+    another: "Send another request",
+    title: "Tryout request",
+    player: "Player details",
+    fullName: "Full name",
+    birthDate: "Date of birth",
+    category: "Category",
+    experience: "Has she played volleyball before?",
+    guardian: "Mother, father or guardian",
+    name: "Name",
+    phone: "Phone",
+    email: "Email",
+    comments: "Comments (optional)",
+    sending: "Sending…",
+    send: "Send request",
+  },
+};
+
 export function JoinForm() {
+  const { lang } = useI18n();
+  const t = copy[lang];
   const draft = useInscriptionStore((s) => s.draft);
   const errors = useInscriptionStore((s) => s.errors);
   const status = useInscriptionStore((s) => s.status);
@@ -41,7 +90,7 @@ export function JoinForm() {
     setStatus("submitting");
     startTransition(async () => {
       try {
-        const res = await submitInscription(draft);
+        const res = await submitInscription(draft, lang);
         if (res.ok) {
           setStatus("success", res.division);
         } else {
@@ -49,7 +98,7 @@ export function JoinForm() {
           setStatus("error", res.message);
         }
       } catch {
-        setStatus("error", "No pudimos enviar la solicitud. Intenta de nuevo.");
+        setStatus("error", t.sendError);
       }
     });
   };
@@ -59,11 +108,11 @@ export function JoinForm() {
       <div className="flex flex-col items-start gap-4 rounded-lg border-2 border-gold bg-navy p-10" role="status">
         <Image src={crest} alt="" className="h-auto w-24" sizes="96px" />
         <h2 className="m-0 font-display text-[29px] leading-[0.95] font-black uppercase">
-          ¡Bienvenida a <Brand />!
+          {t.welcome} <Brand />!
         </h2>
         <p className="m-0 text-base leading-relaxed text-mist">
-          Recibimos tu solicitud{message ? ` para ${message}` : ""}. Te escribiremos en los próximos días con la
-          fecha y sede de la prueba.
+          {t.received}
+          {message ? ` ${t.receivedFor} ${message}` : ""}. {t.receivedRest}
         </p>
         <Button
           type="button"
@@ -71,7 +120,7 @@ export function JoinForm() {
           onClick={reset}
           className="h-11 rounded border-2 border-white bg-transparent px-4.5 text-[13px] font-bold tracking-[0.08em] text-white uppercase hover:bg-white hover:text-navy-deep"
         >
-          Enviar otra solicitud
+          {t.another}
         </Button>
       </div>
     );
@@ -98,22 +147,22 @@ export function JoinForm() {
       className="flex flex-col gap-7 rounded-lg bg-navy-deep p-6 text-white sm:p-9"
       aria-describedby={status === "error" && message ? "form-error" : undefined}
     >
-      <h2 className="m-0 font-display text-[26px] leading-none font-black uppercase">Solicitud de prueba</h2>
+      <h2 className="m-0 font-display text-[26px] leading-none font-black uppercase">{t.title}</h2>
 
       <fieldset className="m-0 flex flex-col gap-4.5 border-0 p-0">
-        <legend className="pb-3 text-sm font-bold">Datos de la jugadora</legend>
-        <Field label="Nombre completo" htmlFor="f-playerName" error={errors.playerName} errorId="f-playerName-error">
+        <legend className="pb-3 text-sm font-bold">{t.player}</legend>
+        <Field label={t.fullName} htmlFor="f-playerName" error={errors.playerName} errorId="f-playerName-error">
           <Input {...text("playerName")} autoComplete="off" className={fieldClass} />
         </Field>
         <div className="flex flex-wrap gap-4">
-          <Field className="flex-[1_1_200px]" label="Fecha de nacimiento" htmlFor="f-birthDate" error={errors.birthDate} errorId="f-birthDate-error">
+          <Field className="flex-[1_1_200px]" label={t.birthDate} htmlFor="f-birthDate" error={errors.birthDate} errorId="f-birthDate-error">
             <Input {...text("birthDate")} type="date" className={cn(fieldClass, "[color-scheme:dark]")} />
           </Field>
         </div>
 
         <div className="flex flex-col gap-3">
           <span id="division-label" className={labelClass}>
-            Categoría
+            {t.category}
           </span>
           <RadioGroup
             aria-labelledby="division-label"
@@ -130,7 +179,7 @@ export function JoinForm() {
                 )}
               >
                 <RadioGroupItem value={d} className="border-haze data-checked:border-gold data-checked:bg-gold" />
-                {d}
+                {optionLabel(lang, d)}
               </label>
             ))}
           </RadioGroup>
@@ -138,7 +187,7 @@ export function JoinForm() {
 
         <div className="flex flex-col gap-3">
           <span id="experience-label" className={labelClass}>
-            ¿Ha jugado voleibol antes?
+            {t.experience}
           </span>
           <RadioGroup
             aria-labelledby="experience-label"
@@ -149,7 +198,7 @@ export function JoinForm() {
             {experienceOptions.map((o) => (
               <label key={o} className="flex min-h-11 cursor-pointer items-center gap-2.5 text-[15px]">
                 <RadioGroupItem value={o} className="border-haze data-checked:border-gold data-checked:bg-gold" />
-                {o}
+                {optionLabel(lang, o)}
               </label>
             ))}
           </RadioGroup>
@@ -157,19 +206,19 @@ export function JoinForm() {
       </fieldset>
 
       <fieldset className="m-0 flex flex-col gap-4.5 border-0 border-t border-white/15 p-0 pt-6">
-        <legend className="pb-3 text-sm font-bold">Madre, padre o tutor</legend>
-        <Field label="Nombre" htmlFor="f-guardianName" error={errors.guardianName} errorId="f-guardianName-error">
+        <legend className="pb-3 text-sm font-bold">{t.guardian}</legend>
+        <Field label={t.name} htmlFor="f-guardianName" error={errors.guardianName} errorId="f-guardianName-error">
           <Input {...text("guardianName")} autoComplete="name" className={fieldClass} />
         </Field>
         <div className="flex flex-wrap gap-4">
-          <Field className="flex-[1_1_180px]" label="Teléfono" htmlFor="f-phone" error={errors.phone} errorId="f-phone-error">
+          <Field className="flex-[1_1_180px]" label={t.phone} htmlFor="f-phone" error={errors.phone} errorId="f-phone-error">
             <Input {...text("phone")} type="tel" autoComplete="tel" className={fieldClass} />
           </Field>
-          <Field className="flex-[1_1_220px]" label="Correo" htmlFor="f-email" error={errors.email} errorId="f-email-error">
+          <Field className="flex-[1_1_220px]" label={t.email} htmlFor="f-email" error={errors.email} errorId="f-email-error">
             <Input {...text("email")} type="email" autoComplete="email" className={fieldClass} />
           </Field>
         </div>
-        <Field label="Comentarios (opcional)" htmlFor="f-comments" error={errors.comments} errorId="f-comments-error">
+        <Field label={t.comments} htmlFor="f-comments" error={errors.comments} errorId="f-comments-error">
           <Textarea {...text("comments")} rows={3} className={cn(fieldClass, "h-auto min-h-24 py-3")} />
         </Field>
       </fieldset>
@@ -185,7 +234,7 @@ export function JoinForm() {
         disabled={isPending}
         className="h-14 cursor-pointer rounded bg-gold text-[15px] font-bold tracking-[0.08em] text-navy-deep uppercase hover:bg-gold-light"
       >
-        {isPending ? "Enviando…" : "Enviar solicitud"}
+        {isPending ? t.sending : t.send}
       </Button>
     </form>
   );

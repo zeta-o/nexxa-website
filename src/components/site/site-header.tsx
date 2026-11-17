@@ -5,24 +5,26 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { MenuIcon } from "lucide-react";
 
+import { Brand } from "@/components/site/brand-name";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { navLinks } from "@/lib/data";
+import { useI18n } from "@/i18n/client";
 import { cn } from "@/lib/utils";
 import { useUiStore } from "@/stores/use-ui-store";
 
 import shield from "../../../public/images/escudo-nexxa-rise.png";
-import { Brand } from "@/components/site/brand-name";
 
-
+import { LanguageSwitch } from "./language-switch";
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const { c, href } = useI18n();
   const open = useUiStore((s) => s.mobileNavOpen);
   const setOpen = useUiStore((s) => s.setMobileNavOpen);
 
-  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
-  // Transparent nav floating over the hero; /unete has a gold hero, so it keeps the solid bar.
-  const overlay = pathname !== "/unete";
+  const nav = c.nav.map((l) => ({ ...l, href: href(l.href) }));
+  const isActive = (h: string) => pathname === h || pathname.startsWith(`${h}/`);
+  // Transparent nav floating over the hero; the join page has a gold hero, so it keeps the solid bar.
+  const overlay = pathname !== href("/unete");
 
   return (
     <header
@@ -34,14 +36,14 @@ export function SiteHeader() {
       )}
     >
       <nav
-        aria-label="Principal"
+        aria-label={c.ui.navMain}
         className="mx-auto flex max-w-[1320px] items-center justify-between gap-4 px-4 py-3 md:px-6 md:py-5"
       >
         {/* Principal shield, oversized so it hangs below the bar */}
         <Link
-          href="/"
+          href={href("/")}
           className="relative block h-12 w-[116px] shrink-0 md:h-14 md:w-[190px]"
-          aria-label="NEXXA RISE, inicio"
+          aria-label={c.ui.homeAria}
         >
           <Image
             src={shield}
@@ -52,66 +54,71 @@ export function SiteHeader() {
           />
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden flex-wrap items-center justify-end gap-x-6 gap-y-1 xl:flex">
-          {navLinks.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              aria-current={isActive(l.href) ? "page" : undefined}
-              className={cn(
-                "inline-flex min-h-11 items-center border-b-[3px] text-sm font-semibold tracking-[0.08em] uppercase transition-colors",
-                isActive(l.href)
-                  ? "border-gold text-gold-light"
-                  : "border-transparent text-white hover:text-gold-light",
-              )}
-            >
-              {l.label}
-            </Link>
-          ))}
-          <Link
-            href="/unete"
-            className="inline-flex min-h-11 items-center rounded bg-gold px-5 text-[13px] font-bold tracking-[0.08em] text-navy-deep uppercase hover:bg-gold-light"
-          >
-            Únete
-          </Link>
-        </div>
-
-        {/* Mobile menu */}
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger
-            className="inline-flex size-12 items-center justify-center rounded border border-gold/60 text-white xl:hidden"
-            aria-label="Abrir menú"
-          >
-            <MenuIcon className="size-6" />
-          </SheetTrigger>
-          <SheetContent side="right" className="w-[86vw] border-l-gold/40 bg-navy-deep p-6 pt-16 text-white">
-            <SheetTitle className="sr-only">Menú</SheetTitle>
-            <div className="flex flex-col">
-              {[{ label: "Inicio", href: "/" }, ...navLinks].map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  aria-current={pathname === l.href ? "page" : undefined}
-                  className={cn(
-                    "flex min-h-14 items-center border-b border-white/10 font-display text-2xl font-black uppercase",
-                    pathname === l.href ? "text-gold" : "text-white",
-                  )}
-                >
-                  {l.label}
-                </Link>
-              ))}
+        <div className="flex items-center gap-3 xl:gap-6">
+          {/* Desktop links */}
+          <div className="hidden flex-wrap items-center justify-end gap-x-6 gap-y-1 xl:flex">
+            {nav.map((l) => (
               <Link
-                href="/unete"
-                onClick={() => setOpen(false)}
-                className="mt-6 flex min-h-13 items-center justify-center rounded bg-gold text-sm font-bold tracking-[0.08em] text-navy-deep uppercase"
+                key={l.href}
+                href={l.href}
+                aria-current={isActive(l.href) ? "page" : undefined}
+                className={cn(
+                  "inline-flex min-h-11 items-center border-b-[3px] text-sm font-semibold tracking-[0.08em] uppercase transition-colors",
+                  isActive(l.href)
+                    ? "border-gold text-gold-light"
+                    : "border-transparent text-white hover:text-gold-light",
+                )}
               >
-                Únete a <Brand />
+                {l.label}
               </Link>
-            </div>
-          </SheetContent>
-        </Sheet>
+            ))}
+            <Link
+              href={href("/unete")}
+              className="inline-flex min-h-11 items-center rounded bg-gold px-5 text-[13px] font-bold tracking-[0.08em] text-navy-deep uppercase hover:bg-gold-light"
+            >
+              {c.ui.join}
+            </Link>
+          </div>
+
+          <LanguageSwitch />
+
+          {/* Mobile menu */}
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger
+              className="inline-flex size-12 items-center justify-center rounded border border-gold/60 text-white xl:hidden"
+              aria-label={c.ui.openMenu}
+            >
+              <MenuIcon className="size-6" />
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[86vw] border-l-gold/40 bg-navy-deep p-6 pt-16 text-white">
+              <SheetTitle className="sr-only">{c.ui.menu}</SheetTitle>
+              <div className="flex flex-col">
+                {[{ label: c.ui.home, href: href("/") }, ...nav].map((l) => (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    aria-current={pathname === l.href ? "page" : undefined}
+                    className={cn(
+                      "flex min-h-14 items-center border-b border-white/10 font-display text-2xl font-black uppercase",
+                      pathname === l.href ? "text-gold" : "text-white",
+                    )}
+                  >
+                    {l.label}
+                  </Link>
+                ))}
+                <Link
+                  href={href("/unete")}
+                  onClick={() => setOpen(false)}
+                  className="mt-6 flex min-h-13 items-center justify-center rounded bg-gold text-sm font-bold tracking-[0.08em] text-navy-deep uppercase"
+                >
+                  {c.ui.joinFull}&nbsp;
+                  <Brand />
+                </Link>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </nav>
     </header>
   );

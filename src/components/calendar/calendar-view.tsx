@@ -2,13 +2,17 @@
 
 import { FilterPills } from "@/components/filters/filter-pills";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { fixtures, type DivisionName } from "@/lib/data";
+import { useI18n } from "@/i18n/client";
+import type { DivisionName } from "@/lib/data";
 import { type CalendarView as View, useFiltersStore } from "@/stores/use-filters-store";
 import { BrandText } from "@/components/site/brand-name";
 
 const divisionOptions = ["Todas", "Escuelita", "Mini", "Infantil", "Juvenil"] as const satisfies readonly (DivisionName | "Todas")[];
 
 export function CalendarView() {
+  const { c } = useI18n();
+  const u = c.ui;
+  const fixtures = c.fixtures;
   const division = useFiltersStore((s) => s.calendarDivision);
   const view = useFiltersStore((s) => s.calendarView);
   const setDivision = useFiltersStore((s) => s.setCalendarDivision);
@@ -21,7 +25,7 @@ export function CalendarView() {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <FilterPills label="Filtrar por división" options={divisionOptions} value={division} onChange={setDivision} />
+        <FilterPills label={u.filterDivision} options={divisionOptions} value={division} onChange={setDivision} labelFor={c.groupLabel} />
         <Tabs value={view} onValueChange={(v) => setView(v as View)}>
           <TabsList className="h-auto! overflow-hidden rounded-md border-2 border-gold bg-transparent p-0">
             {(["proximos", "resultados"] as const).map((v) => (
@@ -30,7 +34,7 @@ export function CalendarView() {
                 value={v}
                 className="h-11! cursor-pointer rounded-none px-5 font-display text-base font-extrabold tracking-[0.06em] text-white uppercase data-active:bg-gold! data-active:text-navy-deep!"
               >
-                {v === "proximos" ? "Próximos" : "Resultados"}
+                {v === "proximos" ? u.upcoming : u.results}
               </TabsTrigger>
             ))}
           </TabsList>
@@ -39,12 +43,12 @@ export function CalendarView() {
 
       <ul className="m-0 flex list-none flex-col gap-3 p-0" aria-live="polite">
         {rows.length === 0 ? (
-          <li className="rounded-lg bg-navy p-8 text-mist">No hay partidos en esta vista.</li>
+          <li className="rounded-lg bg-navy p-8 text-mist">{u.noMatches}</li>
         ) : null}
         {rows.map((f) => (
           <li key={f.id} className="flex flex-wrap items-stretch overflow-hidden rounded-lg border border-gold/25 bg-navy">
             <div className="flex flex-[0_0_120px] flex-col items-center justify-center gap-0.5 bg-gold px-3 py-4.5 text-navy-deep">
-              <span className="text-xs font-bold tracking-[0.14em] uppercase">[Mes]</span>
+              <span className="text-xs font-bold tracking-[0.14em] uppercase">{u.month}</span>
               <span className="font-display text-[29px] leading-none font-black">[00]</span>
             </div>
             <div className="flex min-w-0 flex-[1_1_360px] flex-col justify-center gap-1.5 px-6 py-5">
@@ -63,11 +67,11 @@ export function CalendarView() {
               {f.past ? (
                 <div className="flex flex-col items-end gap-1">
                   <span className="font-display text-[26px] leading-none font-black">{f.score}</span>
-                  <span className="text-xs font-bold tracking-[0.12em] text-gold-light uppercase">Resultado</span>
+                  <span className="text-xs font-bold tracking-[0.12em] text-gold-light uppercase">{u.result}</span>
                 </div>
               ) : (
                 <span className="inline-flex min-h-11 items-center rounded border-2 border-white/50 px-4.5 text-[13px] font-bold tracking-[0.08em] uppercase">
-                  {f.where}
+                  {f.where === "Local" ? u.home_ : u.away}
                 </span>
               )}
             </div>

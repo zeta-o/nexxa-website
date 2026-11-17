@@ -222,7 +222,7 @@ export function PhotoPlaceholder({
   return (
     <div
       role="img"
-      aria-label={`${label} (foto pendiente)`}
+      aria-label={label}
       className={cn("stripes flex items-end rounded-lg p-5 text-sm text-haze", className)}
     >
       {label}

@@ -80,3 +80,13 @@ To show one, set its env var to `true` in Vercel (Project → Settings → Envir
 | Galería    | `NEXT_PUBLIC_FEATURE_GALLERY`    |
 
 Flags live in `src/lib/flags.ts`.
+
+## Languages (ES / EN)
+
+Every page exists in Spanish and English: `/es/...` and `/en/...`. Links without a language (old ones like
+`/club`) redirect to the language the visitor chose with the ES | EN switch, else their browser language, else Spanish.
+
+- Page text lives next to each page in a `copy = { es: {...}, en: {...} }` object (`src/app/[lang]/**/page.tsx`).
+- Shared content (values, categories, staff, FAQ, menu and footer labels) is in `src/i18n/content.ts`;
+  the Spanish source data stays in `src/lib/data.ts`.
+- Category names (Escuelita, Mini, Pre-Infantil…) are the club's own names and are not translated.

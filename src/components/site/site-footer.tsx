@@ -1,21 +1,16 @@
 import Link from "next/link";
 
+import { Brand } from "@/components/site/brand-name";
+import { getI18n } from "@/i18n/server";
 import { site } from "@/lib/data";
-import { features } from "@/lib/flags";
 
 import { BrandLogo, Slogan } from "./primitives";
 import { SocialIcons } from "./social-icons";
-import { Brand } from "@/components/site/brand-name";
 
-const explore = [
-  { label: "Club", href: "/club" },
-  { label: "Divisiones", href: "/divisiones" },
-  { label: "Staff", href: "/staff" },
-  ...(features.calendar ? [{ label: "Calendario", href: "/calendario" }] : []),
-  { label: "Pruebas", href: "/unete" },
-];
+export async function SiteFooter() {
+  const { c, href } = await getI18n();
+  const explore = [...c.nav.filter((l) => l.href !== "/galeria"), { label: c.ui.tryouts, href: "/unete" }];
 
-export function SiteFooter() {
   return (
     <footer className="stripes border-t-4 border-gold text-white">
       <div className="mx-auto flex max-w-[1240px] flex-col gap-10 px-6 pt-16 pb-10">
@@ -24,24 +19,24 @@ export function SiteFooter() {
             <BrandLogo variant="horizontal-blanco" className="w-[420px] max-w-full" />
             <Slogan className="-rotate-2 text-[34px] text-gold-light" />
             <span className="text-sm text-haze">
-              Voleibol femenino · {site.location.city} · {site.handle}
+              {c.ui.footerTagline} · {site.location.city} · {site.handle}
             </span>
           </div>
           <div className="flex flex-[0_1_200px] flex-col">
-            <span className="mb-1.5 text-xs font-bold tracking-[0.18em] text-gold-light uppercase">Explora</span>
+            <span className="mb-1.5 text-xs font-bold tracking-[0.18em] text-gold-light uppercase">{c.ui.explore}</span>
             {explore.map((l) => (
-              <Link key={l.href} href={l.href} className="py-1.5 text-[15px] text-white hover:text-gold-light">
+              <Link key={l.href} href={href(l.href)} className="py-1.5 text-[15px] text-white hover:text-gold-light">
                 {l.label}
               </Link>
             ))}
           </div>
           <div className="flex flex-[0_1_260px] flex-col">
-            <span className="mb-1.5 text-xs font-bold tracking-[0.18em] text-gold-light uppercase">Contacto</span>
+            <span className="mb-1.5 text-xs font-bold tracking-[0.18em] text-gold-light uppercase">{c.ui.contact}</span>
             <a href={`mailto:${site.contact.email}`} className="py-1.5 text-[15px] text-mist hover:text-gold-light">
               {site.contact.email}
             </a>
             <a href={site.contact.phoneHref} className="py-1.5 text-[15px] text-mist hover:text-gold-light">
-              Tel. {site.contact.phone}
+              {c.ui.tel} {site.contact.phone}
             </a>
             <a
               href={site.contact.whatsappHref}
@@ -49,7 +44,7 @@ export function SiteFooter() {
               rel="noreferrer"
               className="py-1.5 text-[15px] text-mist hover:text-gold-light"
             >
-              Escríbenos por WhatsApp →
+              {c.ui.whatsapp}
             </a>
             <a
               href={site.location.mapsUrl}
@@ -57,14 +52,16 @@ export function SiteFooter() {
               rel="noreferrer"
               className="py-1.5 text-[15px] text-mist hover:text-gold-light"
             >
-              {site.location.venue}, {site.location.city} · Ver en Maps →
+              {site.location.venue}, {site.location.city} · {c.ui.viewMaps}
             </a>
             <SocialIcons />
           </div>
         </div>
         <div className="flex flex-wrap justify-between gap-3 border-t border-white/15 pt-6 text-[13px] text-haze">
-          <span>© {site.copyrightYear} <Brand />. Todos los derechos reservados.</span>
-          <span>Hecho con pasión.</span>
+          <span>
+            © {site.copyrightYear} <Brand />. {c.ui.rights}
+          </span>
+          <span>{c.ui.madeWith}</span>
         </div>
       </div>
     </footer>

@@ -1,38 +1,54 @@
 import Image from "next/image";
 import { ArrowRightIcon } from "lucide-react";
 
-import { sponsors } from "@/lib/data";
+import { getI18n, pick } from "@/i18n/server";
 import { cn } from "@/lib/utils";
 
 import { DisplayTitle, Eyebrow, LinkButton } from "./primitives";
 
-const beltItems = [...sponsors.official, ...sponsors.partners];
+const copy = {
+  es: {
+    eyebrow: "Nuestros patrocinadores",
+    title: "No estamos solos.",
+    text: "Estos son nuestros patrocinadores: las marcas que creen en el voleibol femenino y hacen posible cada entrenamiento, cada torneo y cada sueño.",
+    cta: "Sé parte",
+    main: "Patrocinadores principales",
+  },
+  en: {
+    eyebrow: "Our sponsors",
+    title: "We're not alone.",
+    text: "These are our sponsors: the brands that believe in women's volleyball and make every practice, every tournament and every dream possible.",
+    cta: "Join them",
+    main: "Main sponsors",
+  },
+};
 
 /**
  * Home sponsors section: headline, featured main sponsors (logos) and a scrolling
  * ribbon with the rest. The ribbon pauses on hover and respects reduced motion.
  */
-export function SponsorShowcase() {
+export async function SponsorShowcase() {
+  const { c, href } = await getI18n();
+  const t = await pick(copy);
+  const sponsors = c.sponsors;
+  const beltItems = [...sponsors.official, ...sponsors.partners];
   return (
     <section aria-labelledby="sponsors-title" className="stripes border-y-4 border-gold text-white">
       <div className="mx-auto flex max-w-[1240px] flex-col gap-10 px-6 pt-22 pb-12">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="flex max-w-[640px] flex-col gap-3">
-            <Eyebrow>Nuestros patrocinadores</Eyebrow>
-            <DisplayTitle id="sponsors-title">No estamos solos.</DisplayTitle>
-            <p className="m-0 text-lg leading-relaxed text-mist">
-              Estos son nuestros patrocinadores: las marcas que creen en el voleibol femenino y hacen posible cada
-              entrenamiento, cada torneo y cada sueño.
-            </p>
+            <Eyebrow>{t.eyebrow}</Eyebrow>
+            <DisplayTitle id="sponsors-title">{t.title}</DisplayTitle>
+            <p className="m-0 text-lg leading-relaxed text-mist">{t.text}</p>
           </div>
-          <LinkButton href="/club#patrocinadores">
-            Sé parte <ArrowRightIcon className="size-[18px]" aria-hidden />
+          <LinkButton href={href("/club#patrocinadores")}>
+            {t.cta} <ArrowRightIcon className="size-[18px]" aria-hidden />
           </LinkButton>
         </div>
 
         <div className="flex flex-wrap items-stretch gap-5">
           <div className="flex flex-[1_1_100%] flex-col gap-4">
-            <span className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">Patrocinadores principales</span>
+            <span className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">{t.main}</span>
             <ul className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-4 p-0">
               {sponsors.main.map((s) => (
                 <li

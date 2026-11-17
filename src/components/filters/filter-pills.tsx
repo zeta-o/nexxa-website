@@ -8,12 +8,15 @@ export function FilterPills<T extends string>({
   options,
   value,
   onChange,
+  labelFor,
   className,
 }: {
   label: string;
   options: readonly T[];
   value: T;
   onChange: (value: T) => void;
+  /** Display text for an option value (values stay as stable keys). */
+  labelFor?: (value: T) => string;
   className?: string;
 }) {
   return (
@@ -33,7 +36,7 @@ export function FilterPills<T extends string>({
                 : "border-white/35 bg-transparent text-white hover:border-gold-light",
             )}
           >
-            {o}
+            {labelFor ? labelFor(o) : o}
           </button>
         );
       })}

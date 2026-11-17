@@ -12,15 +12,120 @@ import {
   StarIcon,
 } from "@/components/site/primitives";
 import { SponsorShowcase } from "@/components/site/sponsor-showcase";
-import { fixtures, pathway, site, values } from "@/lib/data";
+import { getI18n, pick } from "@/i18n/server";
+import { site } from "@/lib/data";
 import { features } from "@/lib/flags";
 import { cn } from "@/lib/utils";
 
-import heroImage from "../../public/images/hero.jpg";
+import heroImage from "../../../public/images/hero.jpg";
 import { Brand, BrandText } from "@/components/site/brand-name";
 
-export default function HomePage() {
-  const nextMatch = fixtures.find((f) => !f.past)!;
+const copy = {
+  es: {
+    eyebrow: "Club de voleibol femenino",
+    h1: (
+      <>
+        Fuerza
+        <br />
+        en la red.
+        <br />
+        <span className="text-gold">Pasión</span>
+        <br />
+        en la cancha.
+      </>
+    ),
+    intro: (
+      <>
+        <Brand /> forma jugadoras desde su primer saque hasta la competencia de liga, en seis categorías: de la
+        Escuelita a Juvenil. Entrenamos en el {site.location.venue}, {site.location.city}.
+      </>
+    ),
+    tryouts: "Pruebas abiertas",
+    seeDivisions: "Ver divisiones",
+    divEyebrow: "Divisiones",
+    divTitle: "Escalón por escalón",
+    divLink: "Conoce cada división →",
+    stage: "Etapa",
+    calEyebrow: "Calendario",
+    calTitle: "Próximo partido",
+    calLink: "Ver calendario completo →",
+    staffTitle: (
+      <>
+        Quienes guían
+        <br />
+        al equipo
+      </>
+    ),
+    staffText: "Entrenadores, preparación física y coordinación por división.",
+    staffLink: "Conocer al staff →",
+    galEyebrow: "Galería",
+    galTitle: "En la cancha",
+    galPhoto: "[Foto destacada de partido]",
+    galLink: "Ver fotos →",
+    joinTitle: (
+      <>
+        Únete a <Brand />.
+      </>
+    ),
+    joinText: "Pruebas abiertas en todas las categorías, de la Escuelita a Juvenil.",
+    joinCta: "Inscribirme",
+  },
+  en: {
+    eyebrow: "Women's volleyball club",
+    h1: (
+      <>
+        Strength
+        <br />
+        at the net.
+        <br />
+        <span className="text-gold">Passion</span>
+        <br />
+        on the court.
+      </>
+    ),
+    intro: (
+      <>
+        <Brand /> develops players from their very first serve to league play, across six categories: from
+        Escuelita to Juvenil. We train at {site.location.venue}, {site.location.city}.
+      </>
+    ),
+    tryouts: "Open tryouts",
+    seeDivisions: "See divisions",
+    divEyebrow: "Divisions",
+    divTitle: "Step by step",
+    divLink: "Explore each division →",
+    stage: "Stage",
+    calEyebrow: "Calendar",
+    calTitle: "Next match",
+    calLink: "See full calendar →",
+    staffTitle: (
+      <>
+        Those who guide
+        <br />
+        the team
+      </>
+    ),
+    staffText: "Coaches, strength & conditioning and coordination for every division.",
+    staffLink: "Meet the staff →",
+    galEyebrow: "Gallery",
+    galTitle: "On the court",
+    galPhoto: "[Featured match photo]",
+    galLink: "See photos →",
+    joinTitle: (
+      <>
+        Join <Brand />.
+      </>
+    ),
+    joinText: "Open tryouts in every category, from Escuelita to Juvenil.",
+    joinCta: "Sign up",
+  },
+};
+
+export default async function HomePage() {
+  const { c, href } = await getI18n();
+  const t = await pick(copy);
+  const { pathway, values } = c;
+  const nextMatch = c.fixtures.find((f) => !f.past)!;
 
   return (
     <>
@@ -43,31 +148,22 @@ export default function HomePage() {
           <div className="flex max-w-[680px] flex-col gap-7">
             <div className="flex items-center gap-3">
               <span className="block h-[3px] w-10 bg-gold" />
-              <Eyebrow className="text-sm">Club de voleibol femenino</Eyebrow>
+              <Eyebrow className="text-sm">{t.eyebrow}</Eyebrow>
             </div>
             <h1 className="m-0 font-display text-[clamp(42px,5.9vw,87px)] leading-[0.88] font-black tracking-[0.01em] uppercase">
-              Fuerza
-              <br />
-              en la red.
-              <br />
-              <span className="text-gold">Pasión</span>
-              <br />
-              en la cancha.
+              {t.h1}
             </h1>
             <Slogan className="-mt-2 -rotate-3 text-[clamp(30px,3.4vw,46px)] text-gold-light" />
             <p className="m-0 max-w-[520px] text-lg leading-relaxed text-mist">
-              <Brand /> forma jugadoras desde su primer saque hasta la
-              competencia de liga, en cuatro etapas: Escuelita, Mini, Infantil y
-              Juvenil. Entrenamos en el {site.location.venue},{" "}
-              {site.location.city}.
+              {t.intro}
             </p>
             <div className="flex flex-wrap gap-3.5">
-              <LinkButton href="/unete">
-                Pruebas abiertas{" "}
+              <LinkButton href={href("/unete")}>
+                {t.tryouts}{" "}
                 <ArrowRightIcon className="size-[18px]" aria-hidden />
               </LinkButton>
-              <LinkButton href="/divisiones" variant="ghost">
-                Ver divisiones
+              <LinkButton href={href("/divisiones")} variant="ghost">
+                {t.seeDivisions}
               </LinkButton>
             </div>
           </div>
@@ -89,26 +185,26 @@ export default function HomePage() {
         <div className="mx-auto flex max-w-[1240px] flex-col gap-10 px-6 py-24">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div className="flex flex-col gap-2.5">
-              <Eyebrow tone="dark">Divisiones</Eyebrow>
-              <DisplayTitle>Escalón por escalón</DisplayTitle>
+              <Eyebrow tone="dark">{t.divEyebrow}</Eyebrow>
+              <DisplayTitle>{t.divTitle}</DisplayTitle>
             </div>
             <Link
-              href="/divisiones"
+              href={href("/divisiones")}
               className="py-3 text-[15px] font-bold tracking-[0.06em] text-navy-deep uppercase hover:text-gold-dark"
             >
-              Conoce cada división →
+              {t.divLink}
             </Link>
           </div>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {pathway.map((d, i) => (
               <Link
                 key={d.name}
-                href="/divisiones"
+                href={href("/divisiones")}
                 className="stripes-deep flex flex-col gap-4 rounded-lg border-b-4 border-gold px-7 py-7 text-white outline-gold transition-[outline] hover:outline-2"
               >
                 <div className="flex items-end justify-between">
                   <span className="text-xs font-bold tracking-[0.18em] text-gold-light uppercase">
-                    Etapa {d.n}
+                    {t.stage} {d.n}
                   </span>
                   <LevelBars level={i + 1} steps={pathway.length} size="sm" />
                 </div>
@@ -136,14 +232,14 @@ export default function HomePage() {
           <div className="mx-auto flex max-w-[1240px] flex-col gap-9 px-6 py-24">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div className="flex flex-col gap-2.5">
-                <Eyebrow>Calendario</Eyebrow>
-                <DisplayTitle>Próximo partido</DisplayTitle>
+                <Eyebrow>{t.calEyebrow}</Eyebrow>
+                <DisplayTitle>{t.calTitle}</DisplayTitle>
               </div>
               <Link
-                href="/calendario"
+                href={href("/calendario")}
                 className="py-3 text-[15px] font-semibold tracking-[0.06em] text-gold-light uppercase hover:text-white"
               >
-                Ver calendario completo →
+                {t.calLink}
               </Link>
             </div>
             <NextMatchCard fixture={nextMatch} />
@@ -160,36 +256,34 @@ export default function HomePage() {
           )}
         >
           <Link
-            href="/staff"
+            href={href("/staff")}
             className="flex flex-col gap-4 rounded-lg bg-white p-10 text-navy-deep outline-gold hover:outline-2"
           >
             <Eyebrow tone="dark">Staff</Eyebrow>
             <span className="font-display text-[29px] leading-[0.95] font-black uppercase">
-              Quienes guían
-              <br />
-              al equipo
+              {t.staffTitle}
             </span>
             <span className="text-base leading-relaxed text-ink-soft">
-              Entrenadores, preparación física y coordinación por división.
+              {t.staffText}
             </span>
             <span className="text-sm font-bold tracking-[0.06em] uppercase">
-              Conocer al staff →
+              {t.staffLink}
             </span>
           </Link>
           {features.gallery ? (
             <Link
-              href="/galeria"
+              href={href("/galeria")}
               className="stripes flex min-h-[300px] flex-col justify-end gap-4 rounded-lg border border-gold/40 p-10 outline-gold hover:outline-2"
             >
-              <Eyebrow>Galería</Eyebrow>
+              <Eyebrow>{t.galEyebrow}</Eyebrow>
               <span className="font-display text-[29px] leading-[0.95] font-black uppercase">
-                En la cancha
+                {t.galTitle}
               </span>
               <span className="text-sm text-haze">
-                [Foto destacada de partido]
+                {t.galPhoto}
               </span>
               <span className="text-sm font-bold tracking-[0.06em] text-gold-light uppercase">
-                Ver fotos →
+                {t.galLink}
               </span>
             </Link>
           ) : null}
@@ -201,16 +295,13 @@ export default function HomePage() {
         <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-8 px-6 py-18">
           <div className="flex flex-[1_1_480px] flex-col gap-3">
             <h2 className="m-0 font-display text-[clamp(29px,3.6vw,48px)] leading-[0.9] font-black uppercase">
-              Únete a <Brand />.
+              {t.joinTitle}
             </h2>
-            <p className="m-0 text-lg leading-relaxed">
-              Pruebas abiertas en todas las categorías, de la Escuelita a
-              Juvenil.
-            </p>
+            <p className="m-0 text-lg leading-relaxed">{t.joinText}</p>
           </div>
           <Slogan className="flex-[0_1_auto] -rotate-3 text-[clamp(30px,3.2vw,44px)] text-navy-deep" />
-          <LinkButton href="/unete" variant="navy" className="min-h-14 px-8">
-            Inscribirme
+          <LinkButton href={href("/unete")} variant="navy" className="min-h-14 px-8">
+            {t.joinCta}
           </LinkButton>
         </div>
       </section>

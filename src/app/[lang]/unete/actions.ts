@@ -1,6 +1,12 @@
 "use server";
 
-import { inscriptionSchema, type FieldErrors, type InscriptionInput } from "@/lib/inscription-schema";
+import { isLocale, type Locale } from "@/i18n/config";
+import {
+  makeInscriptionSchema,
+  optionLabel,
+  type FieldErrors,
+  type InscriptionInput,
+} from "@/lib/inscription-schema";
 
 export type SubmitResult =
   | { ok: true; division: string }
@@ -14,8 +20,9 @@ export type SubmitResult =
  * email with Resend, or store it in a database (Vercel Postgres, Supabase).
  * Until then it is only logged to the server console (visible in Vercel logs).
  */
-export async function submitInscription(input: InscriptionInput): Promise<SubmitResult> {
-  const parsed = inscriptionSchema.safeParse(input);
+export async function submitInscription(input: InscriptionInput, langInput: Locale = "es"): Promise<SubmitResult> {
+  const lang: Locale = isLocale(langInput) ? langInput : "es";
+  const parsed = makeInscriptionSchema(lang).safeParse(input);
 
   if (!parsed.success) {
     const errors: FieldErrors = {};
@@ -23,7 +30,7 @@ export async function submitInscription(input: InscriptionInput): Promise<Submit
       const key = issue.path[0] as keyof FieldErrors;
       if (key && !errors[key]) errors[key] = issue.message;
     }
-    return { ok: false, errors, message: "Revisa los campos marcados." };
+    return { ok: false, errors, message: lang === "en" ? "Please check the highlighted fields." : "Revisa los campos marcados." };
   }
 
   console.info("[inscripcion]", {
@@ -31,5 +38,5 @@ export async function submitInscription(input: InscriptionInput): Promise<Submit
     receivedAt: new Date().toISOString(),
   });
 
-  return { ok: true, division: parsed.data.division };
+  return { ok: true, division: optionLabel(lang, parsed.data.division) };
 }
