@@ -157,8 +157,6 @@ const copy = {
     map: `Mapa: ${site.location.venue}, Belén, Heredia`,
     howTo: "Cómo llegar",
     venueRef: "Salón Tamarindo",
-    hoursLabel: "Horario del gimnasio:",
-    hours: "[Días y horas]",
     openMaps: "Abrir en Google Maps →",
     spEyebrow: "Nuestros patrocinadores",
     spTitle: (
@@ -305,8 +303,6 @@ const copy = {
     map: `Map: ${site.location.venue}, Belén, Heredia`,
     howTo: "Getting here",
     venueRef: "Salón Tamarindo",
-    hoursLabel: "Gym hours:",
-    hours: "[Days and hours]",
     openMaps: "Open in Google Maps →",
     spEyebrow: "Our sponsors",
     spTitle: (
@@ -530,9 +526,6 @@ export default async function ClubPage() {
                 {site.location.city}, {site.location.country}
                 <br />
                 {t.venueRef}
-              </span>
-              <span className="text-[15px] leading-relaxed text-ink-soft">
-                <strong>{t.hoursLabel}</strong> {t.hours}
               </span>
               <a
                 href={site.location.mapsUrl}
