@@ -6,6 +6,8 @@
 import { Body, Container, Head, Html, Img, Link, Preview, Section, Text } from "@react-email/components";
 
 import type { Locale } from "@/i18n/config";
+
+import { logoPng, sloganPng } from "./images";
 import { site } from "@/lib/data";
 
 export const C = {
@@ -24,6 +26,17 @@ export const BODY = "Arial, 'Helvetica Neue', Helvetica, sans-serif";
 
 export const abs = (path: string) => `${site.url.replace(/\/$/, "")}${path}`;
 
+/**
+ * Images travel inside the email as inline attachments (cid:), so they show even if the
+ * site URL changes and in clients that block remote images. send.ts attaches the files.
+ * Brand fonts don't load in email, so the Heydex slogan is an image too.
+ */
+export const INLINE_IMAGES = {
+  logo: { cid: "nexxa-logo", filename: "nexxa-rise.png", base64: logoPng },
+  slogan: { cid: "nexxa-slogan", filename: "we-rise-together.png", base64: sloganPng },
+} as const;
+const img = (key: keyof typeof INLINE_IMAGES) => `cid:${INLINE_IMAGES[key].cid}`;
+
 export function EmailLayout({ lang, preview, children }: { lang: Locale; preview: string; children: React.ReactNode }) {
   return (
     <Html lang={lang}>
@@ -34,13 +47,16 @@ export function EmailLayout({ lang, preview, children }: { lang: Locale; preview
       <Body style={{ margin: 0, padding: "24px 12px", backgroundColor: C.paper, fontFamily: BODY }}>
         <Container style={{ maxWidth: 600, borderRadius: 12, overflow: "hidden", backgroundColor: "#ffffff" }}>
           <Section style={{ backgroundColor: C.navyDeep, padding: "28px 32px", borderBottom: `4px solid ${C.gold}` }}>
-            <Img src={abs("/brand/logo-horizontal-blanco.png")} width="220" alt={site.name} style={{ display: "block", height: "auto" }} />
+            <Img src={img("logo")} width="220" alt={site.name} style={{ display: "block", width: 220, height: "auto" }} />
           </Section>
           <Section style={{ padding: 32, color: C.navy, fontSize: 16, lineHeight: "1.55" }}>{children}</Section>
           <Section style={{ backgroundColor: C.navyDeep, padding: "24px 32px", color: C.silver, fontSize: 13, lineHeight: "1.6" }}>
-            <Text style={{ margin: "0 0 6px", fontFamily: HEAD, fontSize: 18, fontStyle: "italic", color: C.goldLight }}>
-              We Rise Together
-            </Text>
+            <Img
+              src={img("slogan")}
+              width="190"
+              alt="We Rise Together"
+              style={{ display: "block", width: 190, height: "auto", margin: "0 0 12px" }}
+            />
             <Text style={{ margin: "0 0 10px", fontSize: 13, color: C.silver }}>
               {lang === "en" ? "Women's volleyball" : "Voleibol femenino"} · {site.location.venue}, {site.location.city}
             </Text>

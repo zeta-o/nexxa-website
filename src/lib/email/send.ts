@@ -5,6 +5,7 @@ import type { Locale } from "@/i18n/config";
 import { site } from "@/lib/data";
 import type { Inscription } from "@/lib/inscription-schema";
 
+import { INLINE_IMAGES } from "@/emails/components/layout";
 import TryoutClubEmail, { tryoutClubSubject } from "@/emails/tryout-club";
 import TryoutConfirmationEmail, { tryoutConfirmationSubject } from "@/emails/tryout-confirmation";
 
@@ -17,6 +18,13 @@ import TryoutConfirmationEmail, { tryoutConfirmationSubject } from "@/emails/try
  * - EMAIL_TO        club inbox for notifications (defaults to the contact email).
  */
 const TEST_SENDER = "NEXXA RISE <onboarding@resend.dev>";
+
+/** Logo and slogan as inline (cid:) attachments. */
+const attachments = Object.values(INLINE_IMAGES).map(({ cid, filename, base64 }) => ({
+  filename,
+  content: base64,
+  contentId: cid,
+}));
 
 export type DeliveryResult = { club: boolean; family: boolean };
 
@@ -52,6 +60,7 @@ export async function sendInscriptionEmails(data: Inscription, lang: Locale): Pr
       subject: tryoutClubSubject(clubProps),
       html: clubHtml,
       text: clubText,
+      attachments,
       tags: [{ name: "type", value: "tryout_club" }],
     }),
     canEmailFamily
@@ -62,6 +71,7 @@ export async function sendInscriptionEmails(data: Inscription, lang: Locale): Pr
           subject: tryoutConfirmationSubject(familyProps),
           html: familyHtml,
           text: familyText,
+          attachments,
           tags: [{ name: "type", value: "tryout_confirmation" }],
         })
       : Promise.resolve(null),
