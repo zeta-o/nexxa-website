@@ -203,16 +203,9 @@ export const leaders = [
   },
 ] as const;
 
+/** Coaching staff shown on /staff. Add people here as they join; empty groups are hidden. */
 export const staff: { group: StaffGroup; role: string; name: string }[] = [
-  { group: "Escuelita", role: "Entrenador/a", name: "[Nombre Apellido]" },
-  { group: "Mini", role: "Entrenador/a principal", name: "[Nombre Apellido]" },
-  { group: "Mini", role: "Asistente", name: "[Nombre Apellido]" },
-  { group: "Infantil", role: "Entrenador/a principal", name: "[Nombre Apellido]" },
-  { group: "Infantil", role: "Asistente", name: "[Nombre Apellido]" },
-  { group: "Juvenil", role: "Entrenador/a principal", name: "[Nombre Apellido]" },
-  { group: "Juvenil", role: "Asistente / Estadística", name: "[Nombre Apellido]" },
-  { group: "Apoyo", role: "Preparación física", name: "[Nombre Apellido]" },
-  { group: "Apoyo", role: "Fisioterapia", name: "[Nombre Apellido]" },
+  { group: "Infantil", role: "Entrenador principal", name: "Danilo Ruiz" },
 ];
 
 export type Fixture = {

@@ -109,6 +109,7 @@ const leadersEn = [
 const staffRoleEn: Record<string, string> = {
   "Entrenador/a": "Coach",
   "Entrenador/a principal": "Head coach",
+  "Entrenador principal": "Head coach",
   Asistente: "Assistant coach",
   "Asistente / Estadística": "Assistant / Statistics",
   "Preparación física": "Strength & conditioning",
@@ -205,7 +206,6 @@ const ui = {
     photoPending: "Foto (pendiente)",
     staffEyebrow: "Cuerpo técnico",
     staffTitle: "Por división",
-    staffBio: "[Certificaciones / trayectoria]",
     upcoming: "Próximos",
     results: "Resultados",
     noMatches: "No hay partidos en esta vista.",
@@ -246,7 +246,6 @@ const ui = {
     photoPending: "Photo (pending)",
     staffEyebrow: "Coaching staff",
     staffTitle: "By division",
-    staffBio: "[Certifications / background]",
     upcoming: "Upcoming",
     results: "Results",
     noMatches: "No matches in this view.",
