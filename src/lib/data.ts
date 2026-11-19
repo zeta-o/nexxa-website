@@ -205,6 +205,7 @@ export const leaders = [
 
 /** Coaching staff shown on /staff. Add people here as they join; empty groups are hidden. */
 export const staff: { group: StaffGroup; role: string; name: string }[] = [
+  { group: "Mini", role: "Entrenador principal", name: "Alex" },
   { group: "Infantil", role: "Entrenador principal", name: "Danilo Ruiz" },
 ];
 

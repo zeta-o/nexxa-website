@@ -9,12 +9,16 @@ import { useI18n } from "@/i18n/client";
 import type { StaffGroup } from "@/lib/data";
 import { useFiltersStore } from "@/stores/use-filters-store";
 
+import alex1 from "../../../public/images/alex-1.jpg";
+import alex2 from "../../../public/images/alex-2.jpg";
+import alex3 from "../../../public/images/alex-3.jpg";
 import danilo1 from "../../../public/images/danilo-1.jpg";
 import danilo2 from "../../../public/images/danilo-2.jpg";
 import danilo3 from "../../../public/images/danilo-3.jpg";
 
 /** Photo sets for staff cards, by name. Staff without photos keep the placeholder. */
 const staffPhotos: Record<string, StaticImageData[]> = {
+  Alex: [alex1, alex2, alex3],
   "Danilo Ruiz": [danilo1, danilo2, danilo3],
 };
 
@@ -48,7 +52,7 @@ export function StaffGrid() {
           <li key={`${s.group}-${i}`} className="flex flex-col overflow-hidden rounded-lg border border-gold/30 bg-navy">
             <div className="relative h-72">
               {staffPhotos[s.name] ? (
-                <PageFlip photos={staffPhotos[s.name]} alt={`${s.name}, ${s.role.toLowerCase()}`} className="absolute inset-0" />
+                <PageFlip photos={staffPhotos[s.name]} alt={`${s.name}, ${s.role.toLowerCase()}`} offset={i * 2} className="absolute inset-0" />
               ) : (
                 <div role="img" aria-label={c.ui.photoPending} className="stripes flex h-full items-center justify-center">
                   <UserRoundIcon className="size-16 text-white/25" strokeWidth={1.2} aria-hidden />
