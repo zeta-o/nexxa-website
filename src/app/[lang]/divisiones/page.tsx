@@ -4,6 +4,7 @@ import { CheckIcon } from "lucide-react";
 
 import { DisplayTitle, Eyebrow, LevelBars, LinkButton, PageHero } from "@/components/site/primitives";
 import { getI18n, pick } from "@/i18n/server";
+import { bornRange, currentYear } from "@/lib/season";
 import { BrandText } from "@/components/site/brand-name";
 
 const copy = {
@@ -98,6 +99,7 @@ export default async function DivisionesPage() {
   const { c, href } = await getI18n();
   const t = await pick(copy);
   const { pathway, futureTeam } = c;
+  const year = await currentYear();
   return (
     <>
       <PageHero
@@ -157,9 +159,9 @@ export default async function DivisionesPage() {
                     <span className="inline-flex min-h-7 items-center rounded bg-sky px-2.5 font-bold text-white">{d.code}</span>
                   ) : null}
                   <span className={d.ages ? "font-semibold text-white" : "text-haze"}>{d.ages ?? t.ages}</span>
-                  {d.born ? (
+                  {bornRange(d.code, year) ? (
                     <span className="text-haze">
-                      · {t.bornLabel} {d.born}
+                      · {t.bornLabel} {bornRange(d.code, year)}
                     </span>
                   ) : null}
                 </div>
@@ -235,7 +237,7 @@ export default async function DivisionesPage() {
                       {r.code ? <strong className="text-navy-deep">{r.code} · </strong> : null}
                       {r.ages ?? t.ages}
                     </td>
-                    <td className="px-5 py-4 text-ink-soft">{r.born ?? "—"}</td>
+                    <td className="px-5 py-4 text-ink-soft">{bornRange(r.code, year) ?? "—"}</td>
                     <td className="px-5 py-4 text-ink-soft">{t.schedule[r.name]?.days ?? t.days}</td>
                     <td className="px-5 py-4 whitespace-nowrap text-ink-soft">{t.schedule[r.name]?.time ?? t.time}</td>
                     <td className="px-5 py-4 text-ink-soft">{r.competition}</td>

@@ -111,10 +111,9 @@ export type PathwayStep = {
   /** Process the category belongs to, when it shares one (Infantil, Juvenil). */
   process?: DivisionName;
   tag: string;
-  /** Official category code and age range (season 2026); empty while pending. */
+  /** Official category code and age range; birth years are derived from the code (see lib/season). */
   code?: string;
   ages?: string;
-  born?: string;
   text: string;
   points: string[];
   competition: string;
@@ -136,7 +135,6 @@ export const pathway: PathwayStep[] = [
     tag: "Iniciación",
     code: "U13",
     ages: "Menores de 13 años",
-    born: "2014–2015",
     text: "Fundamentos y mini-voleibol en un ambiente seguro y divertido.",
     points: ["Fundamentos: saque, pase y recepción", "Mini-voleibol y juegos", "Valores de equipo desde el inicio"],
     competition: "Festivales y mini-voleibol",
@@ -148,7 +146,6 @@ export const pathway: PathwayStep[] = [
     tag: "Proceso Infantil · 1 de 2",
     code: "U15",
     ages: "Menores de 15 años",
-    born: "2012–2013",
     text: "Técnica por posición y primeros sistemas de juego.",
     points: ["Técnica por posición", "Sistemas de juego básicos", "Encuentros y amistosos"],
     competition: "Amistosos y torneos",
@@ -160,7 +157,6 @@ export const pathway: PathwayStep[] = [
     tag: "Proceso Infantil · 2 de 2",
     code: "U17",
     ages: "Menores de 17 años",
-    born: "2010–2011",
     text: "Se consolida la técnica y llega la competencia en torneos.",
     points: ["Consolidación técnica", "Preparación física y táctica", "Torneos y amistosos"],
     competition: "Torneos",
@@ -171,7 +167,6 @@ export const pathway: PathwayStep[] = [
     tag: "Competencia",
     code: "U19",
     ages: "Menores de 19 años",
-    born: "2008–2009",
     text: "Rendimiento y competencia de liga con la camiseta de NEXXA RISE.",
     points: ["Preparación física y táctica avanzada", "Competencia en Torneos Nacionales", "Camino a selecciones y nivel universitario"],
     competition: "Torneos Nacionales",
