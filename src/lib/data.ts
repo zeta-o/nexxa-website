@@ -188,7 +188,8 @@ export const futureTeam = {
 /** Every category a player can sign up for, in order. */
 export const categories = ["Escuelita", "Mini", "Pre-Infantil", "Infantil", "Juvenil"] as const;
 
-export type StaffGroup = DivisionName | "Apoyo";
+/** Staff are grouped by category (Pre-Infantil has its own coach), plus support roles. */
+export type StaffGroup = (typeof categories)[number] | "Apoyo";
 
 export const leaders = [
   {
@@ -206,6 +207,7 @@ export const leaders = [
 /** Coaching staff shown on /staff. Add people here as they join; empty groups are hidden. */
 export const staff: { group: StaffGroup; role: string; name: string }[] = [
   { group: "Mini", role: "Entrenador principal", name: "Alex Díaz" },
+  { group: "Pre-Infantil", role: "Entrenadora principal", name: "Paula Wong" },
   { group: "Infantil", role: "Entrenador principal", name: "Danilo Ruiz" },
 ];
 

@@ -12,6 +12,9 @@ import { useFiltersStore } from "@/stores/use-filters-store";
 import alex1 from "../../../public/images/alex-1.jpg";
 import alex2 from "../../../public/images/alex-2.jpg";
 import alex3 from "../../../public/images/alex-3.jpg";
+import paula1 from "../../../public/images/paula-1.jpg";
+import paula2 from "../../../public/images/paula-2.jpg";
+import paula3 from "../../../public/images/paula-3.jpg";
 import danilo1 from "../../../public/images/danilo-1.jpg";
 import danilo2 from "../../../public/images/danilo-2.jpg";
 import danilo3 from "../../../public/images/danilo-3.jpg";
@@ -19,10 +22,11 @@ import danilo3 from "../../../public/images/danilo-3.jpg";
 /** Photo sets for staff cards, by name. Staff without photos keep the placeholder. */
 const staffPhotos: Record<string, StaticImageData[]> = {
   "Alex Díaz": [alex1, alex2, alex3],
+  "Paula Wong": [paula1, paula2, paula3],
   "Danilo Ruiz": [danilo1, danilo2, danilo3],
 };
 
-const groups = ["Todas", "Escuelita", "Mini", "Infantil", "Juvenil", "Apoyo"] as const satisfies readonly (StaffGroup | "Todas")[];
+const groups = ["Todas", "Escuelita", "Mini", "Pre-Infantil", "Infantil", "Juvenil", "Apoyo"] as const satisfies readonly (StaffGroup | "Todas")[];
 
 export function StaffGrid() {
   const { c } = useI18n();

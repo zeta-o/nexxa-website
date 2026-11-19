@@ -110,6 +110,7 @@ const staffRoleEn: Record<string, string> = {
   "Entrenador/a": "Coach",
   "Entrenador/a principal": "Head coach",
   "Entrenador principal": "Head coach",
+  "Entrenadora principal": "Head coach",
   Asistente: "Assistant coach",
   "Asistente / Estadística": "Assistant / Statistics",
   "Preparación física": "Strength & conditioning",
