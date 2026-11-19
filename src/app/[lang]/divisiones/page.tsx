@@ -46,6 +46,8 @@ const copy = {
       Infantil: { days: "Lunes a jueves", time: "6:00 – 8:00 p. m." },
       Juvenil: { days: "Lunes a jueves", time: "6:00 – 8:00 p. m." },
     } as Record<string, { days: string; time: string }>,
+    venueText: "Todas las categorías entrenan en nuestra sede, con tres canchas profesionales.",
+    venueLink: "Conoce dónde entrenamos →",
     ctaTitle: "¿No sabes en qué categoría va tu hija?",
     ctaButton: "Escríbenos",
   },
@@ -86,6 +88,8 @@ const copy = {
       Infantil: { days: "Monday to Thursday", time: "6:00 – 8:00 p.m." },
       Juvenil: { days: "Monday to Thursday", time: "6:00 – 8:00 p.m." },
     } as Record<string, { days: string; time: string }>,
+    venueText: "Every category trains at our home venue, with three professional courts.",
+    venueLink: "See where we train →",
     ctaTitle: "Not sure which category your daughter belongs in?",
     ctaButton: "Write to us",
   },
@@ -247,6 +251,12 @@ export default async function DivisionesPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+          <div className="flex flex-wrap items-center justify-between gap-5 rounded-lg bg-navy-deep px-7 py-6 text-white">
+            <p className="m-0 text-[17px] leading-relaxed">{t.venueText}</p>
+            <LinkButton href={`${href("/club")}#instalaciones`} className="min-h-12 px-6">
+              {t.venueLink}
+            </LinkButton>
           </div>
         </div>
       </section>
