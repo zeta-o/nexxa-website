@@ -18,7 +18,7 @@ import danilo3 from "../../../public/images/danilo-3.jpg";
 
 /** Photo sets for staff cards, by name. Staff without photos keep the placeholder. */
 const staffPhotos: Record<string, StaticImageData[]> = {
-  Alex: [alex1, alex2, alex3],
+  "Alex Díaz": [alex1, alex2, alex3],
   "Danilo Ruiz": [danilo1, danilo2, danilo3],
 };
 
