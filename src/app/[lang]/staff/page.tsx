@@ -6,6 +6,7 @@ import { DisplayTitle, Eyebrow, LinkButton, PageHero } from "@/components/site/p
 import { PageFlip } from "@/components/staff/page-flip";
 import { StaffGrid } from "@/components/staff/staff-grid";
 import { getI18n, pick } from "@/i18n/server";
+import type { StaffGroup } from "@/lib/data";
 
 import yuliana1 from "../../../../public/images/yuliana-1.jpg";
 import yuliana2 from "../../../../public/images/yuliana-2.jpg";
@@ -18,6 +19,11 @@ import mariaJose3 from "../../../../public/images/maria-jose-3.jpg";
 const leaderPhotos: Record<string, StaticImageData[]> = {
   "Yuliana González": [yuliana3, yuliana2, yuliana1],
   "María José Castro": [mariaJose1, mariaJose2, mariaJose3],
+};
+
+/** Division a leader also coaches, shown as a pill on the photo. */
+const leaderGroups: Record<string, StaffGroup> = {
+  "Yuliana González": "Juvenil",
 };
 
 const copy = {
@@ -81,12 +87,19 @@ export default async function StaffPage() {
             {leaders.map((l, i) => (
               <article key={l.role} className="flex flex-wrap overflow-hidden rounded-lg border border-silver bg-white">
                 {leaderPhotos[l.name] ? (
-                  <PageFlip
-                    photos={leaderPhotos[l.name]}
-                    alt={`${l.name}, ${l.role.toLowerCase()} ${t.of} NEXXA RISE`}
-                    offset={i * 2}
-                    className="min-h-80 flex-[0_0_240px] max-sm:min-h-[420px] max-sm:flex-[1_1_100%]"
-                  />
+                  <div className="relative min-h-80 flex-[0_0_240px] max-sm:min-h-[420px] max-sm:flex-[1_1_100%]">
+                    <PageFlip
+                      photos={leaderPhotos[l.name]}
+                      alt={`${l.name}, ${l.role.toLowerCase()} ${t.of} NEXXA RISE`}
+                      offset={i * 2}
+                      className="absolute inset-0"
+                    />
+                    {leaderGroups[l.name] && (
+                      <span className="absolute top-4 left-4 z-10 inline-flex min-h-7 items-center rounded-full bg-gold px-3 text-xs font-bold tracking-[0.08em] text-navy-deep uppercase">
+                        {c.groupLabel(leaderGroups[l.name])}
+                      </span>
+                    )}
+                  </div>
                 ) : (
                   <div role="img" aria-label={c.ui.photoPending} className="stripes flex min-h-60 flex-[0_0_200px] items-center justify-center max-sm:flex-[1_1_100%]">
                     <UserRoundIcon className="size-18 text-white/30" strokeWidth={1.2} aria-hidden />
