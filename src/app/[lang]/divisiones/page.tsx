@@ -42,6 +42,7 @@ const copy = {
     schedule: {
       Escuelita: { days: "Sábados", time: "8:00 – 10:00 a. m." },
       Mini: { days: "Lunes, miércoles y viernes", time: "5:30 – 7:30 p. m." },
+      "Pre-Infantil": { days: "Lunes, miércoles y viernes", time: "6:00 – 8:00 p. m." },
       Infantil: { days: "Lunes a jueves", time: "6:00 – 8:00 p. m." },
       Juvenil: { days: "Lunes a jueves", time: "6:00 – 8:00 p. m." },
     } as Record<string, { days: string; time: string }>,
@@ -81,6 +82,7 @@ const copy = {
     schedule: {
       Escuelita: { days: "Saturdays", time: "8:00 – 10:00 a.m." },
       Mini: { days: "Monday, Wednesday and Friday", time: "5:30 – 7:30 p.m." },
+      "Pre-Infantil": { days: "Monday, Wednesday and Friday", time: "6:00 – 8:00 p.m." },
       Infantil: { days: "Monday to Thursday", time: "6:00 – 8:00 p.m." },
       Juvenil: { days: "Monday to Thursday", time: "6:00 – 8:00 p.m." },
     } as Record<string, { days: string; time: string }>,
