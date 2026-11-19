@@ -37,6 +37,13 @@ const copy = {
     cols: ["Categoría", "Proceso", "Edades", "Año de nacimiento", "Entrenamientos", "Horario", "Competencia"],
     days: "[Días por semana]",
     time: "[Horario]",
+    /** Training days and hours by category. Categories not listed show the placeholders above. */
+    schedule: {
+      Escuelita: { days: "Sábados", time: "8:00 – 10:00 a. m." },
+      Mini: { days: "Lunes, miércoles y viernes", time: "5:30 – 7:30 p. m." },
+      Infantil: { days: "Lunes a jueves", time: "6:00 – 8:00 p. m." },
+      Juvenil: { days: "Lunes a jueves", time: "6:00 – 8:00 p. m." },
+    } as Record<string, { days: string; time: string }>,
     ctaTitle: "¿No sabes en qué categoría va tu hija?",
     ctaButton: "Escríbenos",
   },
@@ -70,6 +77,12 @@ const copy = {
     cols: ["Category", "Process", "Ages", "Birth year", "Practices", "Schedule", "Competition"],
     days: "[Days per week]",
     time: "[Schedule]",
+    schedule: {
+      Escuelita: { days: "Saturdays", time: "8:00 – 10:00 a.m." },
+      Mini: { days: "Monday, Wednesday and Friday", time: "5:30 – 7:30 p.m." },
+      Infantil: { days: "Monday to Thursday", time: "6:00 – 8:00 p.m." },
+      Juvenil: { days: "Monday to Thursday", time: "6:00 – 8:00 p.m." },
+    } as Record<string, { days: string; time: string }>,
     ctaTitle: "Not sure which category your daughter belongs in?",
     ctaButton: "Write to us",
   },
@@ -223,8 +236,8 @@ export default async function DivisionesPage() {
                       {r.ages ?? t.ages}
                     </td>
                     <td className="px-5 py-4 text-ink-soft">{r.born ?? "—"}</td>
-                    <td className="px-5 py-4 text-ink-soft">{t.days}</td>
-                    <td className="px-5 py-4 text-ink-soft">{t.time}</td>
+                    <td className="px-5 py-4 text-ink-soft">{t.schedule[r.name]?.days ?? t.days}</td>
+                    <td className="px-5 py-4 whitespace-nowrap text-ink-soft">{t.schedule[r.name]?.time ?? t.time}</td>
                     <td className="px-5 py-4 text-ink-soft">{r.competition}</td>
                   </tr>
                 ))}
